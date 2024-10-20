@@ -20,14 +20,14 @@ def golab(request):
             for swname in swl_in:
                 print (swname, type(swname))        
                 swl.append(str(swname))
-            messages.add_message(request, messages.INFO, 'Switch-list: ' + str(swl), extra_tags='safe')
+            messages.add_message(request, messages.INFO, 'Switch-list: ' + str(swl))
             srv = form.cleaned_data['serverselect_in'].name
             prn = form.cleaned_data['prjname_in']
             # Do something with the text (e.g., save to database)
 
-            messages.add_message(request, messages.INFO, 'GNS3 server:' + str(srv), extra_tags='safe')
+            messages.add_message(request, messages.INFO, 'GNS3 server:' + str(srv))
             result_out = str(dcnodatg.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
-            messages.add_message(request, messages.SUCCESS, 'Project Created:' + str(prn) + ' on ' + str(srv), extra_tags='safe')
+            messages.add_message(request, messages.SUCCESS, 'Project Created:' + str(prn) + ' on ' + str(srv))
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
