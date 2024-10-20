@@ -63,11 +63,9 @@ Context:
         <div class="card">
           <h5 class="card-header">Results</h5>
             <div class="card-body">
-              <ul class="messages">
                   {% for message in messages %}
-                      {% if 'safe' in message.tags %} <li class="{{ message.tags }}"> {% autoescape off %}{{ message| markdownify }} {% endautoescape %}</li>{% endif %}
+                      {% if 'safe' in message.tags %}  {% autoescape off %}{{ message.message| markdownify }} {% endautoescape %}{% endif %}
                   {% endfor %}
-              </ul>
           </div>
       {% endif %}
     </div>
