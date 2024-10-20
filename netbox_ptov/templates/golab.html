@@ -64,7 +64,7 @@ Context:
           <h5 class="card-header">Results</h5>
             <div class="card-body">
                   {% for message in messages %}
-                      {% if 'safe' in message.tags %}  {% autoescape off %}{{ message.message| markdownify }} {% endautoescape %}{% endif %}
+                      {% if 'safe' in message.tags %}  {% autoescape off %}{{ message.message }} {% endautoescape %}{% endif %}
                   {% endfor %}
           </div>
       {% endif %}
