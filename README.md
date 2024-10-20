@@ -3,8 +3,8 @@
 NetBox plugin for creating virtual lab topologies (of Arista switches only) that match "live-device"'s configuration and topology.
 
 
-* Free software: BSD
 * Documentation: https://menckend.github.io/netbox_ptov
+* dcnodatg project: htpps://menckend.github.io/dcnodatg/
 
 ## Features
 
