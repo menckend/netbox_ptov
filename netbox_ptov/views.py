@@ -27,7 +27,7 @@ def golab(request):
 
             messages.add_message(request, messages.INFO, 'GNS3 server:' + str(srv), extra_tags='safe')
             result_out = str(dcnodatg.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
-            messages.add_message(request, messages.SUCCESS, 'Project Created:' + str(prn) ' on ' + str(srv), extra_tags='safe')
+            messages.add_message(request, messages.SUCCESS, 'Project Created:' + str(prn) + ' on ' + str(srv), extra_tags='safe')
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
