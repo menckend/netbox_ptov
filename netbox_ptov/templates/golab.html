@@ -64,6 +64,7 @@ Context:
             <div class="card-body">
               <ul class="messages">
                   {% for message in messages %}
+                      {% if 'safe' in message.tags %} <li class="{{ message.tags }}"> {{ message|safe }}{% else %}{{ message |safe}}</li>{% endif %}
                       <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
                           {{ message }}
                       </li>
