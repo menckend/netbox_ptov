@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name =  "netbox_ptov"
-version = "0.1.0"
+version = "0.1.2"
 authors = [
     {name = "Mencken Davidson", email = "mencken@gmail.com"},
 ]
