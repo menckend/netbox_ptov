@@ -26,7 +26,7 @@ def golab(request):
             # Do something with the text (e.g., save to database)
 
             messages.add_message(request, messages.INFO, 'GNS3 server: ' + srv)
-            result_out = dcnodatg.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn)
+            result_out = str(dcnodatg.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
             messages.add_message(request, messages.SUCCESS, 'Project URL: ' + result_out, extra_tags='safe')
             return render(request, 'golab.html', {'form': form})
     else:
