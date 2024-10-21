@@ -1,6 +1,6 @@
-version: 0.1.14
-package_name: netbox-bgp
+version: 0.1.16
+package_name: netbox_ptov
 compatibility:
-  - release: 0.1.14
-    netbox_min: 4.0.0
-    netbox_max: 4.1.4
+  - release: 0.1.16
+    netbox_min: 4.1.0
+    netbox_max: 4.1.99
