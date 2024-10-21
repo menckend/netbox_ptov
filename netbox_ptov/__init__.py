@@ -1,19 +1,22 @@
+__author__ = """Mencken Davidson"""
+__email__ = "mencken@gmail.com"
+
+
 from netbox.plugins import PluginConfig
 from .version import __version__
 
 
-class ptovConfig(PluginConfig):
+class ptov_config(PluginConfig):
     name = 'netbox_ptov'
-    verbose_name = 'netbox_ptov'
-    description = 'Does this description take preference, or some other one?'
+    verbose_name = 'Physical to Virtual-lab'
+    description = 'Builds GNS3 labs w/ config and topology scraped from Arista switches in device tabls'
     version = __version__
-    author = 'Mencken the init.py Davidson'
-    author_email = 'mencken@gmail.com.gmail.mencken.com'
-    base_url = "netbox_ptov"
+#    author = 'Mencken the init.py Davidson'
+#    author_email = 'mencken@gmail.com.gmail.mencken.com'
+    base_url = 'netbox_ptov'
     default_settings = {
-        'device_ext_page': 'right',
         'top_level_menu': False
         }
 
 
-config = ptovConfig
+config = ptov_config
