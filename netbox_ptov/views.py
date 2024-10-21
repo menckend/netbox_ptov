@@ -28,6 +28,7 @@ def golab(request):
             messages.add_message(request, messages.INFO, 'GNS3 server: ' + str(srv))
             result_out = str(dcnodatg.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
             messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(prn) + ' on ' + str(srv))
+            messages.add_message(request, messages.INFO, 'Open project here: <a href='+srv+' >'+srv+'</a>' , extra_tags='safe')
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
