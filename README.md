@@ -15,7 +15,7 @@ Provides the ability to select a list of Arista switches from the Netbox "device
 
 | NetBox Version | Plugin Version |
 |----------------|----------------|
-|     4.1        |      0.1.0     |
+|     4.1.x      |    >=0.1.13    |
 
 ## Installing
 
