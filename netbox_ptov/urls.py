@@ -7,6 +7,7 @@ from . import models, views
 urlpatterns = (
 #    path("vlab_results/", views.vlab_result, name="vlab_result"),
     path("golabs/", views.golab, name="golab"),
+    
     path("gns3srvs/", views.gns3srvListView.as_view(), name="gns3srv_list"),
     path("gns3srvs/add/", views.gns3srvEditView.as_view(), name="gns3srv_add"),
     path("gns3srvs/<int:pk>/", views.gns3srvView.as_view(), name="gns3srv"),

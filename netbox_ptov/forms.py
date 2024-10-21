@@ -8,7 +8,7 @@ from .models import gns3srv, ptovjob, switchtojob
 
 class gns3srvForm(NetBoxModelForm):
     class Meta:
-        model = gns3srv 
+        model = gns3srv
         fields = ("name", "tags")
 
 class ptovjobForm(NetBoxModelForm):
