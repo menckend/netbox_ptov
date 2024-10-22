@@ -23,9 +23,11 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 
 <details><summary>
 
-### Creates a virtual lab emulating configuration and topology of the selected switches (Uses the [dcnodatg package](https://github.com/menckend/dcnodatg))
+### Creates a virtual lab
 
 </summary>
+
+Emulates configuration and topology of the selected switches, uses the [dcnodatg package](https://github.com/menckend/dcnodatg))
 
 * Collects configuration and LLDP neighbor details (using Arista eAPI) of the switches specified by the user
 * Performs cEOS-lab compatibilty scrubbing on each of the collected configurations
