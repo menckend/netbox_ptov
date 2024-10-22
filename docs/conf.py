@@ -25,6 +25,7 @@ extensions = [
     'myst_parser',
     'sphinx.ext.intersphinx',  # Link to other project's documentation (see mapping below)
     'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
+    'sphinx.ext.autodoc',
     'autoapi.extension',
     ]
 
