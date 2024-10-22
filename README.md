@@ -8,8 +8,7 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 
 ## Features
 
-<details open>
-<summary>
+<details><summary>
 
 ### Prompts Netbox user to provide/select input
 
@@ -22,11 +21,9 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 
 </details>
 
-<details open>
+<details><summary>
 
-<summary>
-
-### Creates a virtual lab emulating configuration and topology of the selected switches (Uses  the [dcnodatg package](https://github.com/menckend/dcnodatg))
+### Creates a virtual lab emulating configuration and topology of the selected switches (Uses the [dcnodatg package](https://github.com/menckend/dcnodatg))
 
 </summary>
 
