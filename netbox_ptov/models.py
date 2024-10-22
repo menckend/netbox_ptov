@@ -70,7 +70,7 @@ class ptovjob(NetBoxModel):
     eospasswd = models.CharField(max_length=100)
 
 class switchtojob(NetBoxModel):
-        """
+    """
     A class to represent the Django model of the list/table of `ptovjobs` <> `switch` pairs.  Each instance reflects that the specified `switch` was in-scope for the specified virtual-lab `job`
 
     ...
