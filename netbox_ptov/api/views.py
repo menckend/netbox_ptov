@@ -1,11 +1,11 @@
 from netbox.api.viewsets import NetBoxModelViewSet
 from rest_framework.routers import APIRootView
 
-from .serializers import (
+from netbox_ptov.api.serializers import (
     gns3srvSerializer, ptovjobSerializer, switchtojobSerializer
 )
 
-from .. import filtersets, models
+from netbox_ptov import filtersets, models
 
 class RootView(APIRootView):
     def get_view_name(self):
