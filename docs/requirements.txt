@@ -4,7 +4,7 @@ pyeapi
 Pygments
 pymdown-extensions
 Sphinx
-sphinx-autoapi=3.1.2
+sphinx-autoapi==3.1.2
 sphinx-rtd-theme
 sphinx_mdinclude
 sphinx_autodoc_typehints
