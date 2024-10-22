@@ -26,8 +26,8 @@ extensions = [
     'sphinx.ext.intersphinx',  # Link to other project's documentation (see mapping below)
     'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
     'autoapi.extension',
-    'sphinx.ext.inheritance_diagram',
     'sphinx.ext.graphviz'
+    'sphinx.ext.inheritance_diagram',
     ]
 
 source_suffix = [".rst",  ".md"]
@@ -40,12 +40,10 @@ autoapi_type = "python"
 autoapi_options = [
     "members",
     "undoc-members",
-    "show-inheritance",
+#    "show-inheritance",
     "show-inheritance-diagram",
     "show-module-summary",
     "imported-members",
-    "sphinx.ext.inheritance_diagram"
-    "sphinx.ext.graphviz", 
 ]
 autoapi_template_dir = "_templates/autoapi"
 autodoc_typehints = "signature"
