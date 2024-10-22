@@ -1,5 +1,3 @@
-:tocdepth: 5
-
 .. toctree::
    :hidden:
 
