@@ -1,6 +1,4 @@
-"""Django views
-
-Defines the 'views' used by the Django apps for serving pages of the netbox_ptov plugin"""
+"""Defines the 'views' used by the Django apps for serving pages of the netbox_ptov plugin"""
 
 from dcnodatg import dcnodatg
 from netbox.views import generic
@@ -39,10 +37,9 @@ def golab(request: json):
 
 
 class gns3srvView(generic.ObjectView):
-    """
-    A class to represent the generic view of a gns3srv object.
+    """A class to represent the generic view of a gns3srv object.
 
-    ...
+    =============================================================
 
     Attributes
     ----------
@@ -52,10 +49,9 @@ class gns3srvView(generic.ObjectView):
 
 
 class gns3srvListView(generic.ObjectListView):
-    """
-    A class to represent the view of all gns3srv objects.
+    """A class to represent the view of all gns3srv objects.
 
-    ...
+    =============================================================
 
     Attributes
     ----------
@@ -67,9 +63,8 @@ class gns3srvListView(generic.ObjectListView):
 
 
 class gns3srvEditView(generic.ObjectEditView):
-    """
-    A class to represent the edit view of a gns3srv object.
-
+    """    A class to represent the edit view of a gns3srv object.
+    =============================================================
     ...
 
     Attributes
@@ -82,9 +77,8 @@ class gns3srvEditView(generic.ObjectEditView):
 
 
 class gns3srvDeleteView(generic.ObjectDeleteView):
-    """
-    A class to represent the delete view of a gns3srv object.
-
+    """A class to represent the delete view of a gns3srv object.
+    =============================================================
     ...
 
     Attributes
@@ -98,7 +92,7 @@ class ptovjobView(generic.ObjectView):
     """
     A class to represent the generic view of all ptovjob objects.
 
-    ...
+    =============================================================
 
     Attributes
     ----------
@@ -111,7 +105,7 @@ class ptovjobListView(generic.ObjectListView):
     """
     A class to represent the list view of all ptovjob objects.
 
-    ...
+    =============================================================
 
     Attributes
     ----------
@@ -126,7 +120,7 @@ class ptovjobEditView(generic.ObjectEditView):
     """
     A class to represent the edit view of a ptovjob object.
 
-    ...
+    =============================================================
 
     Attributes
     ----------
@@ -141,7 +135,7 @@ class ptovjobDeleteView(generic.ObjectDeleteView):
     """
     A class to represent the delete  view of a ptovjob object.
 
-    ...
+    =============================================================
 
     Attributes
     ----------
@@ -155,7 +149,7 @@ class switchtojobView(generic.ObjectView):
     """
     A class to represent the generic view of all switchtojob objects.
 
-    ...
+    =============================================================
 
     Attributes
     ----------
@@ -168,7 +162,7 @@ class switchtojobListView(generic.ObjectListView):
     """
     A class to represent the list view of all switchtojob objects.
 
-    ...
+    =============================================================
 
     Attributes
     ----------
@@ -184,7 +178,7 @@ class switchtojobEditView(generic.ObjectEditView):
     """
     A class to represent the edit view of switchtojob objects.
 
-    ...
+    =============================================================
 
     Attributes
     ----------
@@ -200,7 +194,7 @@ class switchtojobDeleteView(generic.ObjectDeleteView):
     """
     A class to represent the delete view of a switchtojob object.
 
-    ...
+    =============================================================
 
     Attributes
     ----------
