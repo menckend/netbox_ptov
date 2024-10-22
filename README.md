@@ -1,21 +1,43 @@
-# NetBox ptov Plugin
+# NetBox PtoV Plugin
 
-NetBox plugin for creating virtual lab topologies (of Arista switches only) that match "live-device"'s configuration and topology.
+Netbox plugin for pulling runstate (config and topology) from Arista switches and replicating them in a GNS3 virtual lab using Arista cEOS containers
 
 
-* Documentation: https://menckend.github.io/netbox_ptov
-* dcnodatg project: htpps://menckend.github.io/dcnodatg/
+* Free software: Apache-2.0
+* Documentation: https://menckend.github.io/netbox-ptov-plugin/
+
 
 ## Features
 
-Provides the ability to select a list of Arista switches from the Netbox "devices" table and instantiate a virtual-lab topology based on their run-state, using the dcnodatg project.  dcnodatg's p_to_v function uses the Arista eAPI to query the switches, pulling startup-config, LLDP neighbor details, and LLDP "self" details.  It then trims out AAA, logging, SNMP,  and other configuration elements not suited for (or just plain not implemented on) the Arista cEOS container images.  Following that, it instantiates a new project on an existing GNS3 server (you'll need to *have* a GNS3 server, with cEOS images pre-installed and defined in GNS3 as device templates.)  Once the project is created, it then instantiates GNS3 nodes for each of the switches it originally polled, pushing the "cEOS-isifed"-version of each switch's startup configuration the corresponding Docker container, and creating connections in the GNS3 project topology (based on what was discovered in the LLDP neighbor tables and "self" information of each switch.)
+Prompts Netbox user to provide/select:
+- One or more Arista switches from Netbox's device table
+- Arista EOS credentials
+- An existing GNS3 server (v2.x)
+- A project name to use on the GNS3 server
 
+Performs the following (using  the [dcnodatg package](https://github.com/menckend/dcnodatg)):
+- Collects configuration and LLDP neighbor details (using Arista eAPI) of the switches specified by the user
+- Performs cEOS-lab compatibilty scrubbing on each of the collected configurations
+  - Removes logging, AAA, ASIC-only, etc... configuration elements
+  - Translates EOS interface names to cEOS interface names
+  - Implements an event-driven configuration section that forces the cEOS container to use the same system MAC address as the physical switch
+    - Enabling successful mLAG configuration between cEOS instances
+  - Etc...
+- Iterates through LLDP neighbor information to create a list of physical links between the polled switches
+- Creates a new project on the GNS3 server (using the GNS3 API)
+- Extracts the existing Docker configuration templates from the GNS3 server (using GNS3 API)
+- Identifies the GNS3 device templates for the Arista cEOS versions that match each switch's EOS version
+- Instantiates a GNS3 node in the new project for each switch (using GNS3 API)
+- Pushes the cEOS-ready version of each switch's startup config to the corresponding Docker container on the GNS3 server (using the Docker API exposed by containerd on the GNS3 server)
+- Creates links between the cEOS nodes on the GNS3 project that correspond to the discovered links between the physical switches
+ 
+Creates a new model for "GNS3 servers" and provides a screen/form for invoking
 
 ## Compatibility
 
 | NetBox Version | Plugin Version |
 |----------------|----------------|
-|     4.1.x      |    >=0.1.14    |
+|     4.1        |      0.1.0     |
 
 ## Installing
 
