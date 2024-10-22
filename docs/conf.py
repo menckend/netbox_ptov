@@ -36,6 +36,7 @@ html_show_sourcelink = False  # Remove 'view source code' from top of page (for 
 html_theme = 'sphinx_rtd_theme'
 autoapi_template_dir = "_templates/autoapi"
 autodoc_typehints = "description"
+autoapi_own_page_level = "function"
 autapi_ignore = []
 autoapi_dirs = ['../netbox_ptov/', '../external_sources/netbox/']
 autoapi_type = "python"
