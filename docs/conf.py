@@ -8,7 +8,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath('../dcnodatg/'))
 sys.path.insert(0, os.path.realpath(os.path.dirname(__file__)))
-sys.path.insert(0, os.path.abspath('../netbox-4.1.4/netbox/'))
+sys.path.insert(0, os.path.abspath('../external_sources/netbox/'))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -43,7 +43,7 @@ html_show_sourcelink = False  # Remove 'view source code' from top of page (for 
 #autodoc_typehints = "description"
 #autodoc_class_signature = "separated"
 html_theme = 'sphinx_rtd_theme'
-autoapi_dirs = ['../netbox_ptov/', '../netbox-4.1.4/netbox/']
+autoapi_dirs = ['../netbox_ptov/', '../external_sources/netbox/']
 autoapi_type = "python"
 autoapi_options = [
     "members",
