@@ -1,8 +1,8 @@
 from dcnodatg import dcnodatg
 # from django.db.models import Count
 from netbox.views import generic
-from . import filtersets, forms, models, tables
-from .models import gns3srv
+from netbox_ptov import filtersets, forms, models, tables
+from netbox_ptov.models import gns3srv
 from django.shortcuts import render, redirect
 from django.contrib import messages
 #from django.forms.models import ConfigContextModelQuerySet
