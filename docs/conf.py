@@ -26,7 +26,7 @@ extensions = [
     'sphinx.ext.intersphinx',  # Link to other project's documentation (see mapping below)
     'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
     'autoapi.extension',
-    'sphinx.ext.graphviz'
+    'sphinx.ext.graphviz',
     'sphinx.ext.inheritance_diagram',
     ]
 
