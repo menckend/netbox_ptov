@@ -1,2 +1,3 @@
+   :tocdepth: 5
    ...
    autoapi/index
