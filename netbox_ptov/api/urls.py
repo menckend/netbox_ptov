@@ -1,4 +1,4 @@
-# api/urls.py
+"""Django API url router definitions for the netbox_ptov plugin"""
 
 from netbox.api.routers import NetBoxRouter
 

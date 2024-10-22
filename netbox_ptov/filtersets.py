@@ -1,3 +1,8 @@
+"""Django filtersets for netbox_ptov plugin
+
+Defines the Django filtersets used by the netbox_ptov plugin"""
+
+
 from netbox.filtersets import NetBoxModelFilterSet
 from .models import gns3srv, ptovjob, switchtojob
 

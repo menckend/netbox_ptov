@@ -1,11 +1,9 @@
 .. toctree::
    :hidden:
 
-   Home <self>
-   Contributing <include::  ../CONTRIBUTING.md>
-   :parser: myst_parser.docutils_
-   Changelog <include:: ../CHANGELOG.md>
-      :parser: myst_parser.docutils_
+   Home/README <self>
+   Contributing <CONTRIBUTING.rst>
+   Changelog <CHANGELOG.rst>
    ...
    autoapi/index
 

@@ -1,3 +1,8 @@
+"""Menu buttons for netbox_ptov plugin
+
+Defines the menu/sidebar objects used by Django/Netbox when the netbox_ptov plugin is installed"""
+
+
 from django.conf import settings
 from netbox.plugins import PluginMenuButton, PluginMenuItem, PluginMenu
 

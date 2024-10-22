@@ -1,4 +1,5 @@
-# migrations/0001_initial.py
+"""Initial Django migrations for netbox_ptov plugin"""
+
 
 import django.db.models.deletion
 import taggit.managers

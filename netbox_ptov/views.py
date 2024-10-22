@@ -1,3 +1,7 @@
+"""Django views
+
+Defines the 'views' used by the Django apps for serving pages of the netbox_ptov plugin"""
+
 from dcnodatg import dcnodatg
 from netbox.views import generic
 from netbox_ptov import filtersets, forms, models, tables
@@ -35,54 +39,172 @@ def golab(request):
 
 
 class gns3srvView(generic.ObjectView):
+    """
+    A class to represent the generic view of a gns3srv object.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    """
     queryset = models.gns3srv.objects.all()
 
 
 class gns3srvListView(generic.ObjectListView):
+    """
+    A class to represent the view of all gns3srv objects.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    table
+    """
     queryset = models.gns3srv.objects.all()
     table = tables.gns3srvTable
 
 
 class gns3srvEditView(generic.ObjectEditView):
+    """
+    A class to represent the edit view of a gns3srv object.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    form
+    """
     queryset = models.gns3srv.objects.all()
     form = forms.gns3srvForm
 
 
 class gns3srvDeleteView(generic.ObjectDeleteView):
+    """
+    A class to represent the delete view of a gns3srv object.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    """
     queryset = models.gns3srv.objects.all()
 
 
 class ptovjobView(generic.ObjectView):
+    """
+    A class to represent the generic view of all ptovjob objects.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    """
     queryset = models.ptovjob.objects.all()
 
 
 class ptovjobListView(generic.ObjectListView):
+    """
+    A class to represent the list view of all ptovjob objects.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    table
+    """
     queryset = models.ptovjob.objects.all()
     table = tables.ptovjobTable
 
 
 class ptovjobEditView(generic.ObjectEditView):
+    """
+    A class to represent the edit view of a ptovjob object.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    form
+    """
     queryset = models.ptovjob.objects.all()
     form = forms.ptovjobForm
 
 
 class ptovjobDeleteView(generic.ObjectDeleteView):
+    """
+    A class to represent the delete  view of a ptovjob object.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    """
+
     queryset = models.ptovjob.objects.all()
 
 
 class switchtojobView(generic.ObjectView):
+    """
+    A class to represent the generic view of all switchtojob objects.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    """
     queryset = models.switchtojob.objects.all()
 
 
 class switchtojobListView(generic.ObjectListView):
+    """
+    A class to represent the list view of all switchtojob objects.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    table
+    """
+
     queryset = models.switchtojob.objects.all()
     table = tables.switchtojobTable
 
 
 class switchtojobEditView(generic.ObjectEditView):
+    """
+    A class to represent the edit view of switchtojob objects.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    form
+    """
+
     queryset = models.switchtojob.objects.all()
     form = forms.switchtojobForm
 
 
 class switchtojobDeleteView(generic.ObjectDeleteView):
+    """
+    A class to represent the delete view of a switchtojob object.
+
+    ...
+
+    Attributes
+    ----------
+    queryset
+    """
+
     queryset = models.switchtojob.objects.all()

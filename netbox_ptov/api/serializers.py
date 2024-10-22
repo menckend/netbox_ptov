@@ -1,4 +1,4 @@
-# api/serializers.py
+"""Django API serializer definitions for the netbox_ptov plugin"""
 
 from rest_framework.serializers import HyperlinkedIdentityField, ValidationError
 from rest_framework.relations import PrimaryKeyRelatedField

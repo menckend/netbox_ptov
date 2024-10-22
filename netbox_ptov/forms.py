@@ -1,3 +1,7 @@
+"""Django forms for netbox_ptov plugin
+
+Defines the Django forms used by the netbox_ptov plugin"""
+
 from django import forms
 # from ipam.models import Prefix
 from netbox.forms import NetBoxModelForm  ##, NetBoxModelFilterSetForm

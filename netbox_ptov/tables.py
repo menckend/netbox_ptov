@@ -1,3 +1,7 @@
+"""DB tables for netbox_ptov plugin
+
+Defines the DB tables used by the Django models defined in the netbox_ptov plugin."""
+
 import django_tables2 as tables
 from netbox.tables import NetBoxTable, ChoiceFieldColumn
 
@@ -13,6 +17,16 @@ from .models import gns3srv, ptovjob, switchtojob
 #        default_columns = ("name",)
 
 class gns3srvTable(NetBoxTable):
+    """
+    A class to represent the GNS3 servers table.
+
+    ...
+
+    Attributes
+    ----------
+    name
+    """
+
     name = tables.Column(linkify=True)
 
     class Meta(NetBoxTable.Meta):
@@ -21,6 +35,16 @@ class gns3srvTable(NetBoxTable):
         default_columns = ("name",)
 
 class ptovjobTable(NetBoxTable):
+    """
+    A class to represent the table of the requested/instantiated virtual-labs created by netbox_ptov plugin.
+
+    ...
+
+    Attributes
+    ----------
+    name
+    """
+
     name = tables.Column(linkify=True)
 
     class Meta(NetBoxTable.Meta):
@@ -29,6 +53,16 @@ class ptovjobTable(NetBoxTable):
         default_columns = ("name",)
 
 class switchtojobTable(NetBoxTable):
+    """
+    A class to represent the table of the switches included in each requested virtual-lab created by netbox_ptov plugin.
+
+    ...
+
+    Attributes
+    ----------
+    name
+    """
+
     name = tables.Column(linkify=True)
 
     class Meta(NetBoxTable.Meta):

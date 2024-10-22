@@ -1,3 +1,7 @@
+"""Django URLs for netbox_ptov plugin
+
+Defines the path objects used by Django/Netbox when serving the pages of the netbox_ptov plugin."""
+
 from django.urls import path
 from netbox.views.generic import ObjectChangeLogView
 
