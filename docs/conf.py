@@ -29,7 +29,8 @@ extensions = [
     'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
 #    'sphinx_autodoc_typehints' # Automatically document param types (less noise in class signature)
     'autoapi.extension',
-    'sphinx.ext.inheritance_diagram'
+    'sphinx.ext.inheritance_diagram',
+    'sphinx.ext.graphviz'
     ]
 
 source_suffix = [".rst",  ".md"]
