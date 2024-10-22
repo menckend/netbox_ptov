@@ -25,7 +25,7 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 
 <details><summary>
 
-### Creates a virtual lab using the [dcnodatg package](https://github.com/menckend/dcnodatg))
+### Creates a virtual lab using the [dcnodatg package](https://github.com/menckend/dcnodatg)
 
 </summary>
 
