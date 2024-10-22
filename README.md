@@ -7,9 +7,7 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 
 ## Features
 
-<details><summary>
-
-### Prompts Netbox user to provide/select input
+<details><summary>Prompts Netbox user to provide/select input
 
 </summary>
 
@@ -20,9 +18,7 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 
 </details>
 
-<details><summary>
-
-### Creates a virtual lab using the [dcnodatg package](https://menckend.github.io/dcnodatg)
+<details><summary>Creates a virtual lab using the [dcnodatg package](https://menckend.github.io/dcnodatg)
 
 </summary>
 
@@ -57,7 +53,7 @@ For adding to a NetBox Docker setup see
 While this is still in development and not yet on pypi you can install with pip:
 
 ```bash
-pip install git+https://github.com/menckend/netbox-ptov-plugin
+pip install git+https://github.com/menckend/netbox_ptov
 ```
 
 or by adding to your `local_requirements.txt` or `plugin_requirements.txt` (netbox-docker):
