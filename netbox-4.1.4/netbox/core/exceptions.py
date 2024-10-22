@@ -1,2 +1,0 @@
-class SyncError(Exception):
-    pass
