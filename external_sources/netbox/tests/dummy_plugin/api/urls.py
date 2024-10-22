@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .views import DummyViewSet
+from netbox.tests.dummy_plugin.api.views import DummyViewSet
 
 router = routers.DefaultRouter()
 router.register('dummy-models', DummyViewSet)
