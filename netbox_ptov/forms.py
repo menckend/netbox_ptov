@@ -11,24 +11,42 @@ from .models import gns3srv, ptovjob, switchtojob
 
 
 class gns3srvForm(NetBoxModelForm):
+    """A class to represent the Django form for `gns3srv` """
+
     class Meta:
         model = gns3srv
         fields = ("name", "tags")
 
 
 class ptovjobForm(NetBoxModelForm):
+    """A class to represent the Django form for `ptovjob` """
+
     class Meta:
         model = ptovjob
         fields = ("name", "gns3srv", "gns3prjname", "gns3prjid", "eosuname", "eospasswd")
 
 
 class switchtojobForm(NetBoxModelForm):
+    """A class to represent the Django form for `gns3srv` """
     class Meta:
         model = switchtojob
         fields = ("name", "switch", "job")
 
 
 class golabForm(forms.Form):
+    """A class to represent the Django form for the golabs.html
+
+    ...
+
+    Attributes
+    ----------
+    username_in
+    password_in
+    switchlist_multiplechoice_in
+    serverselect_in
+    prjname_in
+    """
+
     username_in = forms.CharField(label="Enter EOS username:", widget=forms.TextInput)
     password_in = forms.CharField(label="Enter EOS password:", widget=forms.PasswordInput)
     switchlist_multiplechoice_in = forms.ModelMultipleChoiceField(queryset=devices.Device.objects.filter(device_type__manufacturer__slug="arista"), to_field_name='name')
