@@ -3,7 +3,7 @@ netaddr
 pyeapi
 Pygments
 pymdown-extensions
-Sphinx
+Sphinx==7.3.0
 sphinx-autoapi
 sphinx-rtd-theme
 sphinx_mdinclude
