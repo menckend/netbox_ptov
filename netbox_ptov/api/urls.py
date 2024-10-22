@@ -1,3 +1,5 @@
+# api/urls.py
+
 from netbox.api.routers import NetBoxRouter
 
 from netbox_ptov.api.views import (

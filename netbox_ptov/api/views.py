@@ -1,3 +1,5 @@
+# api/views.py
+
 from netbox.api.viewsets import NetBoxModelViewSet
 from rest_framework.routers import APIRootView
 

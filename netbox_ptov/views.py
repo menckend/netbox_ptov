@@ -1,12 +1,11 @@
 from dcnodatg import dcnodatg
-# from django.db.models import Count
 from netbox.views import generic
 from netbox_ptov import filtersets, forms, models, tables
 from netbox_ptov.models import gns3srv
 from django.shortcuts import render, redirect
 from django.contrib import messages
-#from django.forms.models import ConfigContextModelQuerySet
 import json
+
 
 def golab(request):
     if request.method == 'POST':
@@ -34,37 +33,56 @@ def golab(request):
         form = forms.golabForm()
         return render(request, 'golab.html', {'form': form})
 
+
 class gns3srvView(generic.ObjectView):
     queryset = models.gns3srv.objects.all()
+
+
 class gns3srvListView(generic.ObjectListView):
     queryset = models.gns3srv.objects.all()
     table = tables.gns3srvTable
+
+
 class gns3srvEditView(generic.ObjectEditView):
     queryset = models.gns3srv.objects.all()
     form = forms.gns3srvForm
+
+
 class gns3srvDeleteView(generic.ObjectDeleteView):
     queryset = models.gns3srv.objects.all()
 
 
 class ptovjobView(generic.ObjectView):
     queryset = models.ptovjob.objects.all()
+
+
 class ptovjobListView(generic.ObjectListView):
     queryset = models.ptovjob.objects.all()
     table = tables.ptovjobTable
+
+
 class ptovjobEditView(generic.ObjectEditView):
     queryset = models.ptovjob.objects.all()
     form = forms.ptovjobForm
+
+
 class ptovjobDeleteView(generic.ObjectDeleteView):
     queryset = models.ptovjob.objects.all()
 
 
 class switchtojobView(generic.ObjectView):
     queryset = models.switchtojob.objects.all()
+
+
 class switchtojobListView(generic.ObjectListView):
     queryset = models.switchtojob.objects.all()
     table = tables.switchtojobTable
+
+
 class switchtojobEditView(generic.ObjectEditView):
     queryset = models.switchtojob.objects.all()
     form = forms.switchtojobForm
+
+
 class switchtojobDeleteView(generic.ObjectDeleteView):
     queryset = models.switchtojob.objects.all()

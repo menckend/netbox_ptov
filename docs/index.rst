@@ -2,9 +2,9 @@
    :hidden:
 
    Home <self>
-   Contributing <include:  ../CONTRIBUTING.md>
+   Contributing <include::  ../CONTRIBUTING.md>
    :parser: myst_parser.docutils_
-   Changelog <include: ../CHANGELOG.md>
+   Changelog <include:: ../CHANGELOG.md>
       :parser: myst_parser.docutils_
    ...
    autoapi/index
