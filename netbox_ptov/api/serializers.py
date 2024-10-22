@@ -14,8 +14,6 @@ from dcim.api.serializers import SiteSerializer, DeviceSerializer
 from netbox_ptov.models import gns3srv, ptovjob, switchtojob 
 
 class gns3srvSerializer(NetBoxModelSerializer):
-    #status = ChoiceField(choices=CommunityStatusChoices, required=False)
-    #tenant = TenantSerializer(nested=True, required=False, allow_null=True)
     url = HyperlinkedIdentityField(view_name="plugins-api:netbox_ptov:gns3srv-detail")
 
     class Meta:
@@ -29,8 +27,6 @@ class gns3srvSerializer(NetBoxModelSerializer):
 
 
 class ptovjobSerializer(NetBoxModelSerializer):
-    #status = ChoiceField(choices=CommunityStatusChoices, required=False)
-    #tenant = TenantSerializer(nested=True, required=False, allow_null=True)
     url = HyperlinkedIdentityField(view_name="plugins-api:netbox_ptov_:ptovjob-detail")
 
     class Meta:
@@ -42,8 +38,6 @@ class ptovjobSerializer(NetBoxModelSerializer):
 
 
 class switchtojobSerializer(NetBoxModelSerializer):
-    #status = ChoiceField(choices=CommunityStatusChoices, required=False)
-    #tenant = TenantSerializer(nested=True, required=False, allow_null=True)
     url = HyperlinkedIdentityField(view_name="plugins-api:netbox_ptov:switchtojob-detail")
 
     class Meta:
@@ -52,4 +46,3 @@ class switchtojobSerializer(NetBoxModelSerializer):
             "name", "switch", "job",
         ]
         brief_fields = ("name", "switch")
-

@@ -1,6 +1,5 @@
 """Initial Django migrations for netbox_ptov plugin"""
 
-
 import django.db.models.deletion
 import taggit.managers
 import utilities.json
