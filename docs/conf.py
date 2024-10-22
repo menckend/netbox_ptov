@@ -36,14 +36,7 @@ extensions = [
 source_suffix = [".rst",  ".md"]
 templates_path = ['_templates']
 exclude_patterns = ['_build', '_templates', 'Thumbs.db', '.DS_Store']
-#autosummary_generate = True  # Turn on sphinx.ext.autosummary
-#autosummary_imported_members = True
-#autoclass_content = "both"  # Add __init__ doc (ie. params) to class summaries
 html_show_sourcelink = False  # Remove 'view source code' from top of page (for html, not python)
-#autodoc_inherit_docstrings = False  # If no docstring, inherit from base class
-#set_type_checking_flag = True  # Enable 'expensive' imports for sphinx_autodoc_typehints
-#autodoc_typehints = "description"
-#autodoc_class_signature = "separated"
 html_theme = 'sphinx_rtd_theme'
 autoapi_dirs = ['../netbox_ptov/', '../external_sources/netbox/']
 autoapi_type = "python"
@@ -69,15 +62,9 @@ html_css_files = [
 
 
 on_rtd = os.environ.get("READTHEDOCS", None) == "True"
-#if not on_rtd:  # only import and set the theme if we're building docs locally
-#    import sphinx_rtd_theme
-#    html_theme = "sphinx_rtd_theme"
-#    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-#html_css_files = ["readthedocs-custom.css"] # Override some CSS settings
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-
 
 html_static_path = ['_static']
 
