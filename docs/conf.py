@@ -47,11 +47,11 @@ autoapi_dirs = ['../netbox_ptov/', '../external_sources/netbox/']
 autoapi_type = "python"
 autoapi_options = [
     "members",
-    "undoc-members",
+#    "undoc-members",
     "show-inheritance",
     "show-module-summary",
     "imported-members",
-    "autoapi_python_use_implicit_namespaces",
+#    "autoapi_python_use_implicit_namespaces",
 ]
 autoapi_template_dir = "_templates/autoapi"
 autodoc_typehints = "signature"

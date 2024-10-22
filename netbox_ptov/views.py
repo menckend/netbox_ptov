@@ -37,35 +37,22 @@ def golab(request: json):
 
 
 class gns3srvView(generic.ObjectView):
-    """A class to represent the generic view of a gns3srv object.
+    """A class to represent the generic view of a gns3srv object."""
 
-    =============================================================
-
-    Attributes
-    ----------
-    queryset
-    """
     queryset = models.gns3srv.objects.all()
 
 
 class gns3srvListView(generic.ObjectListView):
-    """A class to represent the view of all gns3srv objects.
+    """A class to represent the view of all gns3srv objects."""
 
-    =============================================================
-
-    Attributes
-    ----------
-    queryset
-    table
-    """
     queryset = models.gns3srv.objects.all()
     table = tables.gns3srvTable
 
 
 class gns3srvEditView(generic.ObjectEditView):
-    """    A class to represent the edit view of a gns3srv object.
+    """A class to represent the edit view of a gns3srv object.
     =============================================================
-    ...
+
 
     Attributes
     ----------
