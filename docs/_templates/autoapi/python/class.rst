@@ -81,8 +81,8 @@ Classes
 
 .. autoapisummary::
 
-         {% for klass in visible_classes %}
-   {{ klass.id }}
+         {% for class in visible_classes %}
+   {{ class.id }}
          {% endfor %}
 
 
