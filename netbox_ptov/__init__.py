@@ -3,7 +3,7 @@ __email__ = "mencken@gmail.com"
 
 
 from netbox.plugins import PluginConfig
-from .version import __version__
+from ._version import __version__
 
 
 class ptov_config(PluginConfig):
