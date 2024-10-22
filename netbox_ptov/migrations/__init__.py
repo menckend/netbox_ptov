@@ -2,4 +2,4 @@
 
 """Django API elements for the netbox_ptov plugin"""
 
-import netbox_ptov.migrations *
+import netbox_ptov.migrations.0001_initial

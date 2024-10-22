@@ -11,7 +11,7 @@ from django.contrib import messages
 import json
 
 
-def golab(request):
+def golab(request: json):
     if request.method == 'POST':
         form = forms.golabForm(request.POST)
         if form.is_valid():

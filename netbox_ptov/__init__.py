@@ -1,7 +1,6 @@
 __author__ = """Mencken Davidson"""
 __email__ = "mencken@gmail.com"
 
-from netbox_ptov import api, migrations
 from netbox.plugins import PluginConfig
 from netbox_ptov._version import __version__
 

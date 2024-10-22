@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from netbox.api.serializersbase import *
-from netbox.api.serializersfeatures import *
-from netbox.api.serializersgeneric import *
-from netbox.api.serializersnested import *
+from netbox.api.serializers.base import *
+from netbox.api.serializers.features import *
+from netbox.api.serializers.generic import *
+from netbox.api.serializers.nested import *
 
 
 #

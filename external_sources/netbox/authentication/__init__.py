@@ -1,4 +1,5 @@
 import logging
+import netbox.authentication.misc
 from collections import defaultdict
 
 from django.conf import settings
