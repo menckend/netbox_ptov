@@ -36,7 +36,7 @@ html_theme = 'sphinx_rtd_theme'
 autoapi_dirs = ['../netbox_ptov/', '../external_sources/netbox/']
 autoapi_type = "python"
 autoapi_options = [
-    "members",
+#    "members",
     "undoc-members",
     "show-inheritance",
     "show-module-summary",
