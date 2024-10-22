@@ -28,7 +28,8 @@ extensions = [
     'sphinx.ext.intersphinx',  # Link to other project's documentation (see mapping below)
     'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
 #    'sphinx_autodoc_typehints' # Automatically document param types (less noise in class signature)
-    'autoapi.extension'
+    'autoapi.extension',
+    'sphinx.ext.inheritance_diagram'
     ]
 
 source_suffix = [".rst",  ".md"]
@@ -49,12 +50,15 @@ autoapi_options = [
     "members",
     "undoc-members",
     "show-inheritance",
+    "show-inheritance-diagram",
     "show-module-summary",
     "imported-members",
 #    "autoapi_python_use_implicit_namespaces",
 ]
 autoapi_template_dir = "_templates/autoapi"
 autodoc_typehints = "signature"
+autapi_ignore = []
+
 
 html_css_files = [
     "css/custom.css",
