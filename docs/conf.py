@@ -34,18 +34,18 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', '_templates', 'Thumbs.db', '.DS_Store']
 html_show_sourcelink = False  # Remove 'view source code' from top of page (for html, not python)
 html_theme = 'sphinx_rtd_theme'
+autoapi_template_dir = "_templates/autoapi"
+autodoc_typehints = "signature"
+autapi_ignore = []
 autoapi_dirs = ['../netbox_ptov/', '../external_sources/netbox/']
 autoapi_type = "python"
 autoapi_options = [
-#    "members",
+    "members",
     "undoc-members",
     "show-inheritance",
     "show-module-summary",
     "imported-members",
 ]
-autoapi_template_dir = "_templates/autoapi"
-autodoc_typehints = "signature"
-autapi_ignore = []
 
 html_css_files = [
     "css/custom.css",
