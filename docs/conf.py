@@ -40,7 +40,7 @@ autoapi_type = "python"
 autoapi_options = [
     "members",
     "undoc-members",
-#    "show-inheritance",
+    "show-inheritance",
     "show-inheritance-diagram",
     "show-module-summary",
     "imported-members",
