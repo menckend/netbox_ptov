@@ -51,9 +51,11 @@ autoapi_options = [
     "members",
     "undoc-members",
     "show-inheritance",
-    "show-inheritance-diagram",
+#    "show-inheritance-diagram",
     "show-module-summary",
     "imported-members",
+    "sphinx.ext.inheritance_diagram"
+    "sphinx.ext.graphviz", 
 #    "autoapi_python_use_implicit_namespaces",
 ]
 autoapi_template_dir = "_templates/autoapi"
