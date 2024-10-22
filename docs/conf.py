@@ -41,10 +41,11 @@ autoapi_options = [
     "show-inheritance",
     "show-module-summary",
     "imported-members",
+    "autoapi_ignore" = [],
 ]
 autoapi_template_dir = "_templates/autoapi"
 autodoc_typehints = "signature"
-autapi_ignore = []
+#autapi_ignore = []
 
 html_css_files = [
     "css/custom.css",
