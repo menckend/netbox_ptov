@@ -48,7 +48,7 @@ autoapi_options = [
     "undoc-members",
     "show-inheritance",
     "show-module-summary",
-    "imported-members",
+#    "imported-members",
 ]
 autoapi_template_dir = "_templates/autoapi"
 autodoc_typehints = "signature"
