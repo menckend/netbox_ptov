@@ -11,8 +11,8 @@ class ptov_config(PluginConfig):
     verbose_name = 'Physical to Virtual-lab'
     description = 'Builds GNS3 labs w/ config and topology scraped from Arista switches in device tabls'
     version = __version__
-#    author = 'Mencken the init.py Davidson'
-#    author_email = 'mencken@gmail.com.gmail.mencken.com'
+    author = 'Mencken Davidson'
+    author_email = 'mencken@gmail.com'
     base_url = 'netbox_ptov'
     default_settings = {
         'top_level_menu': False
