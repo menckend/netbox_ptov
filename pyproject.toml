@@ -11,10 +11,10 @@ version_file = "netbox_ptov/_version.py"
 #version_scheme : str | Callable[[ScmVersion], str]
 
 [tool.setuptools.packages.find]
-#where = ["."]
+where = ["."]
 #include = ["dcnodatg*"]
 #include = ["src*"]
-#exclude = [".venv*", "tests*", "docs*", ".github*", ".gitignore"]
+exclude = [".venv*", "tests*", "docs*", ".github*", ".gitignore", netbox-4.1.4]
 
 
 [project]
