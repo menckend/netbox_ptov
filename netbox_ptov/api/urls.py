@@ -1,6 +1,6 @@
 from netbox.api.routers import NetBoxRouter
 
-from .views import (
+from netbox_ptov.api.views import (
     gns3srvViewSet, ptovjobViewSet, switchtojobViewSet, RootView
 )
 
