@@ -45,7 +45,7 @@ autoapi_dirs = ['../netbox_ptov/']
 autoapi_type = "python"
 autoapi_options = [
     "members",
-    "undoc-members",
+#    "undoc-members",
     "show-inheritance",
     "show-module-summary",
 #    "imported-members",
