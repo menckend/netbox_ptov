@@ -2,8 +2,20 @@
 # https://www.python.org/dev/peps/pep-0518/
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+version_file = "dcnodatg/_version.py"
+#fallback_version = '0.0.0'
+#version_scheme : str | Callable[[ScmVersion], str]
+
+[tool.setuptools.packages.find]
+#where = ["."]
+#include = ["dcnodatg*"]
+#include = ["src*"]
+#exclude = [".venv*", "tests*", "docs*", ".github*", ".gitignore"]
+
 
 [project]
 name =  "netbox_ptov"
@@ -11,6 +23,11 @@ dynamic = ["version"]
 authors = [
     {name = "Mencken Davidson", email = "mencken@gmail.com"},
 ]
+maintainers = [
+  {name = "Mencken Davidson", email = "mencken@gmail.com"}
+]
+license = {file = "LICENSE"}
+
 description = "NetBox plugin for ptov.  Uses dcnodatg project."
 readme = "README.md"
 
@@ -24,11 +41,9 @@ classifiers=[
     'Programming Language :: Python :: 3.12',
 ]
 
-requires-python = ">=3.10.0"
+requires-python= ">=3.12"
 
-dependencies = [
-  "dcnodatg",
-]
+dependencies = [ "dcnodatg", "build"]
 
 [project.optional-dependencies]
 test = [
@@ -41,8 +56,8 @@ test = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/menckend/netbox-ptov-plugin/blob/main/README.md"
-Source = "https://github.com/menckend/netbox-ptov-plugin"
+Documentation = "https://github.com/menckend/netbox_ptov/blob/main/README.md"
+Source = "https://github.com/menckend/netbox_ptov"
 Tracker = "https://github.com/menckend/netbox_ptov/issues"
 
 [tool.black]
