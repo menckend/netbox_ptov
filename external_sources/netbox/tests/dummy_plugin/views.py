@@ -6,7 +6,7 @@ from django.views.generic import View
 
 from dcim.models import Site
 from utilities.views import register_model_view
-from netbox-4.1.4-src.models import DummyModel
+from netbox.tests.dummy_plugin.models import DummyModel
 # Trigger registration of custom column
 from netbox.tests.dummy_plugin.tables import mycol  # noqa: F401
 
