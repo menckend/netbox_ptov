@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from netbox.tests.dummy_plugin.models import DummyModel
-from .serializers import DummySerializer
+from netbox.tests.dummy_plugin.api.serializers import DummySerializer
 
 
 class DummyViewSet(ModelViewSet):
