@@ -5,12 +5,11 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 * Free software: Apache-2.0
 * Documentation: https://menckend.github.io/netbox-ptov-plugin/
 
-
 ## Features
 
 <details><summary>
 
-**Prompts Netbox user to provide/select input**
+### Prompts Netbox user to provide/select input
 
 </summary>
 
@@ -21,10 +20,9 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 
 </details>
 
-
 <details><summary>
 
-**Creates a virtual lab using the [dcnodatg package](https://menckend.github.io/dcnodatg)**
+### Creates a virtual lab using the [dcnodatg package](https://menckend.github.io/dcnodatg)
 
 </summary>
 
