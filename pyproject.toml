@@ -11,7 +11,7 @@ version_file = "netbox_ptov/_version.py"
 #version_scheme : str | Callable[[ScmVersion], str]
 
 [tool.setuptools.packages.find]
-where = ["."]
+#where = ["."]
 #include = ["dcnodatg*"]
 #include = ["src*"]
 exclude = [".venv*", "tests*", "docs*", ".github*", ".gitignore", "external_sources"]
@@ -44,6 +44,7 @@ classifiers=[
 requires-python= ">=3.12"
 
 dependencies = [ "dcnodatg", "build"]
+keywords = ["netbox", "plugin", "arista", "eapi", "eos", "gns3", "lab", "virtual", "ceos"]
 
 [project.optional-dependencies]
 test = [
@@ -66,3 +67,4 @@ target_version = ['py39', 'py310', 'py311', 'py312']
 
 [tool.setuptools.package-data]
 netbox_ptov = ["templates/**"]
+
