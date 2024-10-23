@@ -16,6 +16,12 @@ version_file = "netbox_ptov/_version.py"
 #include = ["src*"]
 exclude = [".venv*", "tests*", "docs*", ".github*", ".gitignore", "external_sources"]
 
+[tool.black]
+line-length = 120
+target_version = ['py39', 'py310', 'py311', 'py312']
+
+[tool.setuptools.package-data]
+netbox_ptov = ["templates/**"]
 
 [project]
 name =  "netbox_ptov"
@@ -41,10 +47,14 @@ classifiers=[
     'Programming Language :: Python :: 3.12',
 ]
 
-requires-python= ">=3.12"
-
 dependencies = [ "dcnodatg", "build"]
 keywords = ["netbox", "plugin", "arista", "eapi", "eos", "gns3", "lab", "virtual", "ceos"]
+requires-python= ">=3.12"
+
+[project.urls]
+Documentation = "https://github.com/menckend/netbox_ptov/blob/main/README.md"
+Source = "https://github.com/menckend/netbox_ptov"
+Tracker = "https://github.com/menckend/netbox_ptov/issues"
 
 [project.optional-dependencies]
 test = [
@@ -55,16 +65,3 @@ test = [
     "pre-commit==3.7.0",
     "pytest==8.1.1",
 ]
-
-[project.urls]
-Documentation = "https://github.com/menckend/netbox_ptov/blob/main/README.md"
-Source = "https://github.com/menckend/netbox_ptov"
-Tracker = "https://github.com/menckend/netbox_ptov/issues"
-
-[tool.black]
-line-length = 120
-target_version = ['py39', 'py310', 'py311', 'py312']
-
-[tool.setuptools.package-data]
-netbox_ptov = ["templates/**"]
-
