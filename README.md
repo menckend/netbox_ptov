@@ -7,6 +7,29 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 
 ## Features
 
+Creates a new model/table for storing the DNS names of your GNS3 servers.  *"Boring, Sidney!"*, I know, but it also provides a screen/page that prompts you:
+
+* Select a GNS3 server and as few or as many Arista switches as you want from your devices table.
+* Enter a set of Arista EOS credentials
+* Enter a project-name to use for a new project on the GNS3 server
+
+And then creates a GNS3 virtual-lab, populated with Arista cEOS container/nodes, each of which is:
+
+* MLAG friendly  (each container is configured to use the system-mac address of the "real" switch it is emulating)
+* Running a (cEOS/lab conformed) copy of the startup-config of the switch it is emulating
+* Running the same cEOS version as the switch that it is emulating (if you have a matching Docker template installed on your GNS3 server)
+* Happy to run as an EVPN/VXLAN fabric, if that's your bag.  (There's some per-VRF/network-namespace ipfilters tweaking that may still need to be cleared up.)
+
+... and spits back a URL at which you can access the virtual-lab you just created. 
+
+## Contemplated Use-cases
+
+Change modeling, obviously.  Invasive troubleshooting of pesky routing issues that you wouldn't want to spend *six hours* setting up a vlab for, but that would be well-worth the effort if it only took two minutes to set up.
+
+[![image](./_static/images/ptov-pic1.png_){:class="img-fluid"}]
+
+## Under the hood
+
 <details><summary>
 
 ### Prompts Netbox user to provide/select input
@@ -18,7 +41,18 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 * An existing GNS3 server (v2.x)
 * A project name to use on the GNS3 server
 
+[![image](./_static/images/ptov-pic1.png_){:class="img-fluid"}]
+
 </details>
+
+
+
+
+
+
+
+
+
 
 <details><summary> &nbsp;
 
@@ -43,6 +77,10 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 * Creates links between the cEOS nodes on the GNS3 project that correspond to the discovered links between the physical switches
 
 </details>
+
+## Features
+
+
 
 ## Compatibility
 
