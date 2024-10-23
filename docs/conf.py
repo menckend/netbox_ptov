@@ -25,9 +25,11 @@ author = 'Mencken Davidson'
 extensions = [
     'sphinx.ext.napoleon',
     'myst_parser',
+    'sphinx.ext.autodoc',  # Core Sphinx library for auto html doc generation from docstrings
+    'sphinx.ext.autosummary',  # Create neat summary tables for modules/classes/methods etc
     'sphinx.ext.intersphinx',  # Link to other project's documentation (see mapping below)
     'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
-    'sphinx.ext.autodoc',
+    'sphinx_autodoc_typehints' # Automatically document param types (less noise in class signature)
     'autoapi.extension',
     ]
 
@@ -36,10 +38,10 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', '_templates', 'Thumbs.db', '.DS_Store']
 html_show_sourcelink = False  # Remove 'view source code' from top of page (for html, not python)
 html_theme = 'sphinx_rtd_theme'
+autodoc_typehints = "signature"
 autoapi_template_dir = "_templates/autoapi"
-autodoc_typehints = "description"
-autoapi_own_page_level = "module"
-autapi_ignore = []
+#autodoc_class_signature = "separated"
+autoapi_own_page_level = "function"
 autoapi_dirs = ['../netbox_ptov/', '../external_sources/netbox/']
 autoapi_type = "python"
 autoapi_options = [
@@ -54,7 +56,12 @@ html_css_files = [
     "css/custom.css",
 ]
 
-on_rtd = os.environ.get("READTHEDOCS", None) == "True"
+#on_rtd = os.environ.get("READTHEDOCS", None) == "True"
+#if not on_rtd:  # only import and set the theme if we're building docs locally
+#    import sphinx_rtd_theme
+#    html_theme = "sphinx_rtd_theme"
+#    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+#html_css_files = ["readthedocs-custom.css"] # Override some CSS settings
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
