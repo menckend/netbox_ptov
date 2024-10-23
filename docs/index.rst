@@ -10,4 +10,5 @@
 
 .. include:: ../README.md
   :parser: myst_parser.docutils_
-
+  :relative-docs: docs/
+  :relative-images:
