@@ -13,7 +13,7 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
   * Select a GNS3 server and as few or as many Arista switches as you want from your devices table.
   * Enter a set of Arista EOS credentials
   * Enter a project-name to use for a new project on the GNS3 server
-[![image](./docs/_static/images/ptov-pic1.png_){:class="img-fluid"}]
+[![image](./docs/_static/images/ptov-pic1.png){:class="img-fluid"}]
 
 * Creates a GNS3 virtual-lab, populated with Arista cEOS container/nodes, each of which is:
   * MLAG friendly  (each container is configured to use the system-mac address of the "real" switch it is emulating)
@@ -22,10 +22,10 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
   * Happy to run as an EVPN/VXLAN fabric, if that's your bag.  (There's some per-VRF/network-namespace ipfilters tweaking that may still need to be cleared up.)
 
 * Returns a URL
-[![image](./docs/_static/images/ptov-pic2.png_){:class="img-fluid"}]
+[![image](./docs/_static/images/ptov-pic2.png){:class="img-fluid"}]
 
 * ...at which you can access the virtual-lab you just created. 
-[![image](./docs/_static/images/ptov-pic3.png_){:class="img-fluid"}]
+[![image](./docs/_static/images/ptov-pic3.png){:class="img-fluid"}]
 
 
 ## Contemplated Use-cases
