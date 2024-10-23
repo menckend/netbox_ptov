@@ -38,7 +38,7 @@ html_show_sourcelink = False  # Remove 'view source code' from top of page (for 
 html_theme = 'sphinx_rtd_theme'
 autoapi_template_dir = "_templates/autoapi"
 autodoc_typehints = "description"
-autoapi_own_page_level = "function"
+autoapi_own_page_level = "module"
 autapi_ignore = []
 autoapi_dirs = ['../netbox_ptov/', '../external_sources/netbox/']
 autoapi_type = "python"
@@ -89,7 +89,7 @@ html_theme_options = {
     # Toc options
     'collapse_navigation': True,
     'sticky_navigation': True,
-    'navigation_depth': -1,
+    'navigation_depth': 4,
     'includehidden': True,
     'titles_only': False
 }
