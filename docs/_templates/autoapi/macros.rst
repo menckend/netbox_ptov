@@ -21,7 +21,7 @@
    :class: summarytable
 
   {% for obj in objs -%}
-    {%- set sig = (obj.type in ['method', 'function'] and not 'property' in obj.properties) -%}
+    {%- set sig = (obj.type in ['method', 'function', 'class'] and not 'property' in obj.properties) -%}
 
     {%- if 'property' in obj.properties -%}
       {%- set label = 'prop' -%}
