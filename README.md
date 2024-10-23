@@ -26,7 +26,7 @@ And then creates a GNS3 virtual-lab, populated with Arista cEOS container/nodes,
 
 Change modeling, obviously.  Invasive troubleshooting of pesky routing issues that you wouldn't want to spend *six hours* setting up a vlab for, but that would be well-worth the effort if it only took two minutes to set up.
 
-[![image](./_static/images/ptov-pic1.png_){:class="img-fluid"}]
+[![image](./docs/_static/images/ptov-pic1.png_){:class="img-fluid"}]
 
 ## Under the hood
 
