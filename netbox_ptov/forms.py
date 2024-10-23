@@ -49,6 +49,6 @@ class golabForm(forms.Form):
 
     username_in = forms.CharField(label="Enter EOS username:", widget=forms.TextInput)
     password_in = forms.CharField(label="Enter EOS password:", widget=forms.PasswordInput)
-    switchlist_multiplechoice_in = forms.ModelMultipleChoiceField(queryset=devices.Device.objects.filter(device_type__manufacturer__slug="arista"), to_field_name='name')
-    serverselect_in = forms.ModelChoiceField(queryset=gns3srv.objects.all(), to_field_name='name')
+    switchlist_multiplechoice_in = forms.ModelMultipleChoiceField(label="Select the Arista switches to include in your virtual-lab", queryset=devices.Device.objects.filter(device_type__manufacturer__slug="arista"), to_field_name='name')
+    serverselect_in = forms.ModelChoiceField(label="Select the GNS3 server to create your virtual-lab on", queryset=gns3srv.objects.all(), to_field_name='name')
     prjname_in = forms.CharField(label="Enter Name for GNS3 project:", widget=forms.TextInput)
