@@ -4,7 +4,7 @@ on:
   push
 jobs:
   build:
-    if: contains(github.ref, '/tags/') && ((contains(github.event.base_ref, 'main')) || (contains(github.event.base_ref, 'test')))
+    if: contains(github.ref, '/tags/')
     environment:
       name: pypi
       url: https://pypi.org/p/netbox_ptov  # Replace <package-name> with your PyPI project name
