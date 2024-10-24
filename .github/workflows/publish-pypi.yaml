@@ -29,6 +29,7 @@ jobs:
       with:
         name: python-package-distributions
         path: dist/
+
   publish-to-pypi:
     if: contains(github.ref, '/tags/') && contains(github.event.base_ref, 'main')
     environment:
@@ -61,9 +62,6 @@ jobs:
     needs:
     - build
     runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://test.pypi.org/p/dcnodatg
     permissions:
       id-token: write  # IMPORTANT: mandatory for trusted publishing
     steps:
