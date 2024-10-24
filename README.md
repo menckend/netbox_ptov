@@ -7,19 +7,19 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
 
 ## Features
 
-* Creates a new model/table for storing the DNS names of your GNS3 servers.  *"Boring, Sidney!"*, I know, but then...
-
-* Provides a screen/page that prompts you:
+* Creates a new model/table for storing the DNS names of your GNS3 servers.  [("Boring, Sidney; borrring, borrrrrrring"](https://youtu.be/ieqxmg4pmZo?si=rXJtimC0e0_QpEp7&t=147), I know.)
+* Provides a screen/page that prompts you to:
   * Select a GNS3 server and as few or as many Arista switches as you want from your devices table.
   * Enter a set of Arista EOS credentials
   * Enter a project-name to use for a new project on the GNS3 server
 ![image](./images/ptov-pic1.png)
 
-* Creates a GNS3 virtual-lab, populated with Arista cEOS container/nodes, each of which is:
-  * MLAG friendly  (each container is configured to use the system-mac address of the "real" switch it is emulating)
-  * Running a (cEOS/lab conformed) copy of the startup-config of the switch it is emulating
+* **Programmatically instantiates a GNS3 virtual-lab**, populated with Arista **cEOS container/nodes**, each of which is:
+  * **MLAG friendly**  (each container is configured to use the system-mac address of the "real" switch it is emulating)
+  * Running a (cEOS/lab conformed) copy of the **startup-config of the switch it is emulating**
   * Running the same cEOS version as the switch that it is emulating (if you have a matching Docker template installed on your GNS3 server)
   * Happy to run as an EVPN/VXLAN fabric, if that's your bag.  (There's some per-VRF/network-namespace ipfilters tweaking that may still need to be cleared up.)
+  * Has "links" provisioned in the vlab, **mirroring the inter-switch links of the "live" switches you're modeling** (detected when inspecting th LLDP tables of the switches)
 
 * Returns a URL
 
