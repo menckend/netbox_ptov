@@ -23,12 +23,12 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
   * Happy to run as an EVPN/VXLAN fabric, if that's your bag.  (There's some per-VRF/network-namespace ipfilters tweaking that may still need to be cleared up.)
   * Has "links" provisioned in the vlab, **mirroring the inter-switch links of the "live" switches you're modeling** (detected when inspecting th LLDP tables of the switches)
 
-* Returns a URL
+* Returns a URL ![image](./images/ptov-pic2.png)
 
-![image](./images/ptov-pic2.png)
 
-* ...at which you can access the virtual-lab you just created. 
-![image](./images/ptov-pic3.png)
+
+* ...at which you can access the virtual-lab you just created. ![image](./images/ptov-pic3.png)
+
 
 ## Contemplated Use-cases
 
