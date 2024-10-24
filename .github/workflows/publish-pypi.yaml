@@ -7,7 +7,7 @@ jobs:
     if: contains(github.ref, '/tags/')
     environment:
       name: pypi
-      url: https://pypi.org/p/netbox_ptov  # Replace <package-name> with your PyPI project name
+      #url: https://pypi.org/p/netbox_ptov  # Replace <package-name> with your PyPI project name
     name: Build distribution
     runs-on: ubuntu-latest
     steps:
@@ -29,16 +29,16 @@ jobs:
       with:
         name: python-package-distributions
         path: dist/
+
   publish-to-pypi:
     if: contains(github.ref, '/tags/') && contains(github.event.base_ref, 'main')
-    name: >-
-      Publish Python distribution to PyPI
-    needs:
-    - build
-    runs-on: ubuntu-latest
     environment:
       name: pypi
       url: https://pypi.org/p/netbox_ptov  # Replace <package-name> with your PyPI project name
+    name: Publish Python distribution to PyPI
+    needs:
+    - build
+    runs-on: ubuntu-latest
     permissions:
       id-token: write  # IMPORTANT: mandatory for trusted publishing
     steps:
@@ -49,17 +49,19 @@ jobs:
         path: dist/
     - name: Publish distribution to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
-
+      with:
+        repository-url: https://pypi.org/p/
+  
   publish-to-pypi-test:
     if: contains(github.ref, '/tags/') && contains(github.event.base_ref, 'test')
+    environment:
+      name: pypi
+      url: https://test.pypi.org/legacy/netbox_ptov  # Replace <package-name> with your PyPI project name
     name: >-
       Publish Python distribution of test branch to test.PyPI.org
     needs:
     - build
     runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://test.pypi.org/p/dcnodatg
     permissions:
       id-token: write  # IMPORTANT: mandatory for trusted publishing
     steps:
