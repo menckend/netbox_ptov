@@ -3,7 +3,9 @@
 Netbox plugin for pulling runstate (config and topology) from Arista switches and replicating them in a GNS3 virtual lab using Arista cEOS containers
 
 * Free software: Apache-2.0
-* Documentation: https://menckend.github.io/netbox-ptov-plugin/
+* [Documentation](https://menckend.github.io/netbox_ptov)
+* [Repository](https://github.com/menckend/netbox_ptov)
+* [Python Package](https://pypi.org/project/netbox-ptov/)
 
 ## Features
 
@@ -40,7 +42,7 @@ Change modeling, obviously.  Invasive troubleshooting of pesky routing issues th
 
 | NetBox Version | Plugin Version |
 |----------------|----------------|
-|     4.1        |      0.1.0     |
+|     4.1        |      0.1.x     |
 
 ## Installing
 
