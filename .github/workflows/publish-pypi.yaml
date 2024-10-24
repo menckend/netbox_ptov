@@ -4,7 +4,7 @@ on:
   push
 jobs:
   build:
-    if: contains(github.ref, '/tags/') && contains(github.event.base_ref, 'main')
+    if: contains(github.ref, '/tags/') && ((contains(github.event.base_ref, 'main')) || (contains(github.event.base_ref, 'test')))
     environment:
       name: pypi
       url: https://pypi.org/p/netbox_ptov  # Replace <package-name> with your PyPI project name
@@ -49,7 +49,29 @@ jobs:
         path: dist/
     - name: Publish distribution to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
-  
+
+  publish-to-pypi-test:
+    if: contains(github.ref, '/tags/') && contains(github.event.base_ref, 'test')
+    name: >-
+      Publish Python distribution of test branch to test.PyPI.org
+    needs:
+    - build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://test.pypi.org/p/dcnodatg
+    permissions:
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Publish distribution to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+        repository-url: https://test.pypi.org/legacy/
+
 
   github-release:
     if: contains(github.ref, '/tags/') && contains(github.event.base_ref, 'main')
