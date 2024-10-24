@@ -49,16 +49,16 @@ Change modeling, obviously.  Invasive troubleshooting of pesky routing issues th
 For adding to a NetBox Docker setup see
 [the general instructions for using netbox-docker with plugins](https://github.com/netbox-community/netbox-docker/wiki/Using-Netbox-Plugins).
 
-While this is still in development and not yet on pypi you can install with pip:
+Install using pip:
 
 ```bash
-pip install git+https://github.com/menckend/netbox_ptov
+pip install netbox_ptov
 ```
 
 or by adding to your `local_requirements.txt` or `plugin_requirements.txt` (netbox-docker):
 
 ```bash
-git+https://github.com/menckend/netbox_ptov
+netbox_ptov
 ```
 
 Enable the plugin in `/opt/netbox/netbox/netbox/configuration.py`,
