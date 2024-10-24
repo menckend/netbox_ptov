@@ -48,7 +48,13 @@ Context:
   <div class="row mb-3">
     <div class="col col-md-6">
       <div class="card">
-        <h5 class="card-header">Create a Virt-lab Modeling Current Run-state</h5>
+        <h4 class="card-header">Create a GNS3 Virtual-lab that models run-state (configuration and physical topology) of Arista switches present in Netbox's devices table</h5>
+        <div class="card-body">
+          <p>The <a class="reference external" href="https://menckend.github.io/netbox_ptov">netbox_ptov plugin</a> passes the values you provide in the form below to the p_to_v function of the <a class="reference external" href="https://menckend.github.io/dcnodatg">dcnodatg module</a>.  This instantiates a virtual-lab project on the GNS3 server in which the startup configurations and physical links between the Arista switches you selected are all replicated.  This is not an instantaneous process, but is several orders of magnitude faster than manually harvesting the switch's runstate data and building out a virtual-lab.  (A 14-switch lab took just under 60-seconds to fully instantiate.)  Refer to the netbox_ptov plugin <a class="reference external" href="https://menckend.github.io/netbox_ptov">documentation</a> and <a class="reference external" href="https://github.com/menckend/netbox_ptov/">repository</a> for further information.  </p>
+        </div>
+      </div>
+        <div class="card">
+        <h4 class="card-header">Populate the fields below and click the "submit" button to generate a virtual-lab</h5>
         <div class="card-body">
           <form action="" method="post" novalidate>
             {% csrf_token %}
