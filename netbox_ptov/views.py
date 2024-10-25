@@ -9,7 +9,9 @@ from django.contrib import messages
 import json
 
 
-def golab(request: json):
+def golab(request: forms.golabForm) -> django.http.HttpResponse:
+    """Pass the input fields from the golabForm instance to the dcnodatg.p_to_v function and return the results as an HttpResponse"""
+    
     if request.method == 'POST':
         form = forms.golabForm(request.POST)
         if form.is_valid():
@@ -52,7 +54,6 @@ class gns3srvListView(generic.ObjectListView):
 class gns3srvEditView(generic.ObjectEditView):
     """A class to represent the edit view of a gns3srv object.
     =============================================================
-
 
     Attributes
     ----------

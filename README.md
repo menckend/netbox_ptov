@@ -68,15 +68,6 @@ PLUGINS = [
 ]
 
 PLUGINS_CONFIG = {
-    "netbox_ptov": {},
+    "netbox_ptov": {'top_level_menu': False},
 }
 ```
-
-## Credits
-
-Based on the NetBox plugin tutorial:
-
-- [demo repository](https://github.com/netbox-community/netbox-plugin-demo)
-- [tutorial](https://github.com/netbox-community/netbox-plugin-tutorial)
-
-This package was created with [Cookiecutter](https://github.com/audreyr/cookiecutter) and the [`netbox-community/cookiecutter-netbox-plugin`](https://github.com/netbox-community/cookiecutter-netbox-plugin) project template.
