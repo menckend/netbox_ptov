@@ -6,11 +6,14 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('../external_sources/django/'))
-sys.path.insert(0, os.path.abspath('../external_sources/dcnodatg/'))
 sys.path.insert(0, os.path.abspath('../images/'))
-sys.path.insert(0, os.path.realpath(os.path.dirname(__file__)))
-sys.path.insert(0, os.path.abspath('../external_sources/netbox/'))
+sys.path.insert(0, os.path.abspath('../netbox_ptov/'))
+
+#sys.path.insert(0, os.path.abspath('./external_sources/django/'))
+#sys.path.insert(0, os.path.abspath('./external_sources/dcnodatg/'))
+#sys.path.insert(0, os.path.abspath('../images/'))
+#sys.path.insert(0, os.path.abspath('./external_sources/netbox/'))
+#sys.path.insert(0, os.path.abspath('../netbox_ptov/'))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -20,29 +23,35 @@ copyright = '2024, Mencken Davidson'
 author = 'Mencken Davidson'
 
 # -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
-
-extensions = [
-    'sphinx.ext.napoleon',
-    'myst_parser',
-    'sphinx.ext.autodoc',  # Core Sphinx library for auto html doc generation from docstrings
-    'sphinx.ext.autosummary',  # Create neat summary tables for modules/classes/methods etc
-    'sphinx.ext.intersphinx',  # Link to other project's documentation (see mapping below)
-    'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
-    'sphinx_autodoc_typehints', # Automatically document param types (less noise in class signature)
-    'autoapi.extension',
-    ]
-
 source_suffix = [".rst",  ".md"]
 templates_path = ['_templates']
 exclude_patterns = ['_build', '_templates', 'Thumbs.db', '.DS_Store']
 html_show_sourcelink = False  # Remove 'view source code' from top of page (for html, not python)
 html_theme = 'sphinx_rtd_theme'
-autodoc_typehints = "signature"
+html_css_files = [
+    "css/custom.css",
+]
+html_static_path = ['_static']
+
+# -- Extensions to use ---------------------------------------------------
+extensions = [
+    'autoapi.extension',
+    'myst_parser',
+    'sphinx.ext.autodoc',  # Core Sphinx library for auto html doc generation from docstrings
+    'sphinx.ext.autodoc.typehints',
+    'sphinx.ext.autosummary',  # Create neat summary tables for modules/classes/methods etc
+    'sphinx.ext.intersphinx',  # Link to other project's documentation (see mapping below)
+    'sphinx.ext.napoleon',
+    'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
+    'sphinx_autodoc_typehints', # Automatically document param types (less noise in class signature)
+    'sphinx.ext.inheritance_diagram'
+    ]
+
+# -- Autoapi extension configuraiton ---------------------------------------------------
+autodoc_typehints = "description"
 autoapi_template_dir = "_templates/autoapi"
-#autodoc_class_signature = "separated"
-autoapi_own_page_level = "function"
-autoapi_dirs = ['../netbox_ptov/', '../external_sources/netbox/']
+autoapi_own_page_level = "module"
+autoapi_dirs = ['../netbox_ptov/']
 autoapi_type = "python"
 autoapi_options = [
     "members",
@@ -50,24 +59,20 @@ autoapi_options = [
     "show-inheritance",
     "show-module-summary",
     "imported-members",
+    "show-inheritance-diagram",
 ]
 
-html_css_files = [
-    "css/custom.css",
-]
+#--RTD theme configuration ----------------------------------------------------------------------------
+html_theme_options = {
+    # Toc options
+    'collapse_navigation': True,
+    'sticky_navigation': True,
+    'navigation_depth': -1,
+    'includehidden': True,
+    'titles_only': False
+}
 
-#on_rtd = os.environ.get("READTHEDOCS", None) == "True"
-#if not on_rtd:  # only import and set the theme if we're building docs locally
-#    import sphinx_rtd_theme
-#    html_theme = "sphinx_rtd_theme"
-#    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-#html_css_files = ["readthedocs-custom.css"] # Override some CSS settings
-
-# -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-
-html_static_path = ['_static']
-
+#--Napoleon extnesion ocnfiguration ------------------------------------------------------
 napoleon_google_docstring = True
 napoleon_numpy_docstring = True
 napoleon_include_init_with_doc = True
@@ -83,20 +88,21 @@ napoleon_preprocess_types = False
 napoleon_type_aliases = None
 napoleon_attr_annotations = True
 
+#--Functions ----------------------------------------------------------------------------
 def contains(seq, item):
     return item in seq
 
 def prepare_jinja_env(jinja_env) -> None:
     jinja_env.tests["contains"] = contains
 
-autoapi_prepare_jinja_env = prepare_jinja_env
+def linkcode_resolve(domain, info):
+    if domain != 'py':
+        return None
+    if not info['module']:
+        return None
+    filename = info['module'].replace('.', '/')
+    return "https://github.com/netbox-community/netbox/%s.py" % filename
 
 
-html_theme_options = {
-    # Toc options
-    'collapse_navigation': True,
-    'sticky_navigation': True,
-    'navigation_depth': 4,
-    'includehidden': True,
-    'titles_only': False
-}
+
+
