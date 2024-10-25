@@ -35,12 +35,13 @@ html_static_path = ['_static']
 
 # -- Extensions to use ---------------------------------------------------
 extensions = [
-    'autoapi.extension',
-    'sphinx.ext.napoleon',
+    'autoapi.extension'
     'myst_parser',
     'sphinx.ext.autodoc',  # Core Sphinx library for auto html doc generation from docstrings
+    'sphinx.ext.autodoc.typehints',
     'sphinx.ext.autosummary',  # Create neat summary tables for modules/classes/methods etc
     'sphinx.ext.intersphinx',  # Link to other project's documentation (see mapping below)
+    'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
     'sphinx_autodoc_typehints', # Automatically document param types (less noise in class signature)
     ]
@@ -48,7 +49,7 @@ extensions = [
 # -- Autoapi extension configuraiton ---------------------------------------------------
 autodoc_typehints = "description"
 autoapi_template_dir = "_templates/autoapi"
-autoapi_own_page_level = "function"
+autoapi_own_page_level = "module"
 autoapi_dirs = ['../netbox_ptov/']
 autoapi_type = "python"
 autoapi_options = [
