@@ -51,7 +51,6 @@ autoapi_template_dir = "_templates/autoapi"
 autoapi_own_page_level = "function"
 autoapi_dirs = ['../netbox_ptov/']
 autoapi_type = "python"
-autoapi_prepare_jinja_env = prepare_jinja_env
 autoapi_options = [
     "members",
     "undoc-members",
