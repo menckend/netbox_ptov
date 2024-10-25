@@ -44,6 +44,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
     'sphinx_autodoc_typehints', # Automatically document param types (less noise in class signature)
+    'sphinx.ext.inheritance_diagram'
     ]
 
 # -- Autoapi extension configuraiton ---------------------------------------------------
@@ -58,6 +59,7 @@ autoapi_options = [
     "show-inheritance",
     "show-module-summary",
     "imported-members",
+    "show-inheritance-diagram",
 ]
 
 #--RTD theme configuration ----------------------------------------------------------------------------
