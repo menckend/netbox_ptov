@@ -10,6 +10,7 @@ sys.path.insert(0, os.path.abspath('../external_sources/django/'))
 sys.path.insert(0, os.path.abspath('../external_sources/dcnodatg/'))
 sys.path.insert(0, os.path.abspath('../images/'))
 sys.path.insert(0, os.path.abspath('../external_sources/netbox/'))
+sys.path.insert(0, os.path.abspath('../netbox_ptov/'))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -35,7 +36,7 @@ extensions = [
 source_suffix = [".rst",  ".md"]
 templates_path = ['_templates']
 exclude_patterns = ['_build', '_templates', 'Thumbs.db', '.DS_Store']
-html_show_sourcelink = False  # Remove 'view source code' from top of page (for html, not python)
+html_show_sourcelink = True  # Remove 'view source code' from top of page (for html, not python)
 html_theme = 'sphinx_rtd_theme'
 autodoc_typehints = "signature"
 autoapi_template_dir = "_templates/autoapi"
@@ -95,7 +96,7 @@ html_theme_options = {
     # Toc options
     'collapse_navigation': True,
     'sticky_navigation': True,
-    'navigation_depth': 4,
+    'navigation_depth': -1,
     'includehidden': True,
     'titles_only': False
 }
