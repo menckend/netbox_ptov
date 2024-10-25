@@ -42,7 +42,7 @@ autodoc_typehints = "signature"
 autoapi_template_dir = "_templates/autoapi"
 #autodoc_class_signature = "separated"
 autoapi_own_page_level = "function"
-autoapi_dirs = ['../netbox_ptov/', '../external_sources/netbox/']
+autoapi_dirs = ['../netbox_ptov/', './external_sources/netbox/', './external_sources/netbox/' ]
 autoapi_type = "python"
 autoapi_options = [
     "members",
