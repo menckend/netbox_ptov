@@ -50,7 +50,7 @@ jobs:
     - name: Publish distribution to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        repository-url: https://pypi.org/p/netbox_ptov/
+        repository-url: https://pypi.org/p/
   
   publish-to-pypi-test:
     if: contains(github.ref, '/tags/') && contains(github.event.base_ref, 'test')
