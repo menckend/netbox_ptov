@@ -9,7 +9,6 @@ import sys
 sys.path.insert(0, os.path.abspath('../external_sources/django/'))
 sys.path.insert(0, os.path.abspath('../external_sources/dcnodatg/'))
 sys.path.insert(0, os.path.abspath('../images/'))
-sys.path.insert(0, os.path.realpath(os.path.dirname(__file__)))
 sys.path.insert(0, os.path.abspath('../external_sources/netbox/'))
 
 # -- Project information -----------------------------------------------------
