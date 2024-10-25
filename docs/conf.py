@@ -35,7 +35,7 @@ html_static_path = ['_static']
 
 # -- Extensions to use ---------------------------------------------------
 extensions = [
-    'autoapi.extension'
+    'autoapi.extension',
     'myst_parser',
     'sphinx.ext.autodoc',  # Core Sphinx library for auto html doc generation from docstrings
     'sphinx.ext.autodoc.typehints',
