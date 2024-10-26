@@ -21,7 +21,7 @@ Netbox plugin for pulling runstate (config and topology) from Arista switches an
   * **MLAG friendly**  (each container is configured to use the system-mac address of the "real" switch it is emulating)
   * Running a (cEOS/lab conformed) copy of the **startup-config of the switch it is emulating**
   * Running the same cEOS version as the switch that it is emulating (if you have a matching Docker template installed on your GNS3 server)
-  * Happy to run as an EVPN/VXLAN fabric, if that's your bag.  (There's some per-VRF/network-namespace ipfilters tweaking that may still need to be cleared up.)
+  * Happy to run as an EVPN/VXLAN fabric, if that's your bag.
   * Has "links" provisioned in the vlab, **mirroring the inter-switch links of the "live" switches you're modeling** (detected when inspecting th LLDP tables of the switches)
 * Returns a URL ![image](./images/ptov-pic2.png)
 
