@@ -1,5 +1,6 @@
 """Defines the 'views' used by the Django apps for serving pages of the netbox_ptov plugin"""
 
+import django
 from ptovnetlab import ptovnetlab as ptvnl
 from netbox.views import generic
 from netbox_ptov import filtersets, forms, models, tables
