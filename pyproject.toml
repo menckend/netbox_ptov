@@ -47,7 +47,7 @@ classifiers=[
     'Programming Language :: Python :: 3.12',
 ]
 
-dependencies = [ "dcnodatg", "build"]
+dependencies = [ "ptovnetlab", "build"]
 keywords = ["netbox", "plugin", "arista", "eapi", "eos", "gns3", "lab", "virtual", "ceos"]
 requires-python= ">=3.12"
 

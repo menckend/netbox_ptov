@@ -34,13 +34,15 @@ Change modeling, obviously.  Invasive troubleshooting of pesky routing issues th
 
 ## Under the hood
 
-All of the heavy lifting is done by the [dcnodatg package](https://menckend.github.io/dcnodatg)
+All of the heavy lifting is done by the [ptovnetlab package](https://menckend.github.io/ptovnetlab)
 
 ## Compatibility
 
 | NetBox Version | Plugin Version |
 |----------------|----------------|
-|     4.1        |      0.1.x     |
+|     4.1        |      0.2.x     |
+|     4.2        |      0.2.x     |
+
 
 ## Installing
 
