@@ -1,7 +1,7 @@
 site_name: NetBox ptov Plugin
-site_url: https://menckend.github.io/netbox-ptov-plugin
-repo_url: https://github.com/menckend/netbox-ptov-plugin
-repo_name: menckend/netbox-ptov-plugin
+site_url: https://menckend.github.io/netbox_ptov
+repo_url: https://github.com/menckend/netbox_ptov
+repo_name: menckend/netbox_ptov
 #strict: true
 nav:
   - Home: index.md
@@ -49,7 +49,7 @@ plugins:
       lang: en
   - mkdocstrings:
       watch:
-        - netbox-ptov-plugin
+        - netbox_ptov
 extra:
   social:
     - icon: fontawesome/brands/twitter
