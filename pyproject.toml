@@ -12,7 +12,7 @@ version_file = "netbox_ptov/_version.py"
 
 [tool.setuptools.packages.find]
 #where = ["."]
-#include = ["dcnodatg*"]
+#include = ["ptovnetlab*"]
 #include = ["src*"]
 exclude = [".venv*", "tests*", "docs*", ".github*", ".gitignore", "external_sources"]
 
@@ -34,7 +34,7 @@ maintainers = [
 ]
 license = {file = "LICENSE"}
 
-description = "NetBox plugin for ptov.  Uses dcnodatg project."
+description = "NetBox plugin for ptov.  Uses ptovnetlab project."
 readme = "README.md"
 
 classifiers=[

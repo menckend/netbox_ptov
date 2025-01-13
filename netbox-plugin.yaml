@@ -12,4 +12,4 @@ compatibility:
     netbox_max: 4.1.4
   - release: 0.1.28
     netbox_min: 4.1.0
-    netbox_max: 4.1.4
+    netbox_max: 4.1.6

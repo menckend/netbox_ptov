@@ -1,6 +1,6 @@
 """Defines the 'views' used by the Django apps for serving pages of the netbox_ptov plugin"""
 
-from dcnodatg import dcnodatg
+from ptovnetlab import ptovnetlab as ptvnl
 from netbox.views import generic
 from netbox_ptov import filtersets, forms, models, tables
 from netbox_ptov.models import gns3srv
@@ -10,7 +10,7 @@ import json
 
 
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
-    """Pass the input fields from the golabForm instance to the dcnodatg.p_to_v function and return the results as an HttpResponse"""
+    """Pass the input fields from the golabForm instance to the ptovnetlab.p_to_v function and return the results as an HttpResponse"""
     
     if request.method == 'POST':
         form = forms.golabForm(request.POST)
@@ -29,7 +29,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             # Do something with the text (e.g., save to database)
 
             messages.add_message(request, messages.INFO, 'GNS3 server: ' + str(srv))
-            result_out = str(dcnodatg.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
+            result_out = str(ptvnl.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
             messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(prn) + ' on ' + str(srv))
             messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             return render(request, 'golab.html', {'form': form})
