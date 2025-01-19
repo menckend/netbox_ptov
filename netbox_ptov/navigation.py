@@ -34,19 +34,14 @@ _menu_items = (
         link_text="GNS3 Servers",
         buttons=gns3srv_buttons,
     ),
-#    PluginMenuItem(
-#        link="plugins:netbox_ptov:ptovjob_list",
-#        link_text="Virtual-lab templates",
-#        buttons=ptovjob_buttons,
-#    ),
 )
 
 plugin_settings = settings.PLUGINS_CONFIG.get('netbox_ptov', {})
 
 if plugin_settings.get('top_level_menu'):
     menu = PluginMenu(  
-        label="P to V-lab (Arista)",
-        groups=(("P to V-lab (Arista)", _menu_items),),
+        label="P to V-lab",
+        groups=(("P to V-lab", _menu_items),),
         icon_class="mdi mdi-bootstrap",
     )
 else:
