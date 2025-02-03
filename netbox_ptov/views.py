@@ -68,7 +68,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}')
                 messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(prn) + ' on ' + str(srv))
-                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
+                #messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 logger.removeHandler(messages_handler)
