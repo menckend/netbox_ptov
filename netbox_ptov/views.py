@@ -63,12 +63,11 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             try:
                     # Call the function that generates logs
                     result_out = str(ptvnl.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
-
+                    messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(prn) + ' on ' + str(srv))
+                    messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}')
-                messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(prn) + ' on ' + str(srv))
-                #messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 logger.removeHandler(messages_handler)
