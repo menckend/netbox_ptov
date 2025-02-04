@@ -21,7 +21,7 @@ class MessagesHandler(logging.Handler):
         try:
             msg = self.format(record)
             # messages.add_message(self.request, messages.INFO, msg)
-            messages.info(request, _(msg). 
+            messages.info(request, _(msg))
                           # format(id=job_id))
 
         except Exception:
