@@ -9,7 +9,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 import json
 import logging
-
+from django.utils.translation import gettext_lazy as _
+from netbox.events import EventType, EVENT_TYPE_KIND_SUCCESS
 
 class MessagesHandler(logging.Handler):
     def __init__(self, request, *args, **kwargs):
@@ -19,10 +20,12 @@ class MessagesHandler(logging.Handler):
     def emit(self, record):
         try:
             msg = self.format(record)
-            messages.add_message(self.request, messages.INFO, msg)
+            # messages.add_message(self.request, messages.INFO, msg)
+            messages.info(request, _(msg). 
+                          # format(id=job_id))
+
         except Exception:
             self.handleError(record)
-
 
 
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
