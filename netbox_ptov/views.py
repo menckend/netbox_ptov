@@ -41,7 +41,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
 
             # Create and start background job
-            from .jobs import PToVJob
+            from .jobs import PToVJob2
             
 
             job = PToVJob2(instance=self)
