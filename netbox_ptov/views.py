@@ -32,7 +32,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             # Create Job instance first
             job = Job.objects.create(
                 name=f"Create {projectname}",
-                object_type=ContentType.objects.get_for_model(gns3srv),
+                #object_type=ContentType.objects.get_for_model(gns3srv),
                 user=request.user
             )
             job_runner = PToVJob(job=job)
