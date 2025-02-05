@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 import json
 import logging
+from .jobs import PToVJob
 
 
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
@@ -28,17 +29,20 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
 
             # Create and start background job
-            from .jobs import PToVJob
-            job_runner = PToVJob()
-            PToVJob().enqueue_job(username, password, switchlist, servername, projectname)
+            # Create Job instance first
+            job = Job.objects.create(
+                name=f"Create {projectname}",
+                object_type=ContentType.objects.get_for_model(gns3srv),
+                user=request.user
+            )
+            job_runner = PToVJob(job=job)
+            job_runner.enqueue_job(username, password, switchlist, servername, projectname)
 
-            # Queue the job for background execution
-            job.enqueue()
 
             messages.add_message(
                 request, 
                 messages.SUCCESS, 
-                f'Virtual lab creation started in background. View progress in the <a href="{job.get_absolute_url()}">Jobs</a> section.',
+                f'Virtual lab creation started in background. View progress in the <a href="{job_runner.job.get_absolute_url()}">Job #{job_runner.job.pk}</a>,
                 extra_tags='safe'
             )
             return render(request, 'golab.html', {'form': form})
