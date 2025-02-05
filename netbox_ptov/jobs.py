@@ -85,6 +85,7 @@ class PToVJob2(JobRunner):
             servername = servername,
             projectname = projectname,
         )
+        job.enqueue()
 
     def run(self, username, password, switchlist, servername, projectname):
         # Set up logging
