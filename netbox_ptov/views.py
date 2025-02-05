@@ -42,8 +42,9 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
 
             # Create and start background job
             from .jobs import PToVJob
+            
 
-            job = PToVJob()
+            job = PToVJob2(instance=self)
             job.start(
                 request=request,
                 username=username,

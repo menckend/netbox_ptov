@@ -67,7 +67,7 @@ class PToVJob(JobRunner):
             logger.removeHandler(handler)
 
 
-class PToVJob2Bad(JobRunner):
+class PToVJob2(JobRunner):
     """
     Job for executing p_to_v function in the background.
     """
@@ -94,7 +94,7 @@ class PToVJob2Bad(JobRunner):
         # Create a custom logging handler that forwards to both job logs and Django messages
         class MessagesHandler(logging.Handler):
             def __init__(self, job, request):
-#                super().__init__()
+                super().__init__()
                 self.job = job
                 self.request = request
 
