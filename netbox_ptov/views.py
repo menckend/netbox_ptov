@@ -42,21 +42,22 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
 
             # Create and start background job
             from .jobs import PToVJob2
-            
+            job_runner = PToVJob2()
+            job_runner.enqueue_job(username, password, switchlist, servername, projectname)
 
-            job = PToVJob2(instance=self)
-            job.start(
-                request=request,
-                username=username,
-                password=password,
-                switchlist=switchlist,
-                servername=servername,
-                prjname=projectname
-            )
-            job.save()
+#            job = PToVJob2(instance=self)
+#            job.start(
+#                request=request,
+#                username=username,
+#                password=password,
+#                switchlist=switchlist,
+#                servername=servername,
+#                prjname=projectname
+#            )
+#            job.save()
 
             # Queue the job for background execution
-            job.enqueue()
+#            job.enqueue()
 
             messages.add_message(
                 request, 

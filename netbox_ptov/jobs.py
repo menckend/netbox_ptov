@@ -75,37 +75,18 @@ class PToVJob2(JobRunner):
         name = "Create Virtual Lab"
         # description = "Creates a virtual lab in GNS3 from NetBox devices"
 
+    def enqueue_job(self, username, password, switchlist, servername, projectname):
+        name="Physical to Virtual Lab Worker",
+        job = self.create_job(
+            name = "P to V Lab",
+            username = username,
+            password = password,
+            switchlist = switchlist, 
+            servername = servername
+            projectname = projectname
+        )
 
-    def start(self, request, username, password, switchlist, servername, prjname):
-        """
-        Initialize job with request context and parameters.
-        """
-        self.request = request
-        self.username = username
-        self.password = password
-        self.switchlist = switchlist
-        self.servername = servername
-        self.prjname = prjname
-
-    def run(self):
-        """
-        Execute the p_to_v function with job logging.
-        """
-        # Create a custom logging handler that forwards to both job logs and Django messages
-        class MessagesHandler(logging.Handler):
-            def __init__(self, job, request):
-                super().__init__()
-                self.job = job
-                self.request = request
-
-            def emit(self, record):
-                msg = self.format(record)
-                # Log to job
-                self.job.log_info(msg)
-                # Forward to Django messages if request exists
-                if self.request:
-                    messages.info(self.request, msg)
-
+    def run(self, username, password, switchlist, servername, projectname):
         # Set up logging
         logger = logging.getLogger('ptovnetlab')
         handler = MessagesHandler(self, self.request)
@@ -115,11 +96,11 @@ class PToVJob2(JobRunner):
         try:
             # Execute p_to_v with provided parameters
             result = ptvnl.p_to_v(
-                username=self.username,
-                passwd=self.password,
-                servername=self.servername,
-                switchlist=self.switchlist,
-                prjname=self.prjname
+                username=username,
+                passwd=password,
+                servername=servername,
+                switchlist=switchlist,
+                prjname=prjname,
             )
 
             # Log success
