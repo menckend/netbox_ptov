@@ -42,7 +42,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             messages.add_message(
                 request, 
                 messages.SUCCESS, 
-                f'Virtual lab creation started in background. View progress in the <a href="{job_runner.job.get_absolute_url()}">Job #{job_runner.job.pk}</a>,
+                                f'Lab creation started. Track progress: <a href="{job_runner.job.get_absolute_url()}">Job #{job_runner.job.pk}</a>',
                 extra_tags='safe'
             )
             return render(request, 'golab.html', {'form': form})
