@@ -10,7 +10,7 @@ from django.contrib import messages
 import json
 import logging
 from .jobs import PToVJob
-
+from core.models import Job
 
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
     """Pass the input fields from the golabForm instance to a background job that executes the ptovnetlab.p_to_v function"""
@@ -30,7 +30,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
 
             # Create and start background job
             # Create Job instance first
-            job = job.objects.create(
+            job = Job.objects.create(
                 name=f"Create {projectname}",
                 object_type=ContentType.objects.get_for_model(gns3srv),
                 user=request.user
