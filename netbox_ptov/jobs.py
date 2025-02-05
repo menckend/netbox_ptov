@@ -22,7 +22,7 @@ class PToVJob(JobRunner):
 
         class MessagesHandler(logging.Handler):
             def __init__(self, job, request):
-#                super().__init__()
+                super().__init__()
                 self.job = job
                 self.request = request
 
@@ -67,55 +67,3 @@ class PToVJob(JobRunner):
             logger.removeHandler(handler)
 
 
-class PToVJob2(JobRunner):
-    """
-    Job for executing p_to_v function in the background.
-    """
-    class Meta:
-        name = "Create Virtual Lab"
-        # description = "Creates a virtual lab in GNS3 from NetBox devices"
-
-    def enqueue_job(self, username, password, switchlist, servername, projectname):
-        name="Physical to Virtual Lab Worker",
-        job = self.create_job(
-            name = "P to V Lab",
-            username = username,
-            password = password,
-            switchlist = switchlist, 
-            servername = servername,
-            projectname = projectname,
-        )
-        job.enqueue()
-
-    def run(self, username, password, switchlist, servername, projectname):
-        # Set up logging
-        logger = logging.getLogger('ptovnetlab')
-        handler = MessagesHandler(self, self.request)
-        handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
-        logger.addHandler(handler)
-
-        try:
-            # Execute p_to_v with provided parameters
-            result = ptvnl.p_to_v(
-                username=username,
-                passwd=password,
-                servername=servername,
-                switchlist=switchlist,
-                prjname=prjname,
-            )
-
-            # Log success
-            self.log_success(f"Project Created: {self.prjname} on {self.servername}")
-            if result:
-                self.log_info(f"Project URL: {result}")
-
-            return result
-
-        except Exception as e:
-            # Log error and re-raise
-            self.log_failure(str(e))
-            raise
-
-        finally:
-            # Clean up logging
-            logger.removeHandler(handler)

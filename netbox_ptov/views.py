@@ -11,19 +11,6 @@ import json
 import logging
 
 
-class MessagesHandler(logging.Handler):
-    def __init__(self, request, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.request = request
-
-    def emit(self, record):
-        try:
-            msg = self.format(record)
-            messages.info(self.request, msg)
-        except Exception:
-            self.handleError(record)
-
-
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
     """Pass the input fields from the golabForm instance to a background job that executes the ptovnetlab.p_to_v function"""
     if request.method == 'POST':
@@ -41,23 +28,12 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
 
             # Create and start background job
-            from .jobs import PToVJob2
-            #job_runner = PToVJob2()
-            PToVJob2().enqueue_job(username, password, switchlist, servername, projectname)
-
-#            job = PToVJob2(instance=self)
-#            job.start(
-#                request=request,
-#                username=username,
-#                password=password,
-#                switchlist=switchlist,
-#                servername=servername,
-#                prjname=projectname
-#            )
-#            job.save()
+            from .jobs import PToVJob
+            job_runner = PToVJob()
+            PToVJob().enqueue_job(username, password, switchlist, servername, projectname)
 
             # Queue the job for background execution
-#            job.enqueue()
+            job.enqueue()
 
             messages.add_message(
                 request, 
