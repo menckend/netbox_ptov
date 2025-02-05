@@ -10,7 +10,7 @@ class PToVJob(JobRunner):
     class Meta:
         name = "Create Virtual Lab"
 
-   def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         # Accept job parameter and pass to parent
         job = kwargs.pop('job', None)
         super().__init__(job=job, *args, **kwargs)
