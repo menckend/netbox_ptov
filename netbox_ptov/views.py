@@ -25,52 +25,43 @@ class MessagesHandler(logging.Handler):
 
 
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
-    """Pass the input fields from the golabForm instance to the ptovnetlab.p_to_v function and return the results as an HttpResponse"""
-
-   # Create a custom logging handler
-    messages_handler = MessagesHandler(request)
-    messages_handler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    messages_handler.setFormatter(formatter)
-
-    # Get the logger used by ptovnetlab.p_to_v
-    logger = logging.getLogger('ptovnetlab')
-    logger.addHandler(messages_handler)
-
-
-    
+    """Pass the input fields from the golabForm instance to a background job that executes the ptovnetlab.p_to_v function"""
     if request.method == 'POST':
         form = forms.golabForm(request.POST)
         if form.is_valid():
-            unm = form.cleaned_data['username_in']
-            pwd = form.cleaned_data['password_in']
-            swl = []
-            swl_in = []
-            swl_in = form.cleaned_data['switchlist_multiplechoice_in']
-            for swname in swl_in:
-                print (swname, type(swname))        
-                swl.append(str(swname))
-            messages.add_message(request, messages.INFO, 'Switch-list: ' + str(swl))
-            srv = form.cleaned_data['serverselect_in'].name
-            prn = form.cleaned_data['prjname_in']
-            # Do something with the text (e.g., save to database)
+            # Extract form data
+            username = form.cleaned_data['username_in']
+            password = form.cleaned_data['password_in']
+            switchlist = [str(swname) for swname in form.cleaned_data['switchlist_multiplechoice_in']]
+            servername = form.cleaned_data['serverselect_in'].name
+            projectname = form.cleaned_data['prjname_in']
 
-            messages.add_message(request, messages.INFO, 'GNS3 server: ' + str(srv))
+            # Log initial info
+            messages.add_message(request, messages.INFO, f'Switch-list: {switchlist}')
+            messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
 
+            # Create and start background job
+            from .jobs import PToVJob
+            job = PToVJob()
+            job.start(
+                request=request,
+                username=username,
+                password=password,
+                switchlist=switchlist,
+                servername=servername,
+                prjname=projectname
+            )
+            job.save()
 
+            # Queue the job for background execution
+            job.enqueue()
 
-            try:
-                    # Call the function that generates logs
-                    result_out = str(ptvnl.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
-                    
-                    messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(prn) + ' on ' + str(srv))
-                    messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
-            except Exception as e:
-                # Handle any exceptions and add an error message
-                messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}')
-            finally:
-                # Remove the custom handler to avoid duplicate messages in subsequent requests
-                logger.removeHandler(messages_handler)
+            messages.add_message(
+                request, 
+                messages.SUCCESS, 
+                f'Virtual lab creation started in background. View progress in the <a href="{job.get_absolute_url()}">Jobs</a> section.',
+                extra_tags='safe'
+            )
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
