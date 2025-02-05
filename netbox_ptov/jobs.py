@@ -11,9 +11,6 @@ class PToVJob(JobRunner):
         name = "Create Virtual Lab"
         # description = "Creates a virtual lab in GNS3 from NetBox devices"
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.request = None
 
     def start(self, request, username, password, switchlist, servername, prjname):
         """
@@ -33,7 +30,7 @@ class PToVJob(JobRunner):
         # Create a custom logging handler that forwards to both job logs and Django messages
         class MessagesHandler(logging.Handler):
             def __init__(self, job, request):
-                super().__init__()
+#                super().__init__()
                 self.job = job
                 self.request = request
 
