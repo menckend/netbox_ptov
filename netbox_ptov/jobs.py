@@ -1,15 +1,15 @@
-from netbox.jobs import Job
+from netbox.jobs import JobRunner
 from django.contrib import messages
 from ptovnetlab import ptovnetlab as ptvnl
 import logging
 
-class PToVJob(Job):
+class PToVJob(JobRunner):
     """
     Job for executing p_to_v function in the background.
     """
     class Meta:
         name = "Create Virtual Lab"
-        description = "Creates a virtual lab in GNS3 from NetBox devices"
+        # description = "Creates a virtual lab in GNS3 from NetBox devices"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
