@@ -82,8 +82,8 @@ class PToVJob2(JobRunner):
             username = username,
             password = password,
             switchlist = switchlist, 
-            servername = servername
-            projectname = projectname
+            servername = servername,
+            projectname = projectname,
         )
 
     def run(self, username, password, switchlist, servername, projectname):
