@@ -30,7 +30,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
 
             # Create and start background job
             # Create Job instance first
-            job = Job.objects.create(
+            job = job.objects.create(
                 name=f"Create {projectname}",
                 object_type=ContentType.objects.get_for_model(gns3srv),
                 user=request.user
