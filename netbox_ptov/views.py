@@ -7,6 +7,7 @@ from netbox_ptov import filtersets, forms, models, tables
 from netbox_ptov.models import gns3srv
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.contenttypes.models import ContentType  # <-- Added import
 import json
 import logging
 from .jobs import PToVJob
@@ -32,7 +33,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             # Create Job instance first
             job = Job.objects.create(
                 name=f"Create {projectname}",
-                #object_type=ContentType.objects.get_for_model(gns3srv),
+                object_type=ContentType.objects.get_for_model(gns3srv),
                 user=request.user
             )
             job_runner = PToVJob(job=job)
