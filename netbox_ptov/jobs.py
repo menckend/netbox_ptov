@@ -1,9 +1,9 @@
-from netbox.jobs import JobRunner
+from netbox.jobs import Job
 from django.contrib import messages
 from ptovnetlab import ptovnetlab as ptvnl
 import logging
 
-class PToVJob(JobRunner):
+class PToVJob(Job):
     """
     Job for executing p_to_v function in the background.
     """
@@ -70,5 +70,3 @@ class PToVJob(JobRunner):
         finally:
             # Clean up logging
             logger.removeHandler(handler)
-
-

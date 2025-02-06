@@ -30,20 +30,23 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
 
             # Create and start background job
-            # Create Job instance first
-            job = Job.objects.create(
+            # Create and enqueue job using NetBox's proper interface
+            job = PToVJob.enqueue(
                 name=f"Create {projectname}",
+                user=request.user,
                 object_type=ContentType.objects.get_for_model(gns3srv),
-                user=request.user
+                username=username,
+                password=password,
+                switchlist=switchlist,
+                servername=servername,
+                prjname=projectname
             )
-            job_runner = PToVJob(job=job)
-            job_runner.enqueue_job(username, password, switchlist, servername, projectname)
 
 
             messages.add_message(
                 request, 
                 messages.SUCCESS, 
-                                f'Lab creation started. Track progress: <a href="{job_runner.job.get_absolute_url()}">Job #{job_runner.job.pk}</a>',
+                                f'Lab creation started. Track progress: <a href="{job.get_absolute_url()}">Job #{job.pk}</a>',
                 extra_tags='safe'
             )
             return render(request, 'golab.html', {'form': form})
