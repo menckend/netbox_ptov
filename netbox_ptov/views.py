@@ -10,7 +10,7 @@ from django.contrib import messages
 import json
 import logging
 from .jobs import ptovJob
-from netbox.views import get_object
+from netbox.views.generic import base
 
 class MessagesHandler(logging.Handler):
     def __init__(self, request, *args, **kwargs):
@@ -58,7 +58,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
                 #result_out = 'dummy run'
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
-                ptovJob.enqueue_once(instance=get_object(form.cleaned_data['serverselect_in'].pk), username=username, password=password, switchlist=switchlist, servername=servername, projectname=projectname)
+                ptovJob.enqueue_once(instance=netbox.views.generic.base.get_object(form.cleaned_data['serverselect_in'].pk), username=username, password=password, switchlist=switchlist, servername=servername, projectname=projectname)
                 #return super().save(*args, **kwargs)
             except Exception as e:
                 # Handle any exceptions and add an error message
