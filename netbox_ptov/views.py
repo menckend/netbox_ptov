@@ -50,7 +50,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             projectname = form.cleaned_data['prjname_in']
 
             # Log initial info
-            messages.INFO(request, 'Starting to poll devices and build virtual lab. This may take up to several minutes.')
+            messages.add_message(request, messages.SUCCESS, 'Starting to poll devices and build virtual lab. This may take up to several minutes.')
             
             try:
                 # Call the function that does all of the work
@@ -64,6 +64,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #logger.removeHandler(messages_handler)
                 messages.INFO(request, f'Finished; cleaning up')
                 messages.SUCCESS(request, result_out)
+                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
