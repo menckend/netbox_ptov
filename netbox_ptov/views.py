@@ -50,7 +50,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             projectname = form.cleaned_data['prjname_in']
 
             # Log initial info
-            messages.info(request, 'Starting to poll devices and build virtual lab. This may take up to several minutes.')
+            messages.INFO(request, 'Starting to poll devices and build virtual lab. This may take up to several minutes.')
             
             try:
                 # Call the function that does all of the work
@@ -62,7 +62,8 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 #logger.removeHandler(messages_handler)
-                messages.info(request, f'Finished; cleaning up')
+                messages.INFO(request, f'Finished; cleaning up')
+                messages.SUCCESS(request, result_out)
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
