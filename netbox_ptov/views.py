@@ -19,9 +19,10 @@ class MessagesHandler(logging.Handler):
     def emit(self, record):
         try:
             msg = self.format(record)
-            messages.info(self.request, msg)
+            messages.add_message(self.request, messages.INFO, msg)
         except Exception:
             self.handleError(record)
+
 
 
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
@@ -56,23 +57,18 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             # Do something with the text (e.g., save to database)
 
             messages.add_message(request, messages.INFO, 'GNS3 server: ' + str(srv))
-            messages.add_message(request, messages.INFO, f'Switch-list: {switchlist}')
-            messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
+
+
 
             try:
                     # Call the function that generates logs
-                    messages.add_message(request, messages.INFO, 'Running the ptovnetlab.p_to_v function to build your virt-lab')
-                    messages.add_message(request, messages.INFO, 'GNS3 server: ' + str(srv))
-                    messages.add_message(request, messages.INFO, f'Switch-list: {switchlist}')
-                    messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
-
                     result_out = str(ptvnl.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
 
-                    messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(prn) + ' on ' + str(srv))
-                    messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}')
+                messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(prn) + ' on ' + str(srv))
+                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 logger.removeHandler(messages_handler)
