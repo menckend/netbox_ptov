@@ -7,48 +7,70 @@ from netbox_ptov import filtersets, forms, models, tables
 from netbox_ptov.models import gns3srv
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.contenttypes.models import ContentType  # <-- Added import
 import json
 import logging
-from .jobs import PToVJob
-from core.models import Job
+
+
+class MessagesHandler(logging.Handler):
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.request = request
+
+    def emit(self, record):
+        try:
+            msg = self.format(record)
+            messages.info(self.request, msg)
+        except Exception:
+            self.handleError(record)
+
 
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
-    """Pass the input fields from the golabForm instance to a background job that executes the ptovnetlab.p_to_v function"""
+    """Pass the input fields from the golabForm instance to the ptovnetlab.p_to_v function and return the results as an HttpResponse"""
+
+   # Create a custom logging handler
+    messages_handler = MessagesHandler(request)
+    messages_handler.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    messages_handler.setFormatter(formatter)
+
+    # Get the logger used by ptovnetlab.p_to_v
+    logger = logging.getLogger('ptovnetlab')
+    logger.addHandler(messages_handler)
+
+
+    
     if request.method == 'POST':
         form = forms.golabForm(request.POST)
         if form.is_valid():
-            # Extract form data
-            username = form.cleaned_data['username_in']
-            password = form.cleaned_data['password_in']
-            switchlist = [str(swname) for swname in form.cleaned_data['switchlist_multiplechoice_in']]
-            servername = form.cleaned_data['serverselect_in'].name
-            projectname = form.cleaned_data['prjname_in']
+            unm = form.cleaned_data['username_in']
+            pwd = form.cleaned_data['password_in']
+            swl = []
+            swl_in = []
+            swl_in = form.cleaned_data['switchlist_multiplechoice_in']
+            for swname in swl_in:
+                print (swname, type(swname))        
+                swl.append(str(swname))
+            messages.add_message(request, messages.INFO, 'Switch-list: ' + str(swl))
+            srv = form.cleaned_data['serverselect_in'].name
+            prn = form.cleaned_data['prjname_in']
+            # Do something with the text (e.g., save to database)
 
-            # Log initial info
-            messages.add_message(request, messages.INFO, f'Switch-list: {switchlist}')
-            messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
-
-            # Create and start background job
-            # Create and enqueue job using NetBox's proper interface
-            job = PToVJob.enqueue(
-                name=f"Create {projectname}",
-                user=request.user,
-                object_type=ContentType.objects.get_for_model(gns3srv),
-                username=username,
-                password=password,
-                switchlist=switchlist,
-                servername=servername,
-                prjname=projectname
-            )
+            messages.add_message(request, messages.INFO, 'GNS3 server: ' + str(srv))
 
 
-            messages.add_message(
-                request, 
-                messages.SUCCESS, 
-                                f'Lab creation started. Track progress: <a href="{job.get_absolute_url()}">Job #{job.pk}</a>',
-                extra_tags='safe'
-            )
+
+            try:
+                    # Call the function that generates logs
+                    messages.add_message(request, messages.INFO, 'Running the ptovnetlab.p_to_v function to build your virt-lab')
+                    result_out = str(ptvnl.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
+                    messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(prn) + ' on ' + str(srv))
+                    messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
+            except Exception as e:
+                # Handle any exceptions and add an error message
+                messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}')
+            finally:
+                # Remove the custom handler to avoid duplicate messages in subsequent requests
+                logger.removeHandler(messages_handler)
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
