@@ -50,7 +50,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             projectname = form.cleaned_data['prjname_in']
 
             # Log initial info
-            messages.add_message(request, messages.SUCCESS, 'Starting to poll devices and build virtual lab. This may take up to several minutes.')
+            messages.add_message(request, messages.SUCCESS, 'Starting to poll devices and build virtual lab. This may take up to several minutes.', extra_tags='safe')
             
             try:
                 # Call the function that does all of the work
@@ -58,12 +58,12 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
 
             except Exception as e:
                 # Handle any exceptions and add an error message
-                messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}')
+                messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe)
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 #logger.removeHandler(messages_handler)
-                messages.INFO(request, f'Finished; cleaning up')
-                messages.SUCCESS(request, result_out)
+                messages.INFO(request, f'Finished; cleaning up', extra_tags='safe)
+                messages.SUCCESS(request, result_out, extra_tags='safe)
                 messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             return render(request, 'golab.html', {'form': form})
     else:
