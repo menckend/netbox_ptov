@@ -50,14 +50,14 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             projectname = form.cleaned_data['prjname_in']
 
             # Log initial info
-            messages.add_message(request, messages.INFO, f'Switch-list: {switchlist}')
-            messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
+            messages.info(request, f'Switch-list: {switchlist}')
+            messages.info(request, f'GNS3 server: {servername}')
 
             try:
                 # Call the function that generates logs
 #                messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(projectname) + ' on ' + str(servername))
 #                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
-                messages.info(self.request, 'Starting to poll devices and build virtual lab. This may take up to several minutes.')
+                messages.info(request, 'Starting to poll devices and build virtual lab. This may take up to several minutes.')
                 result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
 
             except Exception as e:
