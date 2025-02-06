@@ -29,14 +29,14 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
     """Pass the input fields from the golabForm instance to the ptovnetlab.p_to_v function and return the results as an HttpResponse"""
 
     # Create a custom logging handler
-    messages_handler = MessagesHandler(request)
-    messages_handler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    messages_handler.setFormatter(formatter)
+    #messages_handler = MessagesHandler(request)
+    #messages_handler.setLevel(logging.INFO)
+    #formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    #messages_handler.setFormatter(formatter)
 
     # Get the logger used by ptovnetlab.p_to_v
-    logger = logging.getLogger('ptovnetlab')
-    logger.addHandler(messages_handler)
+    #logger = logging.getLogger('ptovnetlab')
+    #logger.addHandler(messages_handler)
 
 
     
@@ -50,14 +50,10 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             projectname = form.cleaned_data['prjname_in']
 
             # Log initial info
-            messages.info(request, f'Switch-list: {switchlist}')
-            messages.info(request, f'GNS3 server: {servername}')
-
+            messages.info(request, 'Starting to poll devices and build virtual lab. This may take up to several minutes.')
+            
             try:
-                # Call the function that generates logs
-#                messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(projectname) + ' on ' + str(servername))
-#                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
-                messages.info(request, 'Starting to poll devices and build virtual lab. This may take up to several minutes.')
+                # Call the function that does all of the work
                 result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
 
             except Exception as e:
@@ -65,7 +61,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}')
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
-                logger.removeHandler(messages_handler)
+                #logger.removeHandler(messages_handler)
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
