@@ -56,9 +56,10 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
 
             try:
                 # Call the function that generates logs
+#                messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(projectname) + ' on ' + str(servername))
+#                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
+                messages.info(self.request, 'Starting to poll devices and build virtual lab. This may take up to several minutes.')
                 result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
-                messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(projectname) + ' on ' + str(servername))
-                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
 
             except Exception as e:
                 # Handle any exceptions and add an error message
