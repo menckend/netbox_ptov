@@ -62,6 +62,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 #logger.removeHandler(messages_handler)
+                messages.info(request, f'Finished; cleaning up')
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
