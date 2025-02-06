@@ -54,8 +54,8 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             
             try:
                 # Call the function that does all of the work
-                result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
-
+                #result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
+                result_out = 'dummy run'
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe)
