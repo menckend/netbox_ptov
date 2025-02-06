@@ -19,7 +19,7 @@ class MessagesHandler(logging.Handler):
     def emit(self, record):
         try:
             msg = self.format(record)
-            messages.add_message(self.request, messages.INFO, msg)
+            messages.info(self.request, msg)
         except Exception:
             self.handleError(record)
 
@@ -45,20 +45,14 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
         if form.is_valid():
             unm = form.cleaned_data['username_in']
             pwd = form.cleaned_data['password_in']
-            swl = []
-            swl_in = []
-            swl_in = form.cleaned_data['switchlist_multiplechoice_in']
-            for swname in swl_in:
-                print (swname, type(swname))        
-                swl.append(str(swname))
+            swl = [str(swname) for swname in form.cleaned_data['switchlist_multiplechoice_in']]
             messages.add_message(request, messages.INFO, 'Switch-list: ' + str(swl))
             srv = form.cleaned_data['serverselect_in'].name
             prn = form.cleaned_data['prjname_in']
-            # Do something with the text (e.g., save to database)
 
-            messages.add_message(request, messages.INFO, 'GNS3 server: ' + str(srv))
-
-
+            # Log initial info
+            messages.add_message(request, messages.INFO, f'Switch-list: {switchlist}')
+            messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
 
             try:
                     # Call the function that generates logs
