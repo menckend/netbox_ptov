@@ -43,26 +43,26 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
     if request.method == 'POST':
         form = forms.golabForm(request.POST)
         if form.is_valid():
-            unm = form.cleaned_data['username_in']
-            pwd = form.cleaned_data['password_in']
-            swl = [str(swname) for swname in form.cleaned_data['switchlist_multiplechoice_in']]
-            messages.add_message(request, messages.INFO, 'Switch-list: ' + str(swl))
-            srv = form.cleaned_data['serverselect_in'].name
-            prn = form.cleaned_data['prjname_in']
+            username = form.cleaned_data['username_in']
+            password = form.cleaned_data['password_in']
+            switchlist = [str(swname) for swname in form.cleaned_data['switchlist_multiplechoice_in']]
+            messages.add_message(request, messages.INFO, 'Switch-list: ' + str(switchlist))
+            servername = form.cleaned_data['serverselect_in'].name
+            projectname = form.cleaned_data['prjname_in']
 
             # Log initial info
             messages.add_message(request, messages.INFO, f'Switch-list: {switchlist}')
             messages.add_message(request, messages.INFO, f'GNS3 server: {servername}')
 
             try:
-                    # Call the function that generates logs
-                    result_out = str(ptvnl.p_to_v(username=unm, passwd=pwd , servername=srv, switchlist=swl, prjname=prn))
+                # Call the function that generates logs
+                result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
+                messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(projectname) + ' on ' + str(servername))
+                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
 
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}')
-                messages.add_message(request, messages.SUCCESS, 'Project Created: ' + str(prn) + ' on ' + str(srv))
-                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 logger.removeHandler(messages_handler)
