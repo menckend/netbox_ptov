@@ -9,19 +9,20 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 import json
 import logging
+from .jobs import ptovJob
 
 
-#class MessagesHandler(logging.Handler):
-#    def __init__(self, request, *args, **kwargs):
-#        super().__init__(*args, **kwargs)
-#        self.request = request
+class MessagesHandler(logging.Handler):
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.request = request
 
-#    def emit(self, record):
-#        try:
-#            msg = self.format(record)
-#            messages.info(self.request, msg)
-#        except Exception:
-#            self.handleError(record)
+    def emit(self, record):
+        try:
+            msg = self.format(record)
+            messages.info(self.request, msg)
+        except Exception:
+            self.handleError(record)
 
 
 
@@ -29,14 +30,14 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
     """Pass the input fields from the golabForm instance to the ptovnetlab.p_to_v function and return the results as an HttpResponse"""
 
     # Create a custom logging handler
-    #messages_handler = MessagesHandler(request)
-    #messages_handler.setLevel(logging.INFO)
-    #formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    #messages_handler.setFormatter(formatter)
+    messages_handler = MessagesHandler(request)
+    messages_handler.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    messages_handler.setFormatter(formatter)
 
     # Get the logger used by ptovnetlab.p_to_v
-    #logger = logging.getLogger('ptovnetlab')
-    #logger.addHandler(messages_handler)
+    logger = logging.getLogger('ptovnetlab')
+    logger.addHandler(messages_handler)
 
 
     
@@ -55,16 +56,19 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             try:
                 # Call the function that does all of the work
                 #result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
-                result_out = 'dummy run'
+                #result_out = 'dummy run'
+                messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
+                ptovJob.enqueue_once(instance=form.data['serverselect_in'], username=username, password=password, switchlist=switchlist, servername=servername, projectname=projectname)
+                #return super().save(*args, **kwargs)
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 #logger.removeHandler(messages_handler)
-                messages.info(request, f'Finished; cleaning up', extra_tags='safe')
-                messages.success(request, result_out, extra_tags='safe')
-                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
+                messages.info(request, f'Still going', extra_tags='safe')
+#                messages.success(request, result_out, extra_tags='safe')
+#                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
