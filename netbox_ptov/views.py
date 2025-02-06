@@ -10,7 +10,7 @@ from django.contrib import messages
 import json
 import logging
 from .jobs import ptovJob
-
+from netbox.views import get_object
 
 class MessagesHandler(logging.Handler):
     def __init__(self, request, *args, **kwargs):
