@@ -1,11 +1,13 @@
-__author__ = """Mencken Davidson"""
-__email__ = "mencken@gmail.com"
-
 from netbox.plugins import PluginConfig
 from netbox_ptov._version import __version__
+from importlib import metadata
 
+try:
+    __version__ = metadata.version(__name__)
+except metadata.PackageNotFoundError:
+    __version__ = "0.1.0"
 
-class ptov_config(PluginConfig):
+class PtovConfig(PluginConfig):
     name = 'netbox_ptov'
     verbose_name = 'Physical to Virtual-lab'
     description = 'Builds GNS3 labs with config and topology scraped from Arista switches in device tables'
@@ -18,6 +20,16 @@ class ptov_config(PluginConfig):
     required_settings = []
     default_settings = {
         'top_level_menu': True
-        }
+    }
 
-config = ptov_config
+    def ready(self):
+        """
+        Register models with NetBox's registry system
+        """
+        super().ready()
+        from .models import GNS3Server, ptovjob, switchtojob
+        from netbox.features import register_models
+        register_models(GNS3Server, ptovjob, switchtojob)
+
+
+config = PtovConfig
