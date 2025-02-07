@@ -55,7 +55,7 @@ class switchtojob(NetBoxModel):
         return reverse("plugins:netbox_ptov:switchtojob", args=[self.pk])
 
     job = models.ForeignKey(
-        to=ptovjob,
+        to='netbox_ptov.PtovJob',
         on_delete=models.CASCADE,
     )
 

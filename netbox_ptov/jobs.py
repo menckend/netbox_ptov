@@ -4,6 +4,7 @@ from netbox.jobs import JobRunner
 class ptovJob(JobRunner):
     class Meta:
         name = "ptovJob"
+        object_types = ['netbox_ptov.gns3srv']
 
     def run(self, *args, **kwargs):
         obj = self.job.object
