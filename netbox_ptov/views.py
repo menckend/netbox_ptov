@@ -10,9 +10,7 @@ from django.contrib import messages
 import json
 import logging
 from .jobs import ptovJob
-from netbox.views.generic.base import BaseObjectView
 from django.shortcuts import get_object_or_404
-
 
 
 class MessagesHandler(logging.Handler):
@@ -28,7 +26,6 @@ class MessagesHandler(logging.Handler):
             self.handleError(record)
 
 
-
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
     """Pass the input fields from the golabForm instance to the ptovnetlab.p_to_v function and return the results as an HttpResponse"""
 
@@ -41,8 +38,6 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
     # Get the logger used by ptovnetlab.p_to_v
     logger = logging.getLogger('ptovnetlab')
     logger.addHandler(messages_handler)
-
-
     
     if request.method == 'POST':
         form = forms.golabForm(request.POST)
@@ -55,11 +50,10 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
 
             # Log initial info
             messages.add_message(request, messages.SUCCESS, 'Starting to poll devices and build virtual lab. This may take up to several minutes.', extra_tags='safe')
-            
+
             try:
                 # Call the function that does all of the work
                 #result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
-                #result_out = 'dummy run'
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
                 serverobject = get_object_or_404(gns3srv, pk=form.cleaned_data['serverselect_in'].pk)                
                 ptovJob.enqueue_once(instance=serverobject, username=username, password=password, switchlist=switchlist, servername=servername, projectname=projectname)

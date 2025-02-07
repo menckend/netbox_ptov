@@ -13,7 +13,7 @@ class ptov_config(PluginConfig):
     author = 'Mencken Davidson'
     author_email = 'mencken@gmail.com'
     base_url = 'netbox_ptov'
-    min_version = '3.6.0'
+    min_version = '4.2.0'
     max_version = '4.2.9'
     required_settings = []
     default_settings = {

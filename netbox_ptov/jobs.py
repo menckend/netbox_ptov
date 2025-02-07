@@ -9,4 +9,3 @@ class ptovJob(JobRunner):
         obj = self.job.object
         # your logic goes here
         result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
-        
