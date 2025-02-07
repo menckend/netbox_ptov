@@ -11,6 +11,8 @@ import json
 import logging
 from .jobs import ptovJob
 from django.shortcuts import get_object_or_404
+from netbox.models import Device
+
 
 
 class MessagesHandler(logging.Handler):
@@ -54,7 +56,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             try:
                 # Call the function that does all of the work
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
-                ptovobject = get_object_or_404(Devices, pk=form.cleaned_data['switchlist_multiplechoice_in'][0].pk)
+                ptovobject = get_object_or_404(Device, pk=form.cleaned_data['switchlist_multiplechoice_in'][0].pk)
                 messages.info(request, dir(ptovobject))
                 messages.info(request, ptovobject.pk)
                 messages.info(request, ptovobject.name)
