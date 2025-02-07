@@ -3,15 +3,17 @@ from netbox.views.generic import ObjectChangeLogView
 from . import models, views
 
 
+app_name = 'netbox_ptov'
+
 urlpatterns = [
     path("golab/", views.golab, name="golab"),
     
     # GNS3Server URLs
-    path("gns3servers/", views.gns3srvListView.as_view(), name="gns3server_list"),
-    path("gns3servers/add/", views.gns3srvEditView.as_view(), name="gns3server_add"),
-    path("gns3servers/<int:pk>/", views.gns3srvView.as_view(), name="gns3server"),
-    path("gns3servers/<int:pk>/edit/", views.gns3srvEditView.as_view(), name="gns3server_edit"),
-    path("gns3servers/<int:pk>/delete/", views.gns3srvDeleteView.as_view(), name="gns3server_delete"),
+    path("gns3servers/", views.GNS3ServerListView.as_view(), name="gns3server_list"),
+    path("gns3servers/add/", views.GNS3ServerEditView.as_view(), name="gns3server_add"),
+    path("gns3servers/<int:pk>/", views.GNS3ServerView.as_view(), name="gns3server"),
+    path("gns3servers/<int:pk>/edit/", views.GNS3ServerEditView.as_view(), name="gns3server_edit"),
+    path("gns3servers/<int:pk>/delete/", views.GNS3ServerDeleteView.as_view(), name="gns3server_delete"),
     path(
         "gns3servers/<int:pk>/changelog/",
         ObjectChangeLogView.as_view(),
