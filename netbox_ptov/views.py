@@ -11,7 +11,6 @@ import json
 import logging
 from .jobs import ptovJob
 from django.shortcuts import get_object_or_404
-from dcim.models import Device
 
 
 class MessagesHandler(logging.Handler):
@@ -55,12 +54,12 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             try:
                 # Call the function that does all of the work
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
-                switchobject = get_object_or_404(Device, pk=form.cleaned_data['switchlist_multiplechoice_in'][0].pk)                
-                messages.info(request, dir(switchobject))
-                messages.info(request, switchobject.pk)
-                messages.info(request, switchobject.name)
+                gns3sobj = get_object_or_404(GNS3Server, pk=form.cleaned_data['serverselect_in'].pk)                
+                messages.info(request, dir(gns3sobj))
+                messages.info(request, gns3sobj.pk)
+                messages.info(request, gns3sobj.name)
                 ptovJob.enqueue_once(
-                    instance=switchobject,
+                    instance=switchlist[0],
                     kwargs={
                         'username': username,
                         'password': password,

@@ -1,12 +1,13 @@
 from netbox.jobs import JobRunner
 from ptovnetlab import ptovnetlab as ptvnl
 from django.contrib import messages
+from netbox_ptov.models import GNS3Server
 
 
 class ptovJob(JobRunner):
     class Meta:
         name = "ptovJob"
-        object_types = ['netbox_ptov.ptovjob']  # Changed to match the correct model name
+        object_types = [GNS3Server]  # Changed to match the correct model name
         verbose_name = "GNS3 Server Job"
         description = "Creates a virtual lab from physical network devices"
 
