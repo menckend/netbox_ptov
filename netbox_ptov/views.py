@@ -60,8 +60,8 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
                 #result_out = 'dummy run'
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
-                gns3serverid = form.cleaned_data['serverselect_in'].pk
-                ptovJob.enqueue_once(instance=gns3srv.objects.get(pk=gns3serverid), username=username, password=password, switchlist=switchlist, servername=servername, projectname=projectname)
+                serverobject = nvgb.get_object(gns3srv, pk=gns3serverid)                
+                ptovJob.enqueue_once(instance=serverobject, username=username, password=password, switchlist=switchlist, servername=servername, projectname=projectname)
                 #return super().save(*args, **kwargs)
             except Exception as e:
                 # Handle any exceptions and add an error message
