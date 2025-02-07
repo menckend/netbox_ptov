@@ -10,7 +10,7 @@ from django.contrib import messages
 import json
 import logging
 from .jobs import ptovJob
-from netbox.views.generic.base import get_object
+from netbox.views.generic.base.BaseObjectView import get_object
 
 
 
