@@ -6,7 +6,7 @@ from . import models, views
 app_name = 'netbox_ptov'
 
 urlpatterns = [
-    path("golab/", views.golab, name="golab"),
+    path("golabs/", views.golab, name="golab"),
     
     # GNS3Server URLs
     path("gns3servers/", views.GNS3ServerListView.as_view(), name="gns3server_list"),
