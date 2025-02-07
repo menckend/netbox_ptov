@@ -22,8 +22,8 @@ class GNS3Server(NetBoxModel):
 
     class Meta:
         ordering = ("name",)
-        verbose_name = "Physical to Virtual-lab"
-        verbose_name_plural = "Physical to Virtual-lab"
+        verbose_name = "GNS3 Server"
+        verbose_name_plural = "GNS3 Servers"
         app_label = "netbox_ptov"
 
     def __str__(self):
