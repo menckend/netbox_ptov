@@ -28,8 +28,14 @@ class PtovConfig(PluginConfig):
         """
         super().ready()
         from .models import GNS3Server, ptovjob, switchtojob
-        from netbox.features import register_models
-        register_models(GNS3Server, ptovjob, switchtojob)
+        from netbox.registry import registry
+        registry['plugins']['netbox_ptov'] = {
+            'models': {
+                'gns3server': GNS3Server,
+                'ptovjob': ptovjob,
+                'switchtojob': switchtojob
+            }
+        }
 
 
 config = PtovConfig
