@@ -6,7 +6,7 @@ from django.contrib import messages
 class ptovJob(JobRunner):
     class Meta:
         name = "ptovJob"
-        object_types = ['netbox_ptov.GNS3Server']  # Using the proper model class name
+        object_types = ['netbox_ptov.gns3server']  # Using lowercase to match Django's internal model name
         description = "Creates a virtual lab from physical network devices"
 
     def run(self, username, password, switchlist, servername, projectname, *args, **kwargs):

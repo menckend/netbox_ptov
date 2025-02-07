@@ -22,7 +22,8 @@ class GNS3Server(NetBoxModel):
 
     class Meta:
         ordering = ("name",)
-        
+        verbose_name = "GNS3 Server"
+        verbose_name_plural = "GNS3 Servers"
 
     def __str__(self):
         return self.name
