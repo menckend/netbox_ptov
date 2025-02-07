@@ -56,19 +56,20 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             try:
                 # Call the function that does all of the work
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
-                ptovobject = get_object_or_404(Device, pk=form.cleaned_data['switchlist_multiplechoice_in'][0].pk)
-                messages.info(request, dir(ptovobject))
-                messages.info(request, ptovobject.pk)
-                messages.info(request, ptovobject.name)
-                ptovJob.enqueue_once(
+                #ptovobject = get_object_or_404(Device, pk=form.cleaned_data['switchlist_multiplechoice_in'][0].pk)
+                #messages.info(request, dir(ptovobject))
+                #messages.info(request, ptovobject.pk)
+                #messages.info(request, ptovobject.name)
+                runningjob = ptovJob.enqueue_once(
                     kwargs={
-                        'username': username,
+                    'username': username,
                         'password': password,
                         'switchlist': switchlist,
                         'servername': servername,
                         'projectname': projectname
                     }
                 )
+                messages.info(request, f'Job has been enqueued as: ' + str(runningjob(self)))
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
