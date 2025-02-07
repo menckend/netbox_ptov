@@ -7,7 +7,7 @@ from django.urls import reverse
 from netbox.models import NetBoxModel
 
 
-class gns3srv(NetBoxModel):
+class GNS3Server(NetBoxModel):
     """
     A class to represent the Django model of GNS3 servers.
 
@@ -93,7 +93,7 @@ class ptovjob(NetBoxModel):
         return reverse("plugins:netbox_ptov:ptovjob", args=[self.pk])
 
     gns3srv = models.ForeignKey(
-        to=gns3srv,
+        to='netbox_ptov.GNS3Server',
         on_delete=models.CASCADE,
     )
 

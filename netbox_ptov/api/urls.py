@@ -1,17 +1,11 @@
-"""Django API url router definitions for the netbox_ptov plugin"""
-
 from netbox.api.routers import NetBoxRouter
+from . import views
 
-from netbox_ptov.api.views import (
-    gns3srvViewSet, ptovjobViewSet, switchtojobViewSet, RootView
-)
-
-app_name = 'netbox_ptov'
 
 router = NetBoxRouter()
-router.APIRootView = RootView
-router.register('gns3srv', gns3srvViewSet, basename='gns3srv')
-router.register('ptovjob', ptovjobViewSet, basename='ptovjob')
-router.register('switchtojob', switchtojobViewSet, basename='switchtojob')
+
+router.register('gns3server', views.GNS3ServerViewSet, basename='gns3server')
+router.register('ptovjob', views.ptovjobViewSet, basename='ptovjob')
+router.register('switchtojob', views.switchtojobViewSet, basename='switchtojob')
 
 urlpatterns = router.urls

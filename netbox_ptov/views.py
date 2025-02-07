@@ -4,7 +4,7 @@ import django
 from ptovnetlab import ptovnetlab as ptvnl
 from netbox.views import generic
 from netbox_ptov import filtersets, forms, models, tables
-from netbox_ptov.models import gns3srv
+from netbox_ptov.models import GNS3Server
 from django.shortcuts import render, redirect
 from django.contrib import messages
 import json
@@ -53,9 +53,8 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
 
             try:
                 # Call the function that does all of the work
-                #result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
-                serverobject = get_object_or_404(gns3srv, pk=form.cleaned_data['serverselect_in'].pk)                
+                serverobject = get_object_or_404(GNS3Server, pk=form.cleaned_data['serverselect_in'].pk)                
                 ptovJob.enqueue_once(
                     instance=serverobject,
                     kwargs={
@@ -66,170 +65,79 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                         'projectname': projectname
                     }
                 )
-                #return super().save(*args, **kwargs)
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
-                #logger.removeHandler(messages_handler)
                 messages.info(request, f'Still going', extra_tags='safe')
-#                messages.success(request, result_out, extra_tags='safe')
-#                messages.add_message(request, messages.INFO, 'Open project here: <a href='+result_out+' >'+result_out+'</a>' , extra_tags='safe')
             return render(request, 'golab.html', {'form': form})
     else:
         form = forms.golabForm()
         return render(request, 'golab.html', {'form': form})
 
-class gns3srvView(generic.ObjectView):
-    """A class to represent the generic view of a gns3srv object."""
 
-    queryset = models.gns3srv.objects.all()
-
-
-class gns3srvListView(generic.ObjectListView):
-    """A class to represent the view of all gns3srv objects."""
-
-    queryset = models.gns3srv.objects.all()
-    table = tables.gns3srvTable
+class GNS3ServerView(generic.ObjectView):
+    """A class to represent the generic view of a GNS3Server object."""
+    queryset = models.GNS3Server.objects.all()
 
 
-class gns3srvEditView(generic.ObjectEditView):
-    """A class to represent the edit view of a gns3srv object.
-    =============================================================
-
-    Attributes
-    ----------
-    queryset
-    form
-    """
-    queryset = models.gns3srv.objects.all()
-    form = forms.gns3srvForm
+class GNS3ServerListView(generic.ObjectListView):
+    """A class to represent the view of all GNS3Server objects."""
+    queryset = models.GNS3Server.objects.all()
+    table = tables.GNS3ServerTable
 
 
-class gns3srvDeleteView(generic.ObjectDeleteView):
-    """A class to represent the delete view of a gns3srv object.
-    =============================================================
-    ...
+class GNS3ServerEditView(generic.ObjectEditView):
+    """A class to represent the edit view of a GNS3Server object."""
+    queryset = models.GNS3Server.objects.all()
+    form = forms.GNS3ServerForm
 
-    Attributes
-    ----------
-    queryset
-    """
-    queryset = models.gns3srv.objects.all()
+
+class GNS3ServerDeleteView(generic.ObjectDeleteView):
+    """A class to represent the delete view of a GNS3Server object."""
+    queryset = models.GNS3Server.objects.all()
 
 
 class ptovjobView(generic.ObjectView):
-    """
-    A class to represent the generic view of all ptovjob objects.
-
-    =============================================================
-
-    Attributes
-    ----------
-    queryset
-    """
+    """A class to represent the generic view of all ptovjob objects."""
     queryset = models.ptovjob.objects.all()
 
 
 class ptovjobListView(generic.ObjectListView):
-    """
-    A class to represent the list view of all ptovjob objects.
-
-    =============================================================
-
-    Attributes
-    ----------
-    queryset
-    table
-    """
+    """A class to represent the list view of all ptovjob objects."""
     queryset = models.ptovjob.objects.all()
     table = tables.ptovjobTable
 
 
 class ptovjobEditView(generic.ObjectEditView):
-    """
-    A class to represent the edit view of a ptovjob object.
-
-    =============================================================
-
-    Attributes
-    ----------
-    queryset
-    form
-    """
+    """A class to represent the edit view of a ptovjob object."""
     queryset = models.ptovjob.objects.all()
     form = forms.ptovjobForm
 
 
 class ptovjobDeleteView(generic.ObjectDeleteView):
-    """
-    A class to represent the delete  view of a ptovjob object.
-
-    =============================================================
-
-    Attributes
-    ----------
-    queryset
-    """
-
+    """A class to represent the delete view of a ptovjob object."""
     queryset = models.ptovjob.objects.all()
 
 
 class switchtojobView(generic.ObjectView):
-    """
-    A class to represent the generic view of all switchtojob objects.
-
-    =============================================================
-
-    Attributes
-    ----------
-    queryset
-    """
+    """A class to represent the generic view of all switchtojob objects."""
     queryset = models.switchtojob.objects.all()
 
 
 class switchtojobListView(generic.ObjectListView):
-    """
-    A class to represent the list view of all switchtojob objects.
-
-    =============================================================
-
-    Attributes
-    ----------
-    queryset
-    table
-    """
-
+    """A class to represent the list view of all switchtojob objects."""
     queryset = models.switchtojob.objects.all()
     table = tables.switchtojobTable
 
 
 class switchtojobEditView(generic.ObjectEditView):
-    """
-    A class to represent the edit view of switchtojob objects.
-
-    =============================================================
-
-    Attributes
-    =============================================================
-    queryset
-    form
-    """
-
+    """A class to represent the edit view of switchtojob objects."""
     queryset = models.switchtojob.objects.all()
     form = forms.switchtojobForm
 
 
 class switchtojobDeleteView(generic.ObjectDeleteView):
-    """
-    A class to represent the delete view of a switchtojob object.
-
-    =============================================================
-
-    Attributes
-    ----------
-    queryset
-    """
-
+    """A class to represent the delete view of a switchtojob object."""
     queryset = models.switchtojob.objects.all()
