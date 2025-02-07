@@ -59,7 +59,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 messages.info(request, gns3sobj.pk)
                 messages.info(request, gns3sobj.name)
                 ptovJob.enqueue_once(
-                    instance=switchlist[0],
+                    instance=gns3sobj,
                     kwargs={
                         'username': username,
                         'password': password,
