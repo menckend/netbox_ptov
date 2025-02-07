@@ -55,10 +55,9 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 # Call the function that does all of the work
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
                 serverobject = get_object_or_404(GNS3Server, pk=form.cleaned_data['serverselect_in'].pk)                
-                print(dir(serverobject))
-                print(serverobject.pk)
-                print(serverobject.name)
-                
+                messages.info(request, dir(serverobject))
+                messages.info(request, serverobject.pk)
+                messages.info(request, serverobject.name)
                 ptovJob.enqueue_once(
                     instance=serverobject,
                     kwargs={
