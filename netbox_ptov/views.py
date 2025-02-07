@@ -11,7 +11,7 @@ import json
 import logging
 from .jobs import ptovJob
 from django.shortcuts import get_object_or_404
-from netbox.dcim.models import Device
+from dcim.models import Device
 
 
 
