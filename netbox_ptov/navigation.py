@@ -7,9 +7,9 @@ from django.conf import settings
 from netbox.plugins import PluginMenuButton, PluginMenuItem, PluginMenu
 
 
-gns3srv_buttons = (
+gns3server_buttons = (
     PluginMenuButton(
-        link="plugins:netbox_ptov:gns3srv_add",
+        link="plugins:netbox_ptov:gns3server_add",
         title="Add",
         icon_class="mdi mdi-plus-thick",
     ),
@@ -30,9 +30,9 @@ _menu_items = (
         link_text="Run a V-Lab",
     ),
     PluginMenuItem(
-        link="plugins:netbox_ptov:gns3srv_list",
+        link="plugins:netbox_ptov:gns3server_list",
         link_text="GNS3 Servers",
-        buttons=gns3srv_buttons,
+        buttons=gns3server_buttons,
     ),
 )
 

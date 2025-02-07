@@ -28,7 +28,7 @@ class GNS3Server(NetBoxModel):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("plugins:netbox_ptov:gns3srv", args=[self.pk])
+        return reverse("plugins:netbox_ptov:gns3server", args=[self.pk])
 
 
 class switchtojob(NetBoxModel):
