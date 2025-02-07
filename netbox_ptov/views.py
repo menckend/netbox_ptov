@@ -11,7 +11,7 @@ import json
 import logging
 from .jobs import ptovJob
 from netbox.views.generic.base import BaseObjectView
-
+from django.shortcuts import get_object_or_404
 
 
 
@@ -61,7 +61,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #result_out = str(ptvnl.p_to_v(username=username, passwd=password , servername=servername, switchlist=switchlist, prjname=projectname))
                 #result_out = 'dummy run'
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
-                serverobject = BaseException.get_object(gns3srv, pk=gns3serverid)                
+                serverobject = get_object_or_404(gns3srv, pk=form.cleaned_data['serverselect_in'].pk)                
                 ptovJob.enqueue_once(instance=serverobject, username=username, password=password, switchlist=switchlist, servername=servername, projectname=projectname)
                 #return super().save(*args, **kwargs)
             except Exception as e:
