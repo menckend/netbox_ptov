@@ -6,7 +6,7 @@ from django.contrib import messages
 class ptovJob(JobRunner):
     class Meta:
         name = "ptovJob"
-        object_types = ['netbox_ptov.gns3server']  # Must match app_label.model_name in lowercase
+        object_types = ['netbox_ptov.ptovjob']  # Changed to match the correct model name
         verbose_name = "GNS3 Server Job"
         description = "Creates a virtual lab from physical network devices"
 
