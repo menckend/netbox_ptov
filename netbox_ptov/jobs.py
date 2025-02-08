@@ -39,24 +39,29 @@ class ptovJob(JobRunner):
         obj = self.job.object
 
         # Create a custom logging handler
-        #messages_handler = MessagesHandler(obj)
-        #messages_handler.setLevel(logging.INFO)
-        #formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        #messages_handler.setFormatter(formatter)
+        messages_handler = MessagesHandler(self)
+        messages_handler.setLevel(logging.INFO)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        messages_handler.setFormatter(formatter)
 
         # Get the logger used by ptovnetlab.p_to_v
-        #logger = logging.getLogger('ptovnetlab')
-        #logger.addHandler(messages_handler)
+        logger = logging.getLogger('ptovnetlab')
+        logger.addHandler(messages_handler)
 
         try:
             # Call the function that does all of the work
             print(kwargs)
             result_out = str(ptvnl.p_to_v(
-                username=kwargs['username'], 
-                passwd=kwargs['password'],
-                servername=kwargs['servername'],
-                switchlist=kwargs['switchlist'],
-                prjname=kwargs['projectname']
+#                username=kwargs['username'], 
+#                passwd=kwargs['password'],
+#                servername=kwargs['servername'],
+#                switchlist=kwargs['switchlist'],
+#                prjname=kwargs['projectname']
+#                username=kwargs['username'], 
+                passwd='test',
+                servername='gns3server',
+                switchlist=['switch10', 'switch11', 'switch12'],
+                prjname='projectname-test',
             ))
 #            messages.info(self.get_absolute_url, f"Virtual lab created successfully: {result_out}")
             return result_out
