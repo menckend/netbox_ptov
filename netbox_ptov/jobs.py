@@ -45,8 +45,8 @@ class ptovJob(JobRunner):
         #messages_handler.setFormatter(formatter)
 
         # Get the logger used by ptovnetlab.p_to_v
-        logger = logging.getLogger('ptovnetlab')
-        logger.addHandler(messages_handler)
+        #logger = logging.getLogger('ptovnetlab')
+        #logger.addHandler(messages_handler)
 
         try:
             # Call the function that does all of the work
