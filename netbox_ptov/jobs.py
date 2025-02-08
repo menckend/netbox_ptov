@@ -39,10 +39,10 @@ class ptovJob(JobRunner):
         obj = self.job.object
 
         # Create a custom logging handler
-        messages_handler = MessagesHandler(obj)
-        messages_handler.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        messages_handler.setFormatter(formatter)
+        #messages_handler = MessagesHandler(obj)
+        #messages_handler.setLevel(logging.INFO)
+        #formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        #messages_handler.setFormatter(formatter)
 
         # Get the logger used by ptovnetlab.p_to_v
         logger = logging.getLogger('ptovnetlab')
@@ -50,6 +50,7 @@ class ptovJob(JobRunner):
 
         try:
             # Call the function that does all of the work
+            print(kwargs)
             result_out = str(ptvnl.p_to_v(
                 username=kwargs['username'], 
                 passwd=kwargs['password'],
@@ -61,5 +62,5 @@ class ptovJob(JobRunner):
             return result_out
         except Exception as e:
 #            messages.error(self.get_absolute_url, f'An error occurred: {str(e)}', extra_tags='safe')
-            print(f'An error occurred: {str(e)}')
+            print(f'A job error occurred: {str(e)}')
             raise
