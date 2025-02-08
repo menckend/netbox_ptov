@@ -63,7 +63,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, ptovobject.pk)
                 #messages.info(request, ptovobject.name)
                 job = ptovJob.enqueue(
-                    immediate = true,
+                    immediate = True,
                     schedule_at = datetime.now(),
                     interval=None,
                     kwargs={
