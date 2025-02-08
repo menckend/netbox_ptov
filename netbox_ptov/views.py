@@ -79,7 +79,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 #messages.info(request, f'Still going', extra_tags='safe')
                 #return render( '/core/jobs/'+ str(runningjob.pk))
-                time.wait(3)
+                time.sleep(3)
                 return redirect(runningjob.get_absolute_url())
     else:
         form = forms.golabForm()
