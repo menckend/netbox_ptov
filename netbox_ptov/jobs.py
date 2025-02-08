@@ -53,12 +53,12 @@ class ptovJob(JobRunner):
             print('I am about to print the kwargs received ptovJob run function')
             print(kwargs)
             result_out = str(ptvnl.p_to_v(
-#                username=kwargs['username'], 
-#                passwd=kwargs['password'],
-#                servername=kwargs['servername'],
-#                switchlist=kwargs['switchlist'],
-#                prjname=kwargs['projectname']
-#                username=kwargs['username'], 
+                username=kwargs['username'], 
+                passwd=kwargs['password'],
+                servername=kwargs['servername'],
+                switchlist=kwargs['switchlist'],
+                prjname=kwargs['projectname']
+                username=kwargs['username'], 
                 username='test',
                 passwd='test',
                 servername='gns3server',

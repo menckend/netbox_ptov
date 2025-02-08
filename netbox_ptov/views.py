@@ -65,15 +65,13 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 ptovjob_new = ptovJob.enqueue(
                     immediate = True,
                     interval=None,
-                    kwargs={
-                        'name': 'Virt-lab job',
-                        'job' : 'P to V lab',
-                        'username': username,
-                        'password': password,
-                        'switchlist': switchlist,
-                        'servername': servername,
-                        'projectname': projectname
-                    }
+                    'name' = 'Virt-lab job',
+                    'job' = 'P to V lab',
+                    'username' = username,
+                    'password' = password,
+                    'switchlist' = switchlist,
+                    'servername' = servername,
+                    'projectname' = projectname
                 )
                 joburl = ptovjob_new.get_absolute_url()
                 messages.info(request, f'Job has been enqueued as: ' + joburl)
