@@ -61,7 +61,6 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, ptovobject.pk)
                 #messages.info(request, ptovobject.name)
                 runningjob = ptovJob.enqueue(
-                    ptovJob,
                     kwargs={
                     'username': username,
                         'password': password,
