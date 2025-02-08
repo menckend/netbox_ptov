@@ -82,7 +82,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 time.sleep(3)
                 #messages.info(request, f'Job has been enqueued as: ' + str(runningjob))
                 messages.info(request, joburl)
-                return redirect(joburl)
+                render(request, 'golab.html')
     else:
         form = forms.golabForm()
         return render(request, 'golab.html', {'form': form})
