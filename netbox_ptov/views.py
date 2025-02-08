@@ -69,7 +69,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                         'projectname': projectname
                     }
                 )
-                messages.info(request, f'Job has been enqueued as: ' + str(runningjob)))
+                messages.info(request, f'Job has been enqueued as: ' + str(runningjob))
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
