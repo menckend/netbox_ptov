@@ -75,14 +75,16 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
+                return render(request, golab.html)
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 #messages.info(request, f'Still going', extra_tags='safe')
                 #return render( '/core/jobs/'+ str(runningjob.pk))
-                time.sleep(3)
+                #time.sleep(3)
                 #messages.info(request, f'Job has been enqueued as: ' + str(runningjob))
-                messages.info(request, joburl)
-                return render(request, 'golab.html')
+                #messages.info(request, joburl)
+                #return render(request, 'golab.html')
+                return redirect(joburl)
     else:
         form = forms.golabForm()
         return render(request, 'golab.html', {'form': form})

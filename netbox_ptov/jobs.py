@@ -10,7 +10,6 @@ from django.shortcuts import render, redirect
 import json
 
 
-
 class MessagesHandler(logging.Handler):
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
