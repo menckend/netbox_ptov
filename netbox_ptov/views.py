@@ -12,7 +12,7 @@ import logging
 from .jobs import ptovJob
 from django.shortcuts import get_object_or_404
 from dcim.models import Device
-
+import time
 
 #class MessagesHandler(logging.Handler):
 #    def __init__(self, request, *args, **kwargs):
@@ -42,6 +42,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
     
     if request.method == 'POST':
         form = forms.golabForm(request.POST)
+        joburl=''
         if form.is_valid():
             username = form.cleaned_data['username_in']
             password = form.cleaned_data['password_in']
@@ -70,13 +71,15 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                     }
                 )
                 messages.info(request, f'Job has been enqueued as: ' + str(runningjob))
+                joburl=runningjob.get_absolute_url()
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
-                messages.info(request, f'Still going', extra_tags='safe')
+                #messages.info(request, f'Still going', extra_tags='safe')
                 #return render( '/core/jobs/'+ str(runningjob.pk))
+                time.wait(3)
                 return redirect(runningjob.get_absolute_url())
     else:
         form = forms.golabForm()
