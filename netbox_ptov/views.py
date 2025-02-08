@@ -80,7 +80,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, f'Still going', extra_tags='safe')
                 #return render( '/core/jobs/'+ str(runningjob.pk))
                 time.sleep(3)
-                return redirect(runningjob.get_absolute_url())
+                return redirect(joburl)
     else:
         form = forms.golabForm()
         return render(request, 'golab.html', {'form': form})
