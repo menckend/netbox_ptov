@@ -66,7 +66,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                     immediate = True,
                     interval = None,
                     name = 'Virt-lab job',
-                    job = 'P to V lab',
+#                    job = 'P to V lab',
                     username = username,
                     password = password,
                     switchlist = switchlist,
