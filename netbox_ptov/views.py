@@ -12,7 +12,9 @@ import logging
 from .jobs import ptovJob
 from django.shortcuts import get_object_or_404
 from dcim.models import Device
-import time
+import datetime
+from datetime.datetime import now
+
 
 #class MessagesHandler(logging.Handler):
 #    def __init__(self, request, *args, **kwargs):
@@ -63,7 +65,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 runningjob = ptovJob.enqueue_once(
                     ptovJob,
                     instance=None,
-                    schedule_at=Immediate,
+                    schedule_at=now,
                     interval=None,
                     kwargs={
                         'name': 'Virt-lab job',
