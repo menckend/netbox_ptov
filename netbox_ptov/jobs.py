@@ -50,6 +50,7 @@ class ptovJob(JobRunner):
 
         try:
             # Call the function that does all of the work
+            print('I am about to print the kwargs received ptovJob run function')
             print(kwargs)
             result_out = str(ptvnl.p_to_v(
 #                username=kwargs['username'], 
