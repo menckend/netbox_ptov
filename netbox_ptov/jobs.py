@@ -8,8 +8,8 @@ class ptovJob(JobRunner):
     class Meta:
         name = "ptovJob"
         #object_types = [GNS3Server]  # Changed to match the correct model name
-        verbose_name = "GNS3 Server Job"
-        description = "Creates a virtual lab from physical network devices"
+        #verbose_name = "GNS3 Server Job"
+        #description = "Creates a virtual lab from physical network devices"
 
     def run(self, username, password, switchlist, servername, projectname, *args, **kwargs):
         obj = self.job.object
