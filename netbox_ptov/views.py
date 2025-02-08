@@ -60,7 +60,11 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, dir(ptovobject))
                 #messages.info(request, ptovobject.pk)
                 #messages.info(request, ptovobject.name)
-                runningjob = ptovJob.enqueue(
+                runningjob = ptovJob.enqueue_once(
+                    ptovJob,
+                    instance=None,
+                    schedule_at=Immediate,
+                    interval=None,
                     kwargs={
                         'name': 'Virt-lab job',
                         'job' : 'P to V lab'
