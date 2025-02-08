@@ -58,6 +58,7 @@ class ptovJob(JobRunner):
 #                switchlist=kwargs['switchlist'],
 #                prjname=kwargs['projectname']
 #                username=kwargs['username'], 
+                username='test',
                 passwd='test',
                 servername='gns3server',
                 switchlist=['switch10', 'switch11', 'switch12'],
