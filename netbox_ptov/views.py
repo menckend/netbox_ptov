@@ -81,7 +81,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
-                return render('', golab.html)
+                return redirect(golab.html)
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 #messages.info(request, f'Still going', extra_tags='safe')
