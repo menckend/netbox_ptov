@@ -62,7 +62,8 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, dir(ptovobject))
                 #messages.info(request, ptovobject.pk)
                 #messages.info(request, ptovobject.name)
-                ptovjob_new = ptovJob.enqueue(
+                #ptovjob_new = ptovJob.enqueue(
+                ptovJob.enqueue(
                     immediate = True,
                     interval = None,
                     name = 'Virt-lab job',
@@ -73,14 +74,15 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                     servername = servername,
                     projectname = projectname
                 )
-                joburl = ptovjob_new.get_absolute_url()
-                messages.info(request, f'Job has been enqueued as: ' + joburl)
-                joburl=ptovjob_new.get_absolute_url()
+                #joburl = ptovjob_new.get_absolute_url()
+                messages.info(request, f'Job has been enqueued for execution')
+                #joburl=ptovjob_new.get_absolute_url()
+                datetime.sleep(1)
                 return render(request, 'golab.html')
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
-                return render(request, 'golab.html', {'form': form})
+                return render(request, 'golab.html')
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 #messages.info(request, f'Still going', extra_tags='safe')
@@ -90,7 +92,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, joburl)
                 #return render(request, 'golab.html')
                 #return redirect(joburl)
-                return render(request, 'golab.html', {'form': form})
+                return render(request, 'golab.html')
     else:
         form = forms.golabForm()
         return render(request, 'golab.html', {'form': form})
