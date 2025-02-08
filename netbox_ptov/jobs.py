@@ -26,9 +26,13 @@ class MessagesHandler(logging.Handler):
 class ptovJob(JobRunner):
     class Meta:
         name = "ptovJob"
-        #object_types = [GNS3Server]  # Changed to match the correct model name
-        #verbose_name = "GNS3 Server Job"
-        #description = "Creates a virtual lab from physical network devices"
+
+    def __init__(self, job):
+        """
+        Args:
+            job: The specific `Job` this `JobRunner` is executing.
+        """
+        self.job = job
 
 
     def run(self, username, password, switchlist, servername, projectname, *args, **kwargs):

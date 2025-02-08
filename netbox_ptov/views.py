@@ -63,6 +63,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 runningjob = ptovJob.enqueue(
                     kwargs={
                         'name': 'Virt-lab job',
+                        'job' : 'P to V lab'
                         'username': username,
                         'password': password,
                         'switchlist': switchlist,
