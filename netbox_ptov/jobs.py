@@ -24,8 +24,10 @@ class ptovJob(JobRunner):
         #description = "Creates a virtual lab from physical network devices"
 
 
+    obj = self.job.object
+
     def run(self, username, password, switchlist, servername, projectname, *args, **kwargs):
-        obj = self.job.object
+        
 
         # Create a custom logging handler
         messages_handler = MessagesHandler(request)

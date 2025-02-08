@@ -15,17 +15,17 @@ from dcim.models import Device
 
 
 
-class MessagesHandler(logging.Handler):
-    def __init__(self, request, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.request = request
+#class MessagesHandler(logging.Handler):
+#    def __init__(self, request, *args, **kwargs):
+#        super().__init__(*args, **kwargs)
+#        self.request = request
 
-    def emit(self, record):
-        try:
-            msg = self.format(record)
-            messages.info(self.request, msg)
-        except Exception:
-            self.handleError(record)
+#    def emit(self, record):
+#        try:
+#            msg = self.format(record)
+#            messages.info(self.request, msg)
+#        except Exception:
+#            self.handleError(record)
 
 
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
