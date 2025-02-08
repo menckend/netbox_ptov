@@ -32,14 +32,14 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
     """Pass the input fields from the golabForm instance to the ptovnetlab.p_to_v function and return the results as an HttpResponse"""
 
     # Create a custom logging handler
-    messages_handler = MessagesHandler(request)
-    messages_handler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    messages_handler.setFormatter(formatter)
+#    messages_handler = MessagesHandler(request)
+#    messages_handler.setLevel(logging.INFO)
+#    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#    messages_handler.setFormatter(formatter)
 
     # Get the logger used by ptovnetlab.p_to_v
-    logger = logging.getLogger('ptovnetlab')
-    logger.addHandler(messages_handler)
+#    logger = logging.getLogger('ptovnetlab')
+#    logger.addHandler(messages_handler)
     
     if request.method == 'POST':
         form = forms.golabForm(request.POST)
