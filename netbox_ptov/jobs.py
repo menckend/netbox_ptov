@@ -35,7 +35,7 @@ class ptovJob(JobRunner):
         self.job = job
 
 
-    def run(self, username, password, switchlist, servername, projectname, *args, **kwargs):
+    def run(self, **kwargs):
         obj = self.job.object
 
         # Create a custom logging handler
@@ -51,11 +51,11 @@ class ptovJob(JobRunner):
         try:
             # Call the function that does all of the work
             result_out = str(ptvnl.p_to_v(
-                username=username, 
-                passwd=password,
-                servername=servername,
-                switchlist=switchlist,
-                prjname=projectname
+                username=kwargs['username'], 
+                passwd=kwargs['password'],
+                servername=kwargs['servername'],
+                switchlist=kwargs['switchlist'],
+                prjname=kwargs['projectname']
             ))
             self.log_success(f"Virtual lab created successfully: {result_out}")
             return result_out
