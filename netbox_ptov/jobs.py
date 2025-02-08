@@ -57,8 +57,8 @@ class ptovJob(JobRunner):
                 switchlist=kwargs['switchlist'],
                 prjname=kwargs['projectname']
             ))
-            self.log_success(f"Virtual lab created successfully: {result_out}")
+#            messages.add_message((f"Virtual lab created successfully: {result_out}")
             return result_out
         except Exception as e:
-            self.log_failure(f"Failed to create virtual lab: {str(e)}")
+            messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
             raise
