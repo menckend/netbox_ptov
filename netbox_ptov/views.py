@@ -62,7 +62,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, dir(ptovobject))
                 #messages.info(request, ptovobject.pk)
                 #messages.info(request, ptovobject.name)
-                ptovJob.enqueue(
+                ptovjob_new = ptovJob.enqueue(
                     immediate = True,
                     interval=None,
                     kwargs={
@@ -75,8 +75,9 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                         'projectname': projectname
                     }
                 )
-                messages.info(request, f'Job has been enqueued as: ' + str(ptovjob_new))
-                #joburl=ptovjob_new.get_absolute_url()
+                joburl = ptovjob_new.get_absolute_url()
+                messages.info(request, f'Job has been enqueued as: ' + joburl)
+                joburl=ptovjob_new.get_absolute_url()
                 return render(request, 'golab.html')
             except Exception as e:
                 # Handle any exceptions and add an error message
