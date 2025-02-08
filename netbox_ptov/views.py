@@ -14,7 +14,6 @@ from django.shortcuts import get_object_or_404
 from dcim.models import Device
 
 
-
 #class MessagesHandler(logging.Handler):
 #    def __init__(self, request, *args, **kwargs):
 #        super().__init__(*args, **kwargs)
