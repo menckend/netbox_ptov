@@ -62,7 +62,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, dir(ptovobject))
                 #messages.info(request, ptovobject.pk)
                 #messages.info(request, ptovobject.name)
-                job = ptovJob.enqueue(
+                ptovjob_new = ptovJob.enqueue(
                     immediate = True,
                     interval=None,
                     kwargs={
@@ -75,12 +75,12 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                         'projectname': projectname
                     }
                 )
-                messages.info(request, f'Job has been enqueued as: ' + str(runningjob))
-                joburl=runningjob.get_absolute_url()
+                messages.info(request, f'Job has been enqueued as: ' + str(ptovjob_new))
+                joburl=ptovjob_new.get_absolute_url()
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
-                return redirect(golab.html)
+                return render(request, 'golab.html', {'form': form})
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 #messages.info(request, f'Still going', extra_tags='safe')
