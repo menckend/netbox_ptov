@@ -57,7 +57,7 @@ class ptovJob(JobRunner):
                 passwd=kwargs['password'],
                 servername=kwargs['servername'],
                 switchlist=kwargs['switchlist'],
-                prjname=kwargs['projectname']
+                prjname=kwargs['projectname'],
                 username=kwargs['username'], 
                 username='test',
                 passwd='test',
