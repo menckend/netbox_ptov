@@ -57,8 +57,9 @@ class ptovJob(JobRunner):
                 switchlist=kwargs['switchlist'],
                 prjname=kwargs['projectname']
             ))
-            messages.info(self.get_absolute_url, f"Virtual lab created successfully: {result_out}")
+#            messages.info(self.get_absolute_url, f"Virtual lab created successfully: {result_out}")
             return result_out
         except Exception as e:
-            messages.error(self.get_absolute_url, f'An error occurred: {str(e)}', extra_tags='safe')
+#            messages.error(self.get_absolute_url, f'An error occurred: {str(e)}', extra_tags='safe')
+            print(f'An error occurred: {str(e)}')
             raise
