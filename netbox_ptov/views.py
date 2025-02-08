@@ -69,14 +69,14 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                         'projectname': projectname
                     }
                 )
-                messages.info(request, f'Job has been enqueued as: ' + str(dir(runningjob)))
+                messages.info(request, f'Job has been enqueued as: ' + str(runningjob)))
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
             finally:
                 # Remove the custom handler to avoid duplicate messages in subsequent requests
                 messages.info(request, f'Still going', extra_tags='safe')
-            return render(request, 'golab.html', {'form': form})
+            return render(request, '/core/jobs/'+ 'pk=' + runningjob.pk, {'form': form})
     else:
         form = forms.golabForm()
         return render(request, 'golab.html', {'form': form})
