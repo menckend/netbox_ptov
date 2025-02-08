@@ -12,7 +12,7 @@ import logging
 from .jobs import ptovJob
 from django.shortcuts import get_object_or_404
 from dcim.models import Device
-import datetime
+import time as t
 from datetime import datetime
 
 
@@ -77,7 +77,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #joburl = ptovjob_new.get_absolute_url()
                 messages.info(request, f'Job has been enqueued for execution')
                 #joburl=ptovjob_new.get_absolute_url()
-                datetime.sleep(1)
+                t.sleep(1)
                 return render(request, 'golab.html')
             except Exception as e:
                 # Handle any exceptions and add an error message
