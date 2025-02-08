@@ -58,12 +58,6 @@ class ptovJob(JobRunner):
                 servername=kwargs['servername'],
                 switchlist=kwargs['switchlist'],
                 prjname=kwargs['projectname'],
-                username=kwargs['username'], 
-                username='test',
-                passwd='test',
-                servername='gns3server',
-                switchlist=['switch10', 'switch11', 'switch12'],
-                prjname='projectname-test',
             ))
 #            messages.info(self.get_absolute_url, f"Virtual lab created successfully: {result_out}")
             return result_out
