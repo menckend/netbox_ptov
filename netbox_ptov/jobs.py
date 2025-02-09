@@ -11,20 +11,6 @@ import json
 from unittest.mock import MagicMock
 
 
-class MessagesHandler(logging.Handler):
-    request = MagicMock()
-    def __init__(self, request, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.request = request
-
-    def emit(self, record):
-        try:
-            msg = self.format(record)
-            messages.info(self.request, msg)
-        except Exception:
-            self.handleError(record)
-
-
 class ptovJob(JobRunner):
     class Meta:
         name = "ptovJob"
@@ -43,6 +29,34 @@ class ptovJob(JobRunner):
     def run(self, **kwargs):
         obj = self.job.object
         request = MagicMock()
+
+        logger = logging.getLogger(__name__)
+        logger.setLevel(logging.INFO)
+
+        # Create a custom handler to append logs to the job's data
+        class JobDataHandler(logging.Handler):
+            def __init__(self, job):
+                super().__init__()
+                self.job = job
+
+            def emit(self, record):
+                log_entry = self.format(record)
+                if not self.job.data:
+                    self.job.data = []
+                self.job.data.append(log_entry)
+                self.job.save()  # Save the updated job data
+                
+        
+        handler = JobDataHandler(self.job)
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+
+
+        # Get the logger used by ptovnetlab.p_to_v
+        logger2 = logging.getLogger('ptovnetlab')
+        logger2.addHandler(messages_handler)
+
 
         # Create a custom logging handler
         messages_handler = MessagesHandler(request)
