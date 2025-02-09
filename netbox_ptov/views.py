@@ -13,7 +13,7 @@ from .jobs import ptovJob
 from django.shortcuts import get_object_or_404
 from dcim.models import Device
 import time as t
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 def golab(request: forms.golabForm) -> django.http.HttpResponse:
@@ -37,7 +37,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
                 jobtogo = ptovJob.enqueue(
                     immediate = False,
-                    schedule_at = datetime.now,
+                    schedule_at = datetime.now(timezone.uct),
                     interval = None,
                     name = 'netbox_ptov: ' + str(switchlist),
                     username = username,
