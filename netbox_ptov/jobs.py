@@ -16,7 +16,7 @@ class ptovJob(JobRunner):
         request = MagicMock()
 
 
-#    request = MagicMock()
+    request = MagicMock()
 
 
     def __init__(self, job):
@@ -25,55 +25,54 @@ class ptovJob(JobRunner):
             job: The specific `Job` this `JobRunner` is executing.
         """
         self.job = job
-#        request = MagicMock()
+        request = MagicMock()
 
 
     def run(self, **kwargs):
         obj = self.job.object
-#        request = MagicMock()
+        request = MagicMock()
 
         logger = logging.getLogger(__name__)
         logger.setLevel(logging.INFO)
 
         # Create a custom handler to append logs to the job's data
-#        class JobDataHandler(logging.Handler):
-#            def __init__(self, job):
-#                super().__init__()
-#                self.job = job
+        class JobDataHandler(logging.Handler):
+            def __init__(self, job):
+                super().__init__()
+                self.job = job
 
-#            def emit(self, record):
+            def emit(self, record):
                 #log_entry = self.format(str(record))
-#                if not self.job.data:
-#                    self.job.data = []
-#                self.job.data.append(str(self))
-#                messages.info(request, str(self))
-#                self.job.save()  # Save the updated job data
+                if not self.job.data:
+                    self.job.data = []
+                self.job.data.append(str(self))
+                messages.info(request, str(self))
+                self.job.save()  # Save the updated job data
 
         #class CustomFormatter(logging.Formatter):
-#            def formatTime(self, record, datefmt=None):
+            def formatTime(self, record, datefmt=None):
                 # Ensure record.created is a float timestamp
-#                timestamp = self.converter(record.created)
-#                messages.info(request, f'timestamp: {str(timestamp)}', extra_tags='safe')
+                timestamp = self.converter(record.created)
+                messages.info(request, f'timestamp: {str(timestamp)}', extra_tags='safe')
 #                dt_object = datetime.datetime.fromtimestamp(str(timestamp), tz=timezone.utc)
-#                messages.info(request, f'dt_object: {str(dt_object)}', extra_tags='safe')
-#                return dt_object.isoformat()
-#                return record.created
+                messages.info(request, f'dt_object: {str(dt_object)}', extra_tags='safe')
+                return dt_object.isoformat()
 
-#        logging.basicConfig(level=logging.INFO,
-            #format='%(asctime)s - %(levelname)s - %(message)s',
-            #datefmt='%Y-%m-%d %H:%M:%S')
-#            format='%(message)s')
 
-#        handler = JobDataHandler(self.job)
-        #formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        logging.basicConfig(level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S')
+
+        handler = JobDataHandler(self.job)
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         #formatter = logging.Formatter('%(message)s')
-        #handler.setFormatter(formatter)
- #       logger.addHandler(handler)
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
 
 
         # Get the logger used by ptovnetlab.p_to_v
-        #logger2 = logging.getLogger('ptovnetlab')
-        #logger2.addHandler(handler)
+        logger2 = logging.getLogger('ptovnetlab')
+        logger2.addHandler(handler)
 
 
         try:
