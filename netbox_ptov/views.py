@@ -37,7 +37,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
                 jobtogo = ptovJob.enqueue(
                     immediate = False,
-                    schedule_at = datetime.now(timezone.uct),
+                    schedule_at = datetime.now(timezone.utc),
                     interval = None,
                     name = 'netbox_ptov: ' + str(switchlist),
                     username = username,
