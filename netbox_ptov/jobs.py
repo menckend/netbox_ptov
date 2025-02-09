@@ -67,18 +67,9 @@ class ptovJob(JobRunner):
 
         # Get the logger used by ptovnetlab.p_to_v
         logger2 = logging.getLogger('ptovnetlab')
-        logger2.addHandler(messages_handler)
+        logger2.addHandler(handler)
 
 
-        # Create a custom logging handler
-        messages_handler = MessagesHandler(request)
-        messages_handler.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        messages_handler.setFormatter(formatter)
-
-        # Get the logger used by ptovnetlab.p_to_v
-        logger = logging.getLogger('ptovnetlab')
-        logger.addHandler(messages_handler)
 
 
         try:
