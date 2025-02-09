@@ -11,18 +11,18 @@ import json
 from unittest.mock import MagicMock
 
 
-class MessagesHandler(logging.Handler):
-    request = MagicMock()
-    def __init__(self, request, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.request = request
+#class MessagesHandler(logging.Handler):
+#    request = MagicMock()
+#    def __init__(self, request, *args, **kwargs):
+#        super().__init__(*args, **kwargs)
+#        self.request = request
 
-    def emit(self, record):
-        try:
-            msg = self.format(record)
-            messages.info(self.request, msg)
-        except Exception:
-            self.handleError(record)
+#    def emit(self, record):
+#        try:
+#            msg = self.format(record)
+#            messages.info(self.request, msg)
+#        except Exception:
+#            self.handleError(record)
 
 
 class ptovJob(JobRunner):
@@ -45,14 +45,14 @@ class ptovJob(JobRunner):
         request = MagicMock()
 
         # Create a custom logging handler
-        messages_handler = MessagesHandler(request)
-        messages_handler.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        messages_handler.setFormatter(formatter)
+ #       messages_handler = MessagesHandler(request)
+ #       messages_handler.setLevel(logging.INFO)
+ #       formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ #       messages_handler.setFormatter(formatter)
 
         # Get the logger used by ptovnetlab.p_to_v
         logger = logging.getLogger('ptovnetlab')
-        logger.addHandler(messages_handler)
+#        logger.addHandler(messages_handler)
 
 
         try:
@@ -64,7 +64,7 @@ class ptovJob(JobRunner):
                 switchlist=kwargs['switchlist'],
                 prjname=kwargs['projectname'],
             ))
-            messages.info(request, f"Virtual lab created successfully: {result_out}")
+            messages.info(request, f"Virtual lab created successfully: {result_out} (is the URL)")
             #return result_out
             return obj
 
