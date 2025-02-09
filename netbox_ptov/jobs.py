@@ -30,16 +30,20 @@ class ptovJob(JobRunner):
         name = "ptovJob"
 
 
+    request = MagicMock()
+
     def __init__(self, job):
         """
         Args:
             job: The specific `Job` this `JobRunner` is executing.
         """
         self.job = job
+        request = MagicMock()
 
 
     def run(self, **kwargs):
         obj = self.job.object
+        request = MagicMock()
 
         # Create a custom logging handler
         messages_handler = MessagesHandler(self)
@@ -51,7 +55,6 @@ class ptovJob(JobRunner):
         logger = logging.getLogger('ptovnetlab')
         logger.addHandler(messages_handler)
 
-        request = MagicMock()
 
         try:
             # Call the function that does all of the work
