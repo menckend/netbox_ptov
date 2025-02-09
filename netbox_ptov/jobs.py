@@ -59,7 +59,7 @@ class ptovJob(JobRunner):
         logging.basicConfig(level=logging.INFO,
             #format='%(asctime)s - %(levelname)s - %(message)s',
             #datefmt='%Y-%m-%d %H:%M:%S')
-            format='%(message)s'
+            format='%(message)s')
 
         handler = JobDataHandler(self.job)
         #formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
