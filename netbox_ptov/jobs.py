@@ -51,8 +51,6 @@ class ptovJob(JobRunner):
 
         try:
             # Call the function that does all of the work
-            print('I am about to print the kwargs received ptovJob run function')
-            print(kwargs)
             result_out = str(ptvnl.p_to_v(
                 username=kwargs['username'], 
                 passwd=kwargs['password'],
@@ -60,9 +58,10 @@ class ptovJob(JobRunner):
                 switchlist=kwargs['switchlist'],
                 prjname=kwargs['projectname'],
             ))
-            messages.info(self.get_absolute_url, f"Virtual lab created successfully: {result_out}")
-            return result_out
+            messages.info(f"Virtual lab created successfully: {result_out}")
+            #return result_out
+            pass
         except Exception as e:
-#            messages.error(self.get_absolute_url, f'An error occurred: {str(e)}', extra_tags='safe')
+            messages.error(f'An error occurred running the netbox_ptov job: {str(e)}', extra_tags='safe')
             print(f'A job error occurred: {str(e)}')
             raise
