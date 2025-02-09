@@ -60,7 +60,7 @@ class ptovJob(JobRunner):
             ))
             messages.info(f"Virtual lab created successfully: {result_out}")
             #return result_out
-            pass
+            return obj
         except Exception as e:
             messages.error(f'An error occurred running the netbox_ptov job: {str(e)}', extra_tags='safe')
             print(f'A job error occurred: {str(e)}')
