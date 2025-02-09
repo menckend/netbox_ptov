@@ -50,7 +50,7 @@ class ptovJob(JobRunner):
             def formatTime(self, record, datefmt=None):
                 # Ensure record.created is a float timestamp
                 timestamp = self.converter(record.created)
-                dt_object = (datetime.datetime.fromtimestamp(timestamp), tz=timezone.utc)
+                dt_object = datetime.datetime.fromtimestamp(timestamp, tz=timezone.utc)
                 return dt_object.isoformat()
                 #return dt_object
 
