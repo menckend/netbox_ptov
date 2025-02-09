@@ -86,7 +86,9 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, joburl)
                 #return render(request, 'golab.html')
                 #return redirect(joburl)
-                return redirect(jobtogo.get_absolute_url)
+                #return redirect(jobtogo.get_absolute_url)
+                redirect(jobtogo.get_absolute_url())
+                pass
     else:
         form = forms.golabForm()
         return render(request, 'golab.html', {'form': form})
