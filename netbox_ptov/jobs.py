@@ -11,7 +11,6 @@ import json
 from unittest.mock import MagicMock
 from asgiref.sync import sync_to_async
 from django.core.management.base import BaseCommand
-from your_app.models import YourModel
 import asyncio
 
 
