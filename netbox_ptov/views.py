@@ -33,14 +33,14 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
     """Pass the input fields from the golabForm instance to the ptovnetlab.p_to_v function and return the results as an HttpResponse"""
 
     # Create a custom logging handler
-#    messages_handler = MessagesHandler(request)
-#    messages_handler.setLevel(logging.INFO)
-#    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-#    messages_handler.setFormatter(formatter)
+ #   messages_handler = MessagesHandler(request)
+ #   messages_handler.setLevel(logging.INFO)
+ #   formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ #   messages_handler.setFormatter(formatter)
 
     # Get the logger used by ptovnetlab.p_to_v
-#    logger = logging.getLogger('ptovnetlab')
-#    logger.addHandler(messages_handler)
+ #   logger = logging.getLogger('ptovnetlab')
+ #   logger.addHandler(messages_handler)
     
     if request.method == 'POST':
         form = forms.golabForm(request.POST)
@@ -53,21 +53,15 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             projectname = form.cleaned_data['prjname_in']
 
             # Log initial info
-            messages.add_message(request, messages.SUCCESS, 'Starting to poll devices and build virtual lab. This may take up to several minutes.', extra_tags='safe')
+            messages.add_message(request, messages.INFO, 'Starting to poll devices and build virtual lab. This may take up to several minutes.', extra_tags='safe')
 
             try:
                 # Call the function that does all of the work
                 messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
-                #ptovobject = get_object_or_404(Device, pk=form.cleaned_data['switchlist_multiplechoice_in'][0].pk)
-                #messages.info(request, dir(ptovobject))
-                #messages.info(request, ptovobject.pk)
-                #messages.info(request, ptovobject.name)
-                #ptovjob_new = ptovJob.enqueue(
-                ptovJob.enqueue(
+                jobtogo = ptovJob.enqueue(
                     immediate = True,
                     interval = None,
-                    name = 'Virt-lab job',
-#                    job = 'P to V lab',
+                    name = 'netbox_ptov: ' + str(switchlist)
                     username = username,
                     password = password,
                     switchlist = switchlist,
@@ -77,8 +71,8 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #joburl = ptovjob_new.get_absolute_url()
                 messages.info(request, f'Job has been enqueued for execution')
                 #joburl=ptovjob_new.get_absolute_url()
-                t.sleep(1)
-                return render(request, 'golab.html')
+                #t.sleep(1)
+                #return render(request, 'golab.html')
             except Exception as e:
                 # Handle any exceptions and add an error message
                 messages.add_message(request, messages.ERROR, f'An error occurred: {str(e)}', extra_tags='safe')
@@ -92,7 +86,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, joburl)
                 #return render(request, 'golab.html')
                 #return redirect(joburl)
-                return render(request, 'golab.html')
+                return redirect(jobtogo.get_absolute_url)
     else:
         form = forms.golabForm()
         return render(request, 'golab.html', {'form': form})
