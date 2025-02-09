@@ -40,29 +40,30 @@ class ptovJob(JobRunner):
                 self.job = job
 
             def emit(self, record):
-                log_entry = self.format(str(record))
+                #log_entry = self.format(str(record))
                 if not self.job.data:
                     self.job.data = []
-                self.job.data.append(str(log_entry))
+                self.job.data.append(str(self))
                 self.job.save()  # Save the updated job data
 
         class CustomFormatter(logging.Formatter):
             def formatTime(self, record, datefmt=None):
                 # Ensure record.created is a float timestamp
                 #timestamp = self.converter(record.created)
-                messages.info(request, f'timestamp: {str(timestamp)}', extra_tags='safe')
+                #messages.info(request, f'timestamp: {str(timestamp)}', extra_tags='safe')
                 #dt_object = datetime.datetime.fromtimestamp(str(timestamp), tz=timezone.utc)
                 #messages.info(request, f'dt_object: {str(dt_object)}', extra_tags='safe')
                 #return dt_object.isoformat()
                 return record.created
 
         logging.basicConfig(level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s',
-            datefmt='%Y-%m-%d %H:%M:%S')
-
+            #format='%(asctime)s - %(levelname)s - %(message)s',
+            #datefmt='%Y-%m-%d %H:%M:%S')
+            format='%(message)s'
 
         handler = JobDataHandler(self.job)
-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        #formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        formatter = logging.Formatter('%(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler)
 
