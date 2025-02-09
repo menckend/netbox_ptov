@@ -8,7 +8,7 @@ from netbox.views import generic
 from netbox_ptov import filtersets, forms, models, tables
 from django.shortcuts import render, redirect
 import json
- from unittest.mock import MagicMock
+from unittest.mock import MagicMock
 
 
 #class MessagesHandler(logging.Handler):
