@@ -8,6 +8,7 @@ from netbox.views import generic
 from netbox_ptov import filtersets, forms, models, tables
 from django.shortcuts import render, redirect
 import json
+ from unittest.mock import MagicMock
 
 
 #class MessagesHandler(logging.Handler):
@@ -40,14 +41,16 @@ class ptovJob(JobRunner):
         obj = self.job.object
 
         # Create a custom logging handler
- #       messages_handler = MessagesHandler(self)
- #       messages_handler.setLevel(logging.INFO)
- #       formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
- #       messages_handler.setFormatter(formatter)
+        messages_handler = MessagesHandler(self)
+        messages_handler.setLevel(logging.INFO)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        messages_handler.setFormatter(formatter)
 
         # Get the logger used by ptovnetlab.p_to_v
- #       logger = logging.getLogger('ptovnetlab')
- #       logger.addHandler(messages_handler)
+        logger = logging.getLogger('ptovnetlab')
+        logger.addHandler(messages_handler)
+
+        request = MagicMock()
 
         try:
             # Call the function that does all of the work
@@ -58,10 +61,10 @@ class ptovJob(JobRunner):
                 switchlist=kwargs['switchlist'],
                 prjname=kwargs['projectname'],
             ))
-            messages.info(f"Virtual lab created successfully: {result_out}")
+            messages.info(request, f"Virtual lab created successfully: {result_out}")
             #return result_out
             return obj
+
         except Exception as e:
-            messages.error(f'An error occurred running the netbox_ptov job: {str(e)}', extra_tags='safe')
-            print(f'A job error occurred: {str(e)}')
+            messages.error(request, f'An error occurred running the netbox_ptov job: {str(e)}', extra_tags='safe')
             raise
