@@ -51,8 +51,8 @@ class ptovJob(JobRunner):
                 # Ensure record.created is a float timestamp
                 timestamp = self.converter(record.created)
                 dt_object = (datetime.datetime.fromtimestamp(timestamp), tz=timezone.utc)
-                return str(dt_object.isoformat())
-                return dt_object
+                return dt_object.isoformat()
+                #return dt_object
 
         logging.basicConfig(level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
