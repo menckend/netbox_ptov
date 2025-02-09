@@ -17,6 +17,8 @@ class ptovJob(JobRunner):
         request = MagicMock()
 
     request = MagicMock()
+
+
     def __init__(self, job):
         """
         Args:
@@ -46,8 +48,8 @@ class ptovJob(JobRunner):
                 self.job.data.append(str(self))
                 self.job.save()  # Save the updated job data
 
-        class CustomFormatter(logging.Formatter):
-            def formatTime(self, record, datefmt=None):
+        #class CustomFormatter(logging.Formatter):
+        #    def formatTime(self, record, datefmt=None):
                 # Ensure record.created is a float timestamp
                 #timestamp = self.converter(record.created)
                 #messages.info(request, f'timestamp: {str(timestamp)}', extra_tags='safe')
@@ -63,14 +65,14 @@ class ptovJob(JobRunner):
 
         handler = JobDataHandler(self.job)
         #formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-        formatter = logging.Formatter('%(message)s')
-        handler.setFormatter(formatter)
+        #formatter = logging.Formatter('%(message)s')
+        #handler.setFormatter(formatter)
         logger.addHandler(handler)
 
 
         # Get the logger used by ptovnetlab.p_to_v
-        logger2 = logging.getLogger('ptovnetlab')
-        logger2.addHandler(handler)
+        #logger2 = logging.getLogger('ptovnetlab')
+        #logger2.addHandler(handler)
 
 
         try:
