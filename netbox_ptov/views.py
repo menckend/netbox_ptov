@@ -61,7 +61,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 jobtogo = ptovJob.enqueue(
                     immediate = True,
                     interval = None,
-                    name = 'netbox_ptov: ' + str(switchlist)
+                    name = 'netbox_ptov: ' + str(switchlist),
                     username = username,
                     password = password,
                     switchlist = switchlist,
