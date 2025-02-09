@@ -9,6 +9,11 @@ from netbox_ptov import filtersets, forms, models, tables
 from django.shortcuts import render, redirect
 import json
 from unittest.mock import MagicMock
+from asgiref.sync import sync_to_async
+from django.core.management.base import BaseCommand
+from your_app.models import YourModel
+import asyncio
+
 
 class ptovJob(JobRunner):
     class Meta:
@@ -77,13 +82,13 @@ class ptovJob(JobRunner):
 
         try:
             # Call the function that does all of the work
-            result_out = str(ptvnl.p_to_v(
+            result_out = sync_to_async(str(ptvnl.p_to_v(
                 username=kwargs['username'], 
                 passwd=kwargs['password'],
                 servername=kwargs['servername'],
                 switchlist=kwargs['switchlist'],
                 prjname=kwargs['projectname'],
-            ))
+            )))
             messages.info(request, f"Virtual lab created successfully: {result_out} (is the URL)")
             #return result_out
             return obj
