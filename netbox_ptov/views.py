@@ -70,7 +70,8 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                     projectname = projectname
                 )
                 #joburl = ptovjob_new.get_absolute_url()
-                messages.info(request, f'Job has been enqueued for execution')
+                messages.info(request, f'Job has been enqueued as: ' + str(jobtogo.name))
+                return redirect(jobtogo.get_absolute_url())
                 #joburl=ptovjob_new.get_absolute_url()
                 #t.sleep(1)
                 #return render(request, 'golab.html')
@@ -83,7 +84,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                 #messages.info(request, f'Still going', extra_tags='safe')
                 #return render( '/core/jobs/'+ str(runningjob.pk))
                 #time.sleep(3)
-                messages.info(request, f'Job has been enqueued as: ' + str(jobtogo.name))
+                #messages.info(request, f'Job has been enqueued as: ' + str(jobtogo.name))
                 #messages.info(request, joburl)
                 #return render(request, 'golab.html')
                 #return redirect(joburl)
