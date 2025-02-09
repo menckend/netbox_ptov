@@ -28,10 +28,9 @@ class MessagesHandler(logging.Handler):
 class ptovJob(JobRunner):
     class Meta:
         name = "ptovJob"
-
+        request = MagicMock()
 
     request = MagicMock()
-
     def __init__(self, job):
         """
         Args:
@@ -46,7 +45,7 @@ class ptovJob(JobRunner):
         request = MagicMock()
 
         # Create a custom logging handler
-        messages_handler = MessagesHandler(self)
+        messages_handler = MessagesHandler(request)
         messages_handler.setLevel(logging.INFO)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         messages_handler.setFormatter(formatter)
