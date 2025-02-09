@@ -50,8 +50,8 @@ class ptovJob(JobRunner):
             def formatTime(self, record, datefmt=None):
                 # Ensure record.created is a float timestamp
                 timestamp = self.converter(record.created)
-                dt_object = datetime.datetime.fromtimestamp(timestamp)
-                return dt_object.isoformat()
+                str(dt_object) = datetime.datetime.fromtimestamp(timestamp)
+                return str(dt_object.isoformat())
 
 
         logging.basicConfig(level=logging.INFO,
