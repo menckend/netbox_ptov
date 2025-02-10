@@ -63,14 +63,14 @@ class ptovJob(JobRunner):
                 return dt_object.isoformat()
 
 
-        logging.basicConfig(level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s',
-            datefmt='%Y-%m-%d %H:%M:%S')
-
+        logging.basicConfig(level=logging.INFO,)
+            #format='%(asctime)s - %(levelname)s - %(message)s',
+            #datefmt='%Y-%m-%d %H:%M:%S')
+            
         handler = JobDataHandler(self.job)
-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        #formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         #formatter = logging.Formatter('%(message)s')
-        handler.setFormatter(formatter)
+        #handler.setFormatter(formatter)
         logger.addHandler(handler)
 
 
@@ -87,7 +87,7 @@ class ptovJob(JobRunner):
                 servername=kwargs['servername'],
                 switchlist=kwargs['switchlist'],
                 prjname=kwargs['projectname'],
-            )))
+            )), thread_sensitive=False)
             messages.info(request, f"Virtual lab created successfully: {result_out} (is the URL)")
             #return result_out
             return obj
