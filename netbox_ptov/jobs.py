@@ -29,6 +29,7 @@ class ptovJob(JobRunner):
             job: The specific `Job` this `JobRunner` is executing.
         """
         self.job = job
+        self.job.data = []
         request = MagicMock()
 
 
@@ -37,7 +38,7 @@ class ptovJob(JobRunner):
         request = MagicMock()
 
         logger = logging.getLogger(__name__)
-        logger.setLevel(logging.INFO)
+        logger.setLevel(logging.DEBUG)
 
         # Create a custom handler to append logs to the job's data
         class JobDataHandler(logging.Handler):
@@ -50,9 +51,8 @@ class ptovJob(JobRunner):
                 if not self.job.data:
                     self.job.data = []
                 self.job.data.append(str(self))
-                messages.info(request, 'This is a message from the jobs log-handler emit method')
                 
-                self.job.save()  # Save the updated job data
+                #self.job.save()  # Save the updated job data
 
         class CustomFormatter(logging.Formatter):
             def formatTime(self, record, datefmt=None):
@@ -82,9 +82,7 @@ class ptovJob(JobRunner):
 
         try:
             # Call the function that does all of the work
-            self.job.data = []
             self.job.data.append('PtoV job is now being executed by the rq task manager')
-            self.job.data.save()
             result_out = str(ptvnl.p_to_v(
                 username=kwargs['username'], 
                 passwd=kwargs['password'],
@@ -93,7 +91,8 @@ class ptovJob(JobRunner):
                 prjname=kwargs['projectname'],
             ))
             self.job.data.append('PtoV job finished')
-            self.job.data.save()
+            self.job.data.append('Access the v-lab at: ' + result_out)
+
             messages.info(request, f"Virtual lab created successfully: {result_out} (is the URL)")
             #return result_out
             return obj
