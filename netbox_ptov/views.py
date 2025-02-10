@@ -30,11 +30,11 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
             projectname = form.cleaned_data['prjname_in']
 
             # Log initial info
-            messages.add_message(request, messages.INFO, 'Starting to poll devices and build virtual lab. This may take up to several minutes.', extra_tags='safe')
+            #messages.add_message(request, messages.INFO, 'Starting to poll devices and build virtual lab. This may take up to several minutes.', extra_tags='safe')
 
             try:
                 # Call the function that does all of the work
-                messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
+                #messages.info(request, f'Completing your request as a background job.', extra_tags='safe')
                 jobtogo = ptovJob.enqueue(
                     immediate = False,
                     schedule_at = datetime.now(timezone.utc),

@@ -57,9 +57,9 @@ class ptovJob(JobRunner):
             def formatTime(self, record, datefmt=None):
                 # Ensure record.created is a float timestamp
                 timestamp = self.converter(record.created)
-                messages.info(request, f'timestamp: {str(timestamp)}', extra_tags='safe')
+                #messages.info(request, f'timestamp: {str(timestamp)}', extra_tags='safe')
                 dt_object = datetime.datetime.fromtimestamp(timestamp, tz=timezone.utc)
-                messages.info(request, f'dt_object: {str(dt_object)}', extra_tags='safe')
+                #messages.info(request, f'dt_object: {str(dt_object)}', extra_tags='safe')
                 return dt_object.isoformat()
 
 
@@ -92,13 +92,14 @@ class ptovJob(JobRunner):
             ))
             self.job.data.append('PtoV job finished')
             self.job.save()
-            #longstring= 'Access the v-lab at: ' + '[' + result_out + ']' + '(' + result_out + ')'
             self.job.data.append('Access the v-lab at: ' + result_out)
-            self.job.name='[' + result_out + ']' + '(' + result_out + ')'
+            self.job.name=result_out
             self.job.save()
             #return result_out
             return obj
 
         except Exception as e:
+            self.job.data.append('There was an error: {str(e)}')
+            self.job.save()
             messages.error(request, f'An error occurred running the netbox_ptov job: {str(e)}', extra_tags='safe')
             raise
