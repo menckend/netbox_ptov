@@ -76,7 +76,7 @@ class ptovJob(JobRunner):
 
         # Get the logger used by ptovnetlab.p_to_v
         logger2 = logging.getLogger('ptovnetlab')
-        logger2.addHandler(async_to_sync(handler))
+        async_to_sync(logger2.addHandler(handler))
 
 
         try:
