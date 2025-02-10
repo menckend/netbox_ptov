@@ -44,7 +44,7 @@ def golab(request: forms.golabForm) -> django.http.HttpResponse:
                     password = password,
                     switchlist = switchlist,
                     servername = servername,
-                    projectname = projectname
+                    projectname = projectname,
                 )
                 #joburl = ptovjob_new.get_absolute_url()
                 messages.info(request, f'Job has been enqueued as: ' + str(jobtogo.name))
