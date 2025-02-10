@@ -90,7 +90,8 @@ class ptovJob(JobRunner):
                 prjname=kwargs['projectname'],
             ))
             self.job.data.append('PtoV job finished')
-            self.job.data.append('Access the v-lab at: ' + '['result_out'+ ']'+ '('result_out'+ ')')
+            longstring= 'Access the v-lab at: ' + '[' + result_out + ']' + '('result_out'+')'
+            self.job.data.append(longstring)
             #return result_out
             return obj
 
