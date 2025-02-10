@@ -82,6 +82,7 @@ class ptovJob(JobRunner):
         try:
             # Call the function that does all of the work
             self.job.data.append('PtoV job is now being executed by the rq task manager')
+            self.job.save()
             result_out = str(ptvnl.p_to_v(
                 username=kwargs['username'], 
                 passwd=kwargs['password'],
@@ -90,8 +91,10 @@ class ptovJob(JobRunner):
                 prjname=kwargs['projectname'],
             ))
             self.job.data.append('PtoV job finished')
+            self.job.save()
             longstring= 'Access the v-lab at: ' + '[' + result_out + ']' + '(' + result_out + ')'
             self.job.data.append(longstring)
+            self.job.save()
             #return result_out
             return obj
 
