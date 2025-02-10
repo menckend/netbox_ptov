@@ -9,9 +9,10 @@ from netbox_ptov import filtersets, forms, models, tables
 from django.shortcuts import render, redirect
 import json
 from unittest.mock import MagicMock
-#from asgiref.sync import sync_to_async
+from asgiref.sync import sync_to_async
+from asgiref.sync import async_to_sync
 from django.core.management.base import BaseCommand
-#import asyncio
+import asyncio
 
 
 class ptovJob(JobRunner):
