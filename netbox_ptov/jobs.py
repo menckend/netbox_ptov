@@ -39,7 +39,7 @@ class ptovJob(JobRunner):
         request = MagicMock()
 
         logger = logging.getLogger(__name__)
-        logger.setLevel(logging.DEBUG)
+        logger.setLevel(logging.NOTSET)
 
         # Create a custom handler to append logs to the job's data
         class JobDataHandler(logging.Handler):
@@ -64,7 +64,7 @@ class ptovJob(JobRunner):
                 return dt_object.isoformat()
 
 
-        logging.basicConfig(level=logging.INFO,
+        logging.basicConfig(level=logging.NOTSET,
             format='%(asctime)s - %(levelname)s - %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S')
             
