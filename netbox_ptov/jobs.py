@@ -50,7 +50,8 @@ class ptovJob(JobRunner):
                 if not self.job.data:
                     self.job.data = []
                 self.job.data.append(str(self))
-                messages.info(request, str(self))
+                messages.info(request, 'This is a message from the jobs log-handler emit method')
+                
                 self.job.save()  # Save the updated job data
 
         class CustomFormatter(logging.Formatter):
