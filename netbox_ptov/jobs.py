@@ -39,7 +39,7 @@ class ptovJob(JobRunner):
         request = MagicMock()
 
         logger = logging.getLogger(__name__)
-        logger.setLevel(logging.NOTSET)
+        logger.setLevel(logging.DEBUG)
 
         # Create a custom handler to append logs to the job's data
         class JobDataHandler(logging.Handler):
@@ -64,7 +64,7 @@ class ptovJob(JobRunner):
                 return dt_object.isoformat()
 
 
-        logging.basicConfig(level=logging.NOTSET,
+        logging.basicConfig(level=logging.DEBUG,
             format='%(asctime)s - %(levelname)s - %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S')
             
@@ -76,11 +76,12 @@ class ptovJob(JobRunner):
 
         # Get the logger used by ptovnetlab.p_to_v
         logger2 = logging.getLogger('ptovnetlab')
-        async_to_sync(logger2.addHandler(handler))
+        #async_to_sync(logger2.addHandler(handler))
 
 
         try:
             # Call the function that does all of the work
+            logging.DEBUG('Test DEBUG log message from background job')
             self.job.data.append('PtoV job is now being executed by the rq task manager')
             self.job.save()
             result_out = str(ptvnl.p_to_v(
