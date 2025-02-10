@@ -9,9 +9,9 @@ from netbox_ptov import filtersets, forms, models, tables
 from django.shortcuts import render, redirect
 import json
 from unittest.mock import MagicMock
-from asgiref.sync import sync_to_async
+#from asgiref.sync import sync_to_async
 from django.core.management.base import BaseCommand
-import asyncio
+#import asyncio
 
 
 class ptovJob(JobRunner):
@@ -75,8 +75,8 @@ class ptovJob(JobRunner):
 
 
         # Get the logger used by ptovnetlab.p_to_v
-        logger2 = logging.getLogger('ptovnetlab')
-        logger2.addHandler(handler)
+#        logger2 = logging.getLogger('ptovnetlab')
+#        logger2.addHandler(handler)
 
 
         try:
