@@ -82,6 +82,9 @@ class ptovJob(JobRunner):
 
         try:
             # Call the function that does all of the work
+            self.job.data = []
+            self.job.data.append('PtoV job is now being executed by the rq task manager')
+            self.job.data.save()
             result_out = str(ptvnl.p_to_v(
                 username=kwargs['username'], 
                 passwd=kwargs['password'],
@@ -89,6 +92,8 @@ class ptovJob(JobRunner):
                 switchlist=kwargs['switchlist'],
                 prjname=kwargs['projectname'],
             ))
+            self.job.data.append('PtoV job finished')
+            self.job.data.save()
             messages.info(request, f"Virtual lab created successfully: {result_out} (is the URL)")
             #return result_out
             return obj
