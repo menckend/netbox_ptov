@@ -51,8 +51,7 @@ class ptovJob(JobRunner):
                 if not self.job.data:
                     self.job.data = []
                 self.job.data.append(str(self))
-                
-                #self.job.save()  # Save the updated job data
+                self.job.save()  # Save the updated job data
 
         class CustomFormatter(logging.Formatter):
             def formatTime(self, record, datefmt=None):
@@ -91,9 +90,7 @@ class ptovJob(JobRunner):
                 prjname=kwargs['projectname'],
             ))
             self.job.data.append('PtoV job finished')
-            self.job.data.append('Access the v-lab at: ' + result_out)
-
-            messages.info(request, f"Virtual lab created successfully: {result_out} (is the URL)")
+            self.job.data.append('Access the v-lab at: ' + '['result_out'+ ']'+ '('result_out'+ ')')
             #return result_out
             return obj
 
