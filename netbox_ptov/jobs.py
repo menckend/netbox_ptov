@@ -81,7 +81,7 @@ class ptovJob(JobRunner):
 
         try:
             # Call the function that does all of the work
-            logging.DEBUG('Test DEBUG log message from background job')
+            logging.debug('Test DEBUG log message from background job')
             self.job.data.append('PtoV job is now being executed by the rq task manager')
             self.job.save()
             result_out = str(ptvnl.p_to_v(
