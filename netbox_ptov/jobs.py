@@ -75,7 +75,7 @@ class ptovJob(JobRunner):
 
 
         # Get the logger used by ptovnetlab.p_to_v
-#        logger2 = logging.getLogger('ptovnetlab')
+        logger2 = logging.getLogger('ptovnetlab')
 #        logger2.addHandler(handler)
 
 
