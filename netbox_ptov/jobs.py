@@ -63,14 +63,14 @@ class ptovJob(JobRunner):
                 return dt_object.isoformat()
 
 
-        logging.basicConfig(level=logging.INFO,)
-            #format='%(asctime)s - %(levelname)s - %(message)s',
-            #datefmt='%Y-%m-%d %H:%M:%S')
+        logging.basicConfig(level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S')
             
         handler = JobDataHandler(self.job)
-        #formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         #formatter = logging.Formatter('%(message)s')
-        #handler.setFormatter(formatter)
+        handler.setFormatter(formatter)
         logger.addHandler(handler)
 
 
@@ -92,8 +92,9 @@ class ptovJob(JobRunner):
             ))
             self.job.data.append('PtoV job finished')
             self.job.save()
-            longstring= 'Access the v-lab at: ' + '[' + result_out + ']' + '(' + result_out + ')'
-            self.job.data.append(longstring)
+            #longstring= 'Access the v-lab at: ' + '[' + result_out + ']' + '(' + result_out + ')'
+            self.job.data.append('Access the v-lab at: ' + result_out)
+            self.job.name='[' + result_out + ']' + '(' + result_out + ')'
             self.job.save()
             #return result_out
             return obj
