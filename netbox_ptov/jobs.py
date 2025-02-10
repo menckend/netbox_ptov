@@ -81,13 +81,13 @@ class ptovJob(JobRunner):
 
         try:
             # Call the function that does all of the work
-            result_out = sync_to_async(str(ptvnl.p_to_v(
+            result_out = str(ptvnl.p_to_v(
                 username=kwargs['username'], 
                 passwd=kwargs['password'],
                 servername=kwargs['servername'],
                 switchlist=kwargs['switchlist'],
                 prjname=kwargs['projectname'],
-            )), thread_sensitive=False)
+            ))
             messages.info(request, f"Virtual lab created successfully: {result_out} (is the URL)")
             #return result_out
             return obj
