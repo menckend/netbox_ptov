@@ -53,7 +53,7 @@ class ptovJob(JobRunner):
                 messages.info(request, str(self))
                 self.job.save()  # Save the updated job data
 
-        #class CustomFormatter(logging.Formatter):
+        class CustomFormatter(logging.Formatter):
             def formatTime(self, record, datefmt=None):
                 # Ensure record.created is a float timestamp
                 timestamp = self.converter(record.created)
