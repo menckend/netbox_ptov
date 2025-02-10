@@ -70,14 +70,13 @@ class ptovJob(JobRunner):
             
         handler = JobDataHandler(self.job)
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-        #formatter = logging.Formatter('%(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler)
 
 
         # Get the logger used by ptovnetlab.p_to_v
         logger2 = logging.getLogger('ptovnetlab')
-        #async_to_sync(logger2.addHandler(handler))
+        logger2.addHandler(async_to_sync(handler))
 
 
         try:
@@ -96,7 +95,6 @@ class ptovJob(JobRunner):
             self.job.data.append('Access the v-lab at: ' + result_out)
             self.job.name=result_out
             self.job.save()
-            #return result_out
             return obj
 
         except Exception as e:
