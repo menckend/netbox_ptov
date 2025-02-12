@@ -21,6 +21,7 @@ class PtovConfig(PluginConfig):
     default_settings = {
         'top_level_menu': True
     }
+    
 
     def ready(self):
         """

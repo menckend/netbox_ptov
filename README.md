@@ -36,13 +36,14 @@ Change modeling, obviously.  Invasive troubleshooting of pesky routing issues th
 
 All of the heavy lifting is done by the [ptovnetlab package](https://menckend.github.io/ptovnetlab)
 
+As of version 0.3, netbox_ptov uses Netbox background-jobs to enqueue the call to the ptovnetlab package that does that "heavy lifting" (getting run-state from the switches via eAPI; massaging the data; creating the GNS3 project and nodes via API; etc... )  After the user clicks "submit" on the "Run a VLab" page, they are immediately redirected to the detail view page of the background job that is handling their request.  Logging data from the job is appended to the "data" element of the job.
+
 ## Compatibility
 
 | NetBox Version | Plugin Version |
 |----------------|----------------|
-|     4.1        |      0.2.x     |
-|     4.2        |      0.2.x     |
-
+|     4.1        |      <=0.2.0.3 |
+|     4.2        |      >=0.3     |
 
 ## Installing
 
@@ -73,3 +74,5 @@ PLUGINS_CONFIG = {
     "netbox_ptov": {'top_level_menu': False},
 }
 ```
+
+Create/run migrations using manage.py as per Netbox documentation.
